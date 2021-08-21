@@ -29,16 +29,43 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'password', 'remember_token',
     ];
 
+    public function role()
+    {
+        return $this->hasOne('App\Models\Role', 'id', 'role_id');
+    }
+
+
+
+
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
+     * @param string|array $roles
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function authorizeRoles($roles)
+    {
+        if (is_array($roles)) {
+            return $this->hasAnyRole($roles) ||
+                abort(401, 'This action is unauthorized.');
+        }
+        return $this->hasRole($roles) ||
+            abort(401, 'This action is unauthorized.');
+    }
+    /**
+     * Check multiple roles
+     * @param array $roles
+     */
+    public function hasAnyRole($roles)
+    {
+        return null !== $this->role->permission->whereIn('permission', $roles)->first();
+    }
+    /**
+     * Check one role
+     * @param string $role
+     */
+    public function hasRole($role)
+    {
+        return null !== $this->role->permission->where('permission', $role)->first();
+    }
 }
