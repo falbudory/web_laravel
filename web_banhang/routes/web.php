@@ -15,3 +15,5 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/home', 'Home\HomeController@index')->name('index');
+
+Route::get('/index', 'admin\PageAdminController@getIndex')->name('getIndex');
