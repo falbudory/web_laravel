@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
+use App\Models\Brand;
+use App\Models\TypeProduct;
 use Illuminate\Http\Request;
 
-class PageAdminController extends Controller
+class AdminController extends Controller
 {
     public function login() {
         return view("admin.login.login");
@@ -35,8 +38,11 @@ class PageAdminController extends Controller
         return view("admin.type_products.add_type_products");
     }
 
-    public function getProducts() {
-        return view("admin.products.view_products");
+    public function viewProducts() {
+        $products = Product::get();
+        $brands = Brand::get();
+        $type_products = TypeProduct::get();
+        return view('admin.products.view_products')->with(compact('products', 'brands', 'type_products'));
     }
 
     public function editProducts() {
@@ -44,7 +50,9 @@ class PageAdminController extends Controller
     }
 
     public function addProducts() {
-        return view("admin.products.add_products");
+        $brands = Brand::get();
+        $type_products = TypeProduct::get();
+        return view("admin.products.add_products")->with(compact('brands', 'type_products'));
     }
 
     public function getBrands() {

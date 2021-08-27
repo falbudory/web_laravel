@@ -9,4 +9,11 @@ class BillDetail extends Model
 {
     use HasFactory;
     protected $table = 'bill_details';
+    public function product() {
+        return $this->belongsTo('App\Models\Product', 'product_id', 'id');
+    }
+
+    public function bill() {
+        return $this->belongsTo('App\Models\BillDetail', 'bill_id', 'id');
+    }
 }

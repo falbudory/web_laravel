@@ -3,8 +3,8 @@
 
     <div id="content">
         <div id="content-header">
-            <div id="breadcrumb"> <a href="{{ url('/admin') }}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Hóa đơn</a> <a href="#" class="current">Tất cả hóa đơn</a> </div>
-            <h1>Products</h1>
+            <div id="breadcrumb"> <a href="{{ url('/admin') }}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Đơn hàng</a> <a href="#" class="current">Tất cả đơn hàng</a> </div>
+            <h1>Đơn hàng</h1>
 
         </div>
         <div class="container-fluid">
