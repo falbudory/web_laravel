@@ -95,8 +95,11 @@ label {
     width: 19%;
     font-size: 13px;
     letter-spacing: 1px;
-}
 
+}
+/*.header-right{*/
+/*    padding-right: 15px;*/
+/*}*/
 .header-right ul li a {
     text-decoration: none;
 }
@@ -2186,19 +2189,19 @@ div#testimonials h4.m-title {
 	display: inherit;
 }
 
-/*-- placeholder-color 
+/*-- placeholder-color
 
 ::-webkit-input-placeholder {
     color: #fff;
 }
 
 :-moz-placeholder {
-    /* Firefox 18- 
+    /* Firefox 18-
     color: #fff;
 }
 
 ::-moz-placeholder {
-    /* Firefox 19+ 
+    /* Firefox 19+
     color: #fff;
 }
 

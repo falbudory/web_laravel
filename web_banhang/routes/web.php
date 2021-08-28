@@ -13,9 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+//home
 Route::get('/home', 'Home\HomeController@index')->name('index');
-
+Route::get('/product/{pid}', 'Home\HomeController@detailProduct')->name('home.detailProduct');
+Route::get('/checkout', 'Home\HomeController@checkOut')->name('checkOut');
+Route::get('/typeProduct/{id}', 'Home\HomeController@product')->name('home.typeProduct');
+Route::get('/contactUs', 'Home\HomeController@contactUs')->name('contactUs');
+Route::get('/aboutUs', 'Home\HomeController@aboutUs')->name('aboutUs');
+Route::post('/store', 'Home\UserController@store')->name('store');
+Route::post('/login', 'Home\UserController@login')->name('home.login');
+Route::post('/update/{uid}', 'Home\UserController@update')->name('home.update');
+Route::get('/logout', 'Home\UserController@logout')->name('home.logout');
+//admin
 Route::get('admin/login', 'admin\PageAdminController@login')->name('login');
 
 Route::get('admin/users', 'admin\PageAdminController@getUsers')->name('view_users');
