@@ -9,4 +9,8 @@ class TypeProduct extends Model
 {
     use HasFactory;
     protected $table = 'type_products';
+
+    public function products() {
+        return $this->hasMany('App\Modles\Product', 'type_id', 'id');
+    }
 }

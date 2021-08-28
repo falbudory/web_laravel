@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 -- Cơ sở dữ liệu: `banhang`
 --
 
+create database banhang;
+use banhang;
 -- --------------------------------------------------------
 
 --
@@ -34,6 +36,7 @@ CREATE TABLE `bills` (
   `total` float NOT NULL,
   `payment` varchar(200) NOT NULL,
   `note` varchar(200) NOT NULL,
+  `status` bit NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -64,6 +67,7 @@ CREATE TABLE `brands` (
   `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
   `description` varchar(50) NOT NULL,
+  `image_logo` varchar(200) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -72,13 +76,13 @@ CREATE TABLE `brands` (
 -- Đang đổ dữ liệu cho bảng `brands`
 --
 
-INSERT INTO `brands` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'lenovo', 'LENOVO', '2021-08-21 21:37:02', '2021-08-21 21:37:02'),
-(2, 'samsung', 'SAM SUNG', '2021-08-21 21:37:02', '2021-08-21 21:37:02'),
-(3, 'xiaomi', 'XIAOMI', '2021-08-21 21:37:02', '2021-08-21 21:37:02'),
-(4, 'hp', 'HP', '2021-08-21 21:37:02', '2021-08-21 21:37:02'),
-(5, 'oppo', 'OPPO', '2021-08-21 21:37:02', '2021-08-21 21:37:02'),
-(6, 'asus', 'ASUS', '2021-08-21 21:37:02', '2021-08-21 21:37:02');
+INSERT INTO `brands` (`id`, `name`, `description`, `image_logo`, `created_at`, `updated_at`) VALUES
+(1, 'lenovo', 'LENOVO', 'lenovo-logo.png', '2021-08-21 21:37:02', '2021-08-21 21:37:02'),
+(2, 'samsung', 'SAM SUNG', 'samsung-logo.png',  '2021-08-21 21:37:02', '2021-08-21 21:37:02'),
+(3, 'xiaomi', 'XIAOMI', 'xiaomi-logo.png','2021-08-21 21:37:02', '2021-08-21 21:37:02'),
+(4, 'hp', 'HP', 'hp-logo.png','2021-08-21 21:37:02', '2021-08-21 21:37:02'),
+(5, 'oppo', 'OPPO', 'oppo-logo.png','2021-08-21 21:37:02', '2021-08-21 21:37:02'),
+(6, 'asus', 'ASUS', 'asus-logo.png','2021-08-21 21:37:02', '2021-08-21 21:37:02');
 
 -- --------------------------------------------------------
 
