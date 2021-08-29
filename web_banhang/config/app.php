@@ -231,4 +231,14 @@ return [
 
     ],
 
+    'prodivers' => [
+        //...
+        Intervention\Image\ImageServiceProvider::class
+    ],
+
+    'alias' => [
+        //...
+        'Image' => Intervention\Image\Facades\Image::class
+    ]
+
 ];

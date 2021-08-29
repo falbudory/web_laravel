@@ -43,6 +43,7 @@ Route::get('admin/type-products/edit', 'admin\AdminController@editTypeProducts')
 
 Route::get('admin/products', 'admin\AdminController@viewProducts')->name('view_products');
 Route::get('admin/products/add', 'admin\AdminController@addProducts')->name('add_products');
+Route::post('admin/products/insert-products', 'admin\AdminController@insertProducts');
 Route::get('admin/products/edit', 'admin\AdminController@editProducts')->name('edit_products');
 
 

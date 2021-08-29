@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Laravel Admin</title>
+<title>Trang quản trị</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="{{ asset('css/admin/bootstrap.min.css') }}" />
@@ -25,14 +25,14 @@
 
 @include('layouts.admin.admin_footer')
 
-<script src="{{ asset('js/admin/jquery.min.js') }}"></script> 
-<script src="{{ asset('js/admin/jquery.ui.custom.js') }}"></script> 
-<script src="{{ asset('js/admin/bootstrap.min.js') }}"></script> 
-<script src="{{ asset('js/admin/jquery.uniform.js') }}"></script> 
-<script src="{{ asset('js/admin/select2.min.js') }}"></script> 
+<script src="{{ asset('js/admin/jquery.min.js') }}"></script>
+<script src="{{ asset('js/admin/jquery.ui.custom.js') }}"></script>
+<script src="{{ asset('js/admin/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/admin/jquery.uniform.js') }}"></script>
+<script src="{{ asset('js/admin/select2.min.js') }}"></script>
 <script src="{{ asset('js/admin/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('js/admin/jquery.validate.js') }}"></script> 
-<script src="{{ asset('js/admin/matrix.js') }}"></script> 
+<script src="{{ asset('js/admin/jquery.validate.js') }}"></script>
+<script src="{{ asset('js/admin/matrix.js') }}"></script>
 <script src="{{ asset('js/admin/matrix.form_validation.js') }}"></script>
 <script src="{{ asset('js/admin/matrix.tables.js') }}"></script>
 <script src="{{ asset('js/admin/matrix.popover.js') }}"></script>
