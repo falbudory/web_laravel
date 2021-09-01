@@ -34,7 +34,7 @@ class AdminController extends Controller
         $rolePermissions  = RolePermission::all();
         return view("admin.users.add_users")->with(compact("roles", "rolePermissions"));
     }
-    public function getPermissionByRole(){
+    public function getPermissionByRole($id) {
         $data = Input::get('role');
         $rolePermissions  = RolePermission::where('role_id', $id)->first();
         return response()->json($rolePermissions);
@@ -52,6 +52,20 @@ class AdminController extends Controller
         }
         return view('admin.type_products.edit_type_products')->with(compact('typeProductDetails'));
     }
+    public function updateTypeProduct(TypeProductRequest $request, $id){
+//        dd($request);
+        $data = array_filter($request->only('name', 'description'));
+        if(TypeProduct::where('id',$id)->update($data)){
+            return back()->with('success', 'Thông tin đã được lưu lại');
+        }
+        else{
+            return back()->with('error', 'Đã có lỗi xảy ra, xin vui lòng thử lại');
+        }
+
+    }
+
+
+
 
     public function addTypeProducts() {
         return view("admin.type_products.add_type_products");
@@ -84,8 +98,8 @@ class AdminController extends Controller
     public function viewProducts() {
         $products = Product::all();
         $brands = Brand::all();
-        $type_products = TypeProduct::all();
-        return view('admin.products.view_products',compact('products', 'brands', 'type_products'));
+        $type_products = TypeProduct::get();
+        return view('admin.products.view_products')->with(compact('products', 'brands', 'type_products'));
     }
 
     public function editProducts($id) {
@@ -101,7 +115,40 @@ class AdminController extends Controller
     public function addProducts() {
         $brands = Brand::all();
         $type_products = TypeProduct::all();
-        return view('admin.products.add_products',compact('brands', 'type_products'));
+        return view("admin.products.add_products")->with(compact('brands', 'type_products'));
+    }
+
+    public function insertProducts(ProductRequest $request){
+        $data = $request->all();
+        $product = new Product;
+        $product->name = $data['product_name'];
+        $product->unit_price = $data['unit_price'];
+        $product->promotion_price = $data['promotion_price'];
+        $product->description = $data['description'];
+        $product->cpu = $data['cpu'];
+        $product->ram = $data['ram'];
+        $product->oCung = $data['hard_drive'];
+        $product->win = $data['system'];
+        $product->manHinh = $data['screen'];
+        $product->brand_id = $data['brand'];
+        $product->type_id = $data['type_product'];
+        if($request->hasFile('image')){
+            $image_tmp = $request->file('image');
+            if($image_tmp->isValid()){
+                $extension = $image_tmp->getClientOriginalExtension();
+                $filename = time().rand(10,99).'.'.$extension;
+                $image_path = 'images/products/'.$filename;
+                if(!Image::make($image_tmp)->save($image_path)){
+                    return back()->with('error', 'Something was wrong with image');
+                }
+                // Store image name in products table
+                $product->image = $filename;
+            }
+        }
+        if($product->save()){
+            return redirect()->back()->with('success', 'Product has been added!');
+        }
+        else return redirect()->back()->with('failed', 'Coudnt add a new product, please try agian');
     }
 
     public function updateProducts(ProductRequest $request, $id = null){
@@ -218,5 +265,4 @@ class AdminController extends Controller
     public function getBills() {
         return view("admin.bills.view_bills");
     }
-
 }
