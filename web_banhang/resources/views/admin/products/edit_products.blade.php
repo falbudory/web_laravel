@@ -4,7 +4,7 @@
     <div id="content">
         <div id="content-header">
             <div id="breadcrumb"><a href="{{--{{ url('/admin/') }}--}}" title="Go to Home" class="tip-bottom"><i
-                        class="icon-home"></i> Home</a> <a href="{{url('/admin/products')}}">Sản phẩm</a> <a href="{{url('/admin/products/edit')}}" class="current">Sửa sản phẩm</a></div>
+                        class="icon-home"></i> Home</a> <a href="{{url('/admin/products')}}">Sản phẩm</a> <a href="" class="current">Sửa sản phẩm</a></div>
             <h1>Products</h1>
 
         </div>
@@ -19,27 +19,34 @@
                         <div class="widget-content nopadding">
                             @include('../../flash_message')
                             <form enctype="multipart/form-data" class="form-horizontal" method="post"
-                                  action="{{ url('admin/products/insert-products') }}" name="add_product"
+                                  action="{{ url('admin/products/update/'.$product->id)}}" name="add_product"
                                   id="add_product" novalidate="novalidate"> {{ csrf_field() }}
                                 <div class="control-group">
                                     <label class="control-label">Nhà sản xuất</label>
                                     <div class="controls">
-                                        <select name="brand" id="brand" style="width: 220px;">
+                                        <select name="brand_id" id="brand_id" style="width: 220px;">
                                             <option value='' selected disabled style="display: none"></option>
                                             @foreach($brands as $brand)
-                                                <option value="{{$brand->id}}">{{$brand->name}}</option>
+                                                @if($brand->id == $product->brand_id)
+                                                    <option value="{{$brand->id}}" selected>{{$brand->name}}</option>
+                                                @else
+                                                    <option value="{{$brand->id}}">{{$brand->name}}</option>
+                                                @endif
                                             @endforeach
-
                                         </select>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Loại sản phẩm</label>
                                     <div class="controls">
-                                        <select name="type_product" id="type_product" style="width: 220px;">
+                                        <select name="type_id" id="type_id" style="width: 220px;">
                                             <option value='' selected disabled style="display: none"></option>
                                             @foreach($type_products as $type_product)
-                                                <option value="{{$type_product->id}}">{{$type_product->name}}</option>
+                                                @if($type_product->id == $product->type_id)
+                                                    <option value="{{$type_product->id}}" selected>{{$type_product->name}}</option>
+                                                @else
+                                                    <option value="{{$type_product->id}}">{{$type_product->name}}</option>
+                                                @endif
                                             @endforeach
 
                                         </select>
@@ -48,74 +55,74 @@
                                 <div class="control-group">
                                     <label class="control-label">Tên sản phẩm</label>
                                     <div class="controls">
-                                        <input type="text" name="product_name" id="product_name" required/>
+                                        <input type="text" name="name" id="name" value="{{$product->name}}" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Hệ điều hành</label>
                                     <div class="controls">
-                                        <input type="text" name="system" id="system" required/>
+                                        <input type="text" name="win" id="win" value="{{$product->win}}"/>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">CPU</label>
                                     <div class="controls">
-                                        <input type="text" name="cpu" id="cpu" required/>
+                                        <input type="text" name="cpu" id="cpu" value="{{$product->cpu}}"/>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Màn hình</label>
                                     <div class="controls">
-                                        <input type="text" name="screen" id="screen" required/>
+                                        <input type="text" name="manHinh" id="manHinh" value="{{$product->manHinh}}"/>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Ram</label>
                                     <div class="controls">
-                                        <input type="text" name="ram" id="ram" required/>
+                                        <input type="text" name="ram" id="ram" value="{{$product->ram}}"/>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
                                     <label class="control-label">Ổ cứng</label>
                                     <div class="controls">
-                                        <input type="text" name="hard_drive" id="hard_drive" required/>
+                                        <input type="text" name="oCung" id="oCung" value="{{$product->oCung}}"/>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
                                     <label class="control-label">Giá</label>
                                     <div class="controls">
-                                        <input type="text" name="unit_price" id="unit_price" required/>
+                                        <input type="text" name="unit_price" id="unit_price" value="{{$product->unit_price}}" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Giá khuyễn mãi</label>
                                     <div class="controls">
-                                        <input type="text" name="promotion_price" id="promotion_price" required/>
+                                        <input type="text" name="promotion_price" id="promotion_price" value="{{$product->promotion_price}}" />
                                     </div>
                                 </div>
-                                <div class="control-group">
+                    {{--            <div class="control-group">
                                     <label class="control-label">Số lượng</label>
                                     <div class="controls">
-                                        <input type="text" name="discount" id="discount" required/>
+                                        <input type="text" name="discount" id="discount" />
                                     </div>
-                                </div>
+                                </div>--}}
                                 <div class="control-group">
                                     <label class="control-label">Mô tả</label>
                                     <div class="controls">
-                                        <textarea type="text" name="description" id="description"  style="height: 300px; width: 500px;resize: none;" required></textarea>
+                                        <textarea type="text" name="description" id="description"  style="height: 300px; width: 500px;resize: none;" >{{$product->description}}</textarea>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Ảnh</label>
                                     <div class="controls">
-                                        <input type="file" name="image" id="image" required/>
+                                        <img src="{{ asset('/images/products/'.$product->image) }}">
+                                        <input type="file" name="image" id="image" />
                                     </div>
                                 </div>
                                 <div class="form-actions">
-                                    <button type="submit" value="Add Product" class="btn btn-success">Thêm sản phẩm
-                                    </button>
+                                    <input type="submit" value="Edit Product" class="btn btn-success">
                                 </div>
                             </form>
                         </div>

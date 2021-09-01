@@ -25,6 +25,7 @@
 
 @include('layouts.admin.admin_footer')
 
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="{{ asset('js/admin/jquery.min.js') }}"></script>
 <script src="{{ asset('js/admin/jquery.ui.custom.js') }}"></script>
 <script src="{{ asset('js/admin/bootstrap.min.js') }}"></script>
@@ -36,6 +37,22 @@
 <script src="{{ asset('js/admin/matrix.form_validation.js') }}"></script>
 <script src="{{ asset('js/admin/matrix.tables.js') }}"></script>
 <script src="{{ asset('js/admin/matrix.popover.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        $("#role").change(function () {
+            let role = this.value;
+            $.ajax({
+                url: "{{url('admin/users/role-permission')}}" +"/" + role, // đường dẫn khi gửi dữ liệu đi 'search' là tên route mình đặt bạn mở route lên xem là hiểu nó là cái j.
+                method: "post", // phương thức gửi dữ liệu.
+                success: function (data) { //dữ liệu nhận về
+                    if(data) {
+                        console.log(data);
+                    }
+                }
+            });
+        })
+    })
+</script>
 
 </body>
 </html>

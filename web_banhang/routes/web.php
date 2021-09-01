@@ -34,21 +34,30 @@ Route::get('admin/login', 'admin\AdminController@login')->name('login');
 Route::get('admin/users', 'admin\AdminController@getUsers')->name('view_users');
 Route::get('admin/users/add', 'admin\AdminController@addUsers')->name('add_users');
 Route::get('admin/users/edit', 'admin\AdminController@editUsers')->name('edit_users');
+Route::post("admin/users/role-permission/{id}", 'admin\AdminController@getPermissionByRole');
 
-Route::get('admin/type-products', 'admin\AdminController@getTypeProducts')->name('view_type_products');
+Route::get('admin/type-products', 'admin\AdminController@viewTypeProducts')->name('view_type_products');
 Route::get('admin/type-products/add', 'admin\AdminController@addTypeProducts')->name('add_type_products');
 Route::get('admin/type-products/edit', 'admin\AdminController@editTypeProducts')->name('edit_type_products');
+Route::post('admin/products/insert', 'admin\AdminController@insertTypeProducts'); // thêm TypeProduct vào db
+Route::post('admin/type-products/update/{id}', 'admin\AdminController@updateTypeProduct'); // cập nhật chỉnh sửa
+Route::get('admin/type-products/edit/{id}', 'admin\AdminController@editTypeProduct')->name('edit_type_products');
+Route::get('admin/type-products/delete/{id}', 'admin\AdminController@deleteTypeProduct')->name('view_type_products');; //xóa TypeProduct
 
 
+Route::get('admin/products', 'admin\AdminController@viewProducts')->name('view_products'); // view trang xem toàn bộ sản phẩm
+Route::get('admin/products/add', 'admin\AdminController@addProducts')->name('add_products'); // view trang thêm sản phẩm
+Route::post('admin/products/insert-products', 'admin\AdminController@insertProducts'); // thêm sản phẩm vào database
+Route::get('admin/products/edit/{id}', 'admin\AdminController@editProducts')->name('edit_products'); //view trang edit
+Route::post('admin/products/update/{id}', 'admin\AdminController@updateProducts'); // cập nhật chỉnh sửa
+Route::get('admin/products/delete/{id}', 'admin\AdminController@deleteProducts')->name('view_products');; //xóa sản phẩm
 
-Route::get('admin/products', 'admin\AdminController@viewProducts')->name('view_products');
-Route::get('admin/products/add', 'admin\AdminController@addProducts')->name('add_products');
-Route::post('admin/products/insert-products', 'admin\AdminController@insertProducts');
-Route::get('admin/products/edit', 'admin\AdminController@editProducts')->name('edit_products');
 
-
-Route::get('admin/brands', 'admin\AdminController@getBrands')->name('view_brands');
-Route::get('admin/brands/add', 'admin\AdminController@addBrands')->name('add_brands');
-Route::get('admin/brands/edit', 'admin\AdminController@editBrands')->name('edit_brands');
+Route::get('admin/Users', 'admin\AdminController@viewBrands')->name('view_brands');
+Route::get('admin/Users/add', 'admin\AdminController@addBrands')->name('add_brands');
+Route::post('admin/products/insert-Users', 'admin\AdminController@insertBrands'); // thêm brand vào db
+Route::post('admin/Users/update/{id}', 'admin\AdminController@updateBrands'); // cập nhật chỉnh sửa
+Route::get('admin/Users/edit/{id}', 'admin\AdminController@editBrands')->name('edit_brands');
+Route::get('admin/Users/delete/{id}', 'admin\AdminController@deleteBrands')->name('view_brands');; //xóa Users
 
 Route::get('admin/bills/', 'admin\AdminController@getBills')->name('view_bills');

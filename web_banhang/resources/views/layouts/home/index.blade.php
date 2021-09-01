@@ -458,7 +458,7 @@
     <!-- //footer third section -->
 
 
-            <!-- //brands -->
+            <!-- //Users -->
             <!-- payment -->
 
             <!-- //payment -->

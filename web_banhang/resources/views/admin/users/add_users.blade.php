@@ -1,10 +1,9 @@
 @extends('layouts.admin.admin_design')
 @section('content')
-
     <div id="content">
         <div id="content-header">
-            <div id="breadcrumb"> <a href="{{--{{ url('/admin/') }}--}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Products</a> <a href="#" class="current">Add Product</a> </div>
-            <h1>Products</h1>
+            <div id="breadcrumb"> <a href="{{--{{ url('/admin/') }}--}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Người dùng</a> <a href="#" class="current">Thêm người dùng</a> </div>
+            <h1>Người dùng</h1>
 
         </div>
         <div class="container-fluid"><hr>
@@ -12,63 +11,64 @@
                 <div class="span12">
                     <div class="widget-box">
                         <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
-                            <h5>Add Product</h5>
+                            <h5>Thêm người dùng</h5>
                         </div>
                         <div class="widget-content nopadding">
-                            {{--          @include('flash_message')--}}
+                                      @include('flash_message')
 
-                            <form enctype="multipart/form-data" class="form-horizontal" method="post" action="{{--{{ url('/admin/insert-products') }}--}}" name="add_product" id="add_product" novalidate="novalidate"> {{--{{ csrf_field() }}--}}
+                            <form enctype="multipart/form-data" class="form-horizontal" method="post" action="{{--{{ url('/admin/insert-products') }}--}}" name="add_user" id="add_user" novalidate="novalidate"> {{--{{ csrf_field() }}--}}
                                 <div class="control-group">
-                                    <label class="control-label">Brand</label>
+                                    <label class="control-label">Vai trò</label>
                                     <div class="controls">
-                                        <select name="brand" id="brand" style="width: 220px;">
+                                        {{--`id` int(11) NOT NULL,
+                                        `name` varchar(30) NOT NULL,
+                                        `email` varchar(30) NOT NULL,
+                                        `password` varchar(255) NOT NULL,
+                                        `role_id` int(11) NOT NULL,
+                                        `money` int(11) NOT NULL,
+                                        `remember_token` varchar(255) NOT NULL,
+                                        `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+                                        `updated_at` timestamp NOT NULL DEFAULT current_timestamp()--}}
+                                        <select name="role" id="role" style="width: 220px;" onchange="getPermissionByRole(this)">
                                             <option value='' selected disabled>Select</option>
-                                            {{--                  @foreach($brands as $brand)--}}
-                                            <option value="{{--{{$brand->name}}--}}">{{--{{$brand->name}}--}}</option>
-                                            {{--                  @endforeach--}}
-
+                                            @foreach($roles as $role)
+                                                <option value="{{$role->id}}">{{$role->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">Product Name</label>
-                                    <div class="controls">
-                                        <input type="text" name="product_name" id="product_name" required />
+                                    <label class="control-label">Quyền người dùng</label>
+                                    <div class="controls" id="permission">
+                                        <input type="checkbox" name="permission" id="view" value="" required /> <label for="">{{--{{$permission->name}}--}}</label>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">Product Code</label>
+                                    <label class="control-label">Tên người dùng</label>
                                     <div class="controls">
-                                        <input type="text" name="product_code" id="product_code" required />
+                                        <input type="text" name="name" id="name" required />
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">Product Color</label>
+                                    <label class="control-label">Mật khẩu</label>
                                     <div class="controls">
-                                        <input type="text" name="product_color" id="product_color" required />
-                                    </div>
-                                </div>
-
-                                <div class="control-group">
-                                    <label class="control-label">Price</label>
-                                    <div class="controls">
-                                        <input type="text" name="price" id="price" required />
+                                        <input type="password" name="password" id="password" required />
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">Discount</label>
+                                    <label class="control-label">Lặp lại mật khẩu</label>
                                     <div class="controls">
-                                        <input type="text" name="discount" id="discount" required />
+                                        <input type="password" name="repeat_pass" id="repeat_pass" required />
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">Image</label>
+                                    <label class="control-label">Email</label>
                                     <div class="controls">
-                                        <input type="file" name="image" id="image" required />
+                                        <input type="text" name="email" id="email" required />
                                     </div>
                                 </div>
                                 <div class="form-actions">
-                                    <button type="submit" value="" class="btn btn-success">Thêm</button>
+                                    <button type="submit" value="" class="btn btn-success">Thêm người dùng</button>
                                 </div>
                             </form>
                         </div>
@@ -80,3 +80,5 @@
 
 
 @endsection
+
+{{--<script src="{{ asset('js\admin\Users\addUser.js') }}"></script>--}}

@@ -60,7 +60,7 @@ CREATE TABLE `bill_details` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `brands`
+-- Cấu trúc bảng cho bảng `Users`
 --
 
 CREATE TABLE `brands` (
@@ -73,7 +73,7 @@ CREATE TABLE `brands` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `brands`
+-- Đang đổ dữ liệu cho bảng `Users`
 --
 
 INSERT INTO `brands` (`id`, `name`, `description`, `image_logo`, `created_at`, `updated_at`) VALUES
@@ -266,7 +266,7 @@ ALTER TABLE `bill_details`
   ADD KEY `bill_id` (`bill_id`);
 
 --
--- Chỉ mục cho bảng `brands`
+-- Chỉ mục cho bảng `Users`
 --
 ALTER TABLE `brands`
   ADD PRIMARY KEY (`id`);
@@ -335,7 +335,7 @@ ALTER TABLE `bill_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `brands`
+-- AUTO_INCREMENT cho bảng `Users`
 --
 ALTER TABLE `brands`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;

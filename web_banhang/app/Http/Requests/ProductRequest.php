@@ -25,17 +25,18 @@ class ProductRequest extends FormRequest
     {
         return [
             //
-            'product_name'      => "required",
-            'unit_price'        => "required",
+            'brand_id'          => "required",
+            'type_id'           => "required",
+            'name'              => 'required',
+            'win'               => 'required',
+            'cpu'               => 'required',
+            'manHinh'           => 'required',
+            'ram'               => 'required',
+            'oCung'             => 'required',
+            'unit_price'        => 'required',
             'promotion_price'   => 'required',
             'description'       => 'required',
-            'hard_drive'        => 'required',
-            'cpu'               => 'required',
-            'system'            => 'required',
-            'screen'            => 'required',
-            'brand'             => 'required',
-            'type_product'      => 'required',
-            'image'             => "required"
+            'image'             => 'required'
         ];
     }
 }

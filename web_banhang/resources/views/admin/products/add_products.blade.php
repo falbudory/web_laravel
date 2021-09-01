@@ -23,12 +23,18 @@
                                   action="{{ url('admin/products/insert-products') }}" name="add_product"
                                   id="add_product" novalidate="novalidate"> {{ csrf_field() }}
                                 <div class="control-group">
-                                    <label class="control-label">Nhà sản xuất</label>
+                                    <label class="control-label">Thương hiệu</label>
                                     <div class="controls">
                                         <select name="brand" id="brand" style="width: 220px;">
                                             <option value='' selected disabled style="display: none"></option>
                                             @foreach($brands as $brand)
-                                                <option value="{{$brand->id}}">{{$brand->name}}</option>
+                                                <option value="{{$brand->id}}">
+                                                    {{$brand->name}}
+                                                    {{--<div style="display: flex">
+                                                        <img src="{{ asset('/images/Users-logo/'.$brand->image_logo) }}" width="40">
+                                                        <strong>{{$brand->name}}</strong>
+                                                    </div>--}}
+                                                </option>
                                             @endforeach
 
                                         </select>
