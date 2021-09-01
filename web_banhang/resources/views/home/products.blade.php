@@ -120,10 +120,13 @@
                                     <input  name="ram" type="radio" value="4"/> 4 GB
                                 </li>
                                 <li>
-                                    <input  name="ram" type="radio" value="5"/> 5 GB
+                                    <input  name="ram" type="radio" value="6"/> 6 GB
                                 </li>
                                 <li>
-                                    <input  name="ram" type="radio" value="6"/> Trên 6 GB
+                                    <input  name="ram" type="radio" value="8"/> 8 GB
+                                </li>
+                                <li>
+                                    <input  name="ram" type="radio" value="16"/> 16 GB
                                 </li>
                             </ul>
                         </div>

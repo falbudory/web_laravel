@@ -36,13 +36,54 @@ class HomeController extends Controller
 
     public function product(Request $request, $id)
     {
-        $a = $request->input('brand');
-        if ($a < 1) {
-            $data = Product::where('type_id', $id)->get();
-        } else {
-            $data = Product::where('type_id', $id)->where('brand_id', $a)->get();
+        $sBrand = $request->input('brand');
+        $sRam = $request->input('ram');
+        $sMoney = $request->input('tien');
+        $start =0;
+        $end = 1000000000;
+        $query = Product::query()->where('type_id', $id);
+        if ($sBrand > 0) {
+            $query->where('brand_id', $sBrand);
         }
-
+        if ($sRam > 0) {
+            $query->where('ram', "LIKE", "%" . $sRam . "%");
+        }
+        switch ($sMoney){
+            case "1ph":{
+                $start = 1000000;
+                $end = 5000000;
+                break;
+            }
+            case "5":{
+                $start = 5000000;
+                $end = 10000000;
+                break;
+            }
+            case "10":{
+                $start = 10000000;
+                $end = 15000000;
+                break;
+            }
+            case "15":{
+                $start = 15000000;
+                $end = 20000000;
+                break;
+            }
+            case "20":{
+                $start = 20000000;
+                $end = 25000000;
+                break;
+            }
+            case "25":{
+                $start = 25000000;
+                $end = 1000000000;
+                break;
+            }
+        }
+        if($sMoney !==''){
+            $query->where('unit_price','>=',$start)->where('unit_price','<',$end);
+        }
+        $data = $query->get();
         $brand = Brand::all();
         $caption = TypeProduct::where('id', $id)->value('description');
         return view('home.products', compact('data', 'brand', 'caption', 'id'));
@@ -67,42 +108,42 @@ class HomeController extends Controller
         $quantity = 0;
         foreach ($cart as $key => $value) {
             $money = $money + $value['price'] * $value['quantity'];
-            $quantity = $key + 1;
+            $quantity = $quantity + 1;
         }
 
 
-                $cus = new Customer;
-                $cus->name = $request->name;
-                $cus->email = Auth::user()->email;
-                $cus->address = $request->address;
-                $cus->phone = $request->phone;
-                $cus->note = $request->note;
-                $cus->save();
+        $cus = new Customer;
+        $cus->name = $request->name;
+        $cus->email = Auth::user()->email;
+        $cus->address = $request->address;
+        $cus->phone = $request->phone;
+        $cus->note = $request->note;
+        $cus->save();
 
-                $bill = new Bill;
-                $bill->customer_id = $cus->id;
-                $bill->status = 0;
-                $bill->payment = $request->thanhToan;
-                $bill->note = $request->note;
-                $bill->quantity = $quantity;
-                $bill->total = $money;
-                $bill->save();
+        $bill = new Bill;
+        $bill->customer_id = $cus->id;
+        $bill->status = 0;
+        $bill->payment = $request->thanhToan;
+        $bill->note = $request->note;
+        $bill->quantity = $quantity;
+        $bill->total = $money;
+        $bill->save();
 
-                foreach ($cart as $key => $value) {
-                    $bill_detail = new BillDetail;
-                    $bill_detail->bill_id = $bill->id;
-                    $bill_detail->product_id = $value['id'];
-                    $bill_detail->quantity = $value['quantity'];
-                    $bill_detail->price = $value['price'];
-                    $bill_detail->save();
+        foreach ($cart as $key => $value) {
+            $bill_detail = new BillDetail;
+            $bill_detail->bill_id = $bill->id;
+            $bill_detail->product_id = $value['id'];
+            $bill_detail->quantity = $value['quantity'];
+            $bill_detail->price = $value['price'];
+            $bill_detail->save();
 
-                }
-
-
-                session()->forget('cart');
+        }
 
 
-                return redirect('home')->with('ok', 'ok');
+        session()->forget('cart');
+
+
+        return redirect('home')->with('ok', 'ok');
 
 
     }
@@ -191,13 +232,15 @@ class HomeController extends Controller
 
     public function history()
     {
-        $data = Customer::where('email',Auth::user()->email)->join('bills','customers.id','=','bills.customer_id')->get();
+        $data = Customer::where('email', Auth::user()->email)->join('bills', 'customers.id', '=', 'bills.customer_id')->get();
 
-        return view('home.history',compact('data'));
+        return view('home.history', compact('data'));
     }
-    public function historyDetail($id){
-        $data = BillDetail::where('bill_id',$id)->join('products','products.id','=','product_id')->get();
 
-        return view('home.historyDetail',compact('data'));
+    public function historyDetail($id)
+    {
+        $data = BillDetail::where('bill_id', $id)->join('products', 'products.id', '=', 'product_id')->get();
+
+        return view('home.historyDetail', compact('data'));
     }
 }
