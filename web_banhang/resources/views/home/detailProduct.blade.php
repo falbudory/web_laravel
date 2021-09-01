@@ -26,9 +26,7 @@
     <div class="banner-bootom-w3-agileits py-5">
         <div class="container py-xl-4 py-lg-2">
             <!-- tittle heading -->
-            <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
-                <span>S</span>ingle
-                <span>P</span>age</h3>
+
             <!-- //tittle heading -->
             <div class="row">
                 <div class="col-lg-5 col-md-8 single-right-left ">
@@ -85,23 +83,9 @@
                             <i class="fas fa-retweet mr-3"></i>Net banking & Credit/ Debit/ ATM card
                         </p>
                     </div>
-                    <div class="occasion-cart">
-                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                            <form action="#" method="post">
-                                <fieldset>
-                                    <input type="hidden" name="cmd" value="_cart" />
-                                    <input type="hidden" name="add" value="1" />
-                                    <input type="hidden" name="business" value=" " />
-                                    <input type="hidden" name="item_name" value="Samsung Galaxy J7 Prime" />
-                                    <input type="hidden" name="amount" value="200.00" />
-                                    <input type="hidden" name="discount_amount" value="1.00" />
-                                    <input type="hidden" name="currency_code" value="USD" />
-                                    <input type="hidden" name="return" value=" " />
-                                    <input type="hidden" name="cancel_return" value=" " />
-                                    <input type="submit" name="submit" value="Add to cart" class="button" />
-                                </fieldset>
-                            </form>
-                        </div>
+                    <div
+                        class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                        <a href="#" data-url="{{route('home.addToCart',['id'=>$data->id])}}" class="add-to-cart btn btn-primary">Thêm giỏ hàng</a>
                     </div>
                 </div>
             </div>

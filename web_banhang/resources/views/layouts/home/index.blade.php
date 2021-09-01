@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -6,8 +5,9 @@
     <title>Welcome</title>
     <!-- Meta tag Keywords -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8" />
-    <meta name="keywords" content="Electro Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"
+    <meta charset="UTF-8"/>
+    <meta name="keywords"
+          content="Electro Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"
     />
     <script>
         addEventListener("load", function () {
@@ -26,16 +26,38 @@
     <link href="{{ asset('/css/menu.css') }}" rel="stylesheet">
 
     <!-- web fonts -->
-    <link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
-          rel="stylesheet">
+    <link
+        href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext"
+        rel="stylesheet">
+    <link
+        href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+        rel="stylesheet">
     <!-- //web fonts -->
 
 </head>
 
 <body>
 <!-- top-header -->
-
+@if(session()->has('newSucc'))
+    <script>
+        alert('Đổi mật khẩu thành công !')
+    </script>
+@endif
+@if(session()->has('newFailed'))
+    <script>
+        alert('Mật khẩu nhập lại không đúng !')
+    </script>
+@endif
+@if(session()->has('oldFailed'))
+    <script>
+        alert('Mật khẩu cũ không đúng !')
+    </script>
+@endif
+@if(session()->has('trung'))
+    <script>
+        alert('Mật khẩu mới trung mật khẩu cũ !')
+    </script>
+@endif
 <div class="agile-main-top">
     <div class="container-fluid">
         <div class="row main-top-w3l py-2">
@@ -47,25 +69,30 @@
             <div class="col-lg-8 header-right">
                 <!-- header lists -->
                 <ul>
-{{--                    <li class="text-center border-right text-white">--}}
-{{--                        <a class="play-icon popup-with-zoom-anim text-white" href="#small-dialog1">--}}
-{{--                            <i class="fas fa-map-marker mr-2"></i>Select Location</a>--}}
-{{--                    </li>--}}
-{{--                    <li class="text-center border-right text-white">--}}
-{{--                        <a href="#" data-toggle="modal" data-target="#exampleModal" class="text-white">--}}
-{{--                            <i class="fas fa-truck mr-2"></i>Track Order</a>--}}
-{{--                    </li>--}}
+                    {{--                    <li class="text-center border-right text-white">--}}
+                    {{--                        <a class="play-icon popup-with-zoom-anim text-white" href="#small-dialog1">--}}
+                    {{--                            <i class="fas fa-map-marker mr-2"></i>Select Location</a>--}}
+                    {{--                    </li>--}}
+                    {{--                    <li class="text-center border-right text-white">--}}
+                    {{--                        <a href="#" data-toggle="modal" data-target="#exampleModal" class="text-white">--}}
+                    {{--                            <i class="fas fa-truck mr-2"></i>Track Order</a>--}}
+                    {{--                    </li>--}}
                     <li class="text-center border-right text-white">
                         <i class="fas fa-phone mr-2"></i> 001 234 5678
                     </li>
                     @if(\Illuminate\Support\Facades\Auth::check())
-                    <li class="text-center border-right text-white">
-                        <a href="#" data-toggle="modal" data-target="#exampleModal3"  class="text-white">
-                            <i class="fa fa-credit-card" aria-hidden="true"></i>  Số dư: {{number_format(Auth::user()->money)}} VND</a>
-                    </li>
+{{--                        <li class="text-center border-right text-white" style="width: 30%;">--}}
+{{--                            <a href="#" data-toggle="modal" data-target="#exampleModal3" class="text-white">--}}
+{{--                                <i class="fa fa-credit-card" aria-hidden="true"></i> Số--}}
+{{--                                dư: {{number_format(Auth::user()->money)}} VND</a>--}}
+{{--                        </li>--}}
                         <li class="text-center border-right text-white">
-                            <a href="{{route('home.logout')}}"  class="text-white">
+                            <a href="{{route('home.logout')}}" class="text-white">
                                 <i class="fas fa-sign-out-alt mr-2"></i> Đăng xuất</a>
+                        </li>
+                        <li class="text-center border-right text-white">
+                            <a href="{{route('home.logout')}}" class="text-white">
+                                Chào {{Auth::user()->name}}</a>
                         </li>
                     @else
                         <li class="text-center border-right text-white">
@@ -77,8 +104,26 @@
                                 <i class="fas fa-sign-in-alt mr-2"></i> Đăng kí </a>
                         </li>
                     @endif
-
-
+                    @if(Session::has('flag'))
+                        <script>
+                            alert('Đăng kí tài khoản thành công');
+                        </script>
+                    @endif
+                    @if(Session::has('false'))
+                        <script>
+                            alert('Đăng kí tài khoản không thành công. Email đã tồn tại');
+                        </script>
+                    @endif
+                    @if(Session::has('loginF'))
+                        <script>
+                            alert('Đăng nhập không thành công. Email hoặc mật khẩu không đúng !');
+                        </script>
+                    @endif
+                    @if(Session::has('moneyF'))
+                        <script>
+                            alert('Mật khẩu không đúng!');
+                        </script>
+                    @endif
 
                 </ul>
                 <!-- //header lists -->
@@ -101,7 +146,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('home.login') }}" >
+                <form method="POST" action="{{ route('home.login') }}">
                     {{ csrf_field() }}
 
                     <div class="form-group">
@@ -109,7 +154,7 @@
                         <label class="col-form-label">Email</label>
                         <input type="text" class="form-control" placeholder=" " name="email" required="">
                     </div>
-                        <div class="form-group">
+                    <div class="form-group">
 
                         <label class="col-form-label">Password</label>
                         <input type="password" class="form-control" placeholder=" " name="password" required="">
@@ -119,12 +164,13 @@
                     </div>
                     <div class="sub-w3l">
                         <div class="custom-control custom-checkbox mr-sm-2">
-                            <input type="checkbox" class="custom-control-input"  name="remember" id="customControlAutosizing">
+                            <input type="checkbox" class="custom-control-input" name="remember"
+                                   id="customControlAutosizing">
                             <label class="custom-control-label" for="customControlAutosizing">Nhớ mật khẩu?</label>
                         </div>
                     </div>
                     <p class="text-center dont-do mt-3">Bạn không có tài khoản?
-                        <a href="#" data-toggle="modal" data-target="#exampleModal2" >
+                        <a href="#" data-toggle="modal" data-target="#exampleModal2">
                             Đăng ký ngay</a>
                     </p>
                 </form>
@@ -145,6 +191,7 @@
             <div class="modal-body">
                 <form action="{{ route('store')}}" method="post">
                     {{ csrf_field() }}
+
                     <div class="form-group">
                         <label class="col-form-label">Tên của bạn</label>
                         <input type="text" class="form-control" placeholder=" " name="name" required="">
@@ -155,11 +202,13 @@
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Password</label>
-                        <input type="password" class="form-control" placeholder=" " name="password" id="password1" required="">
+                        <input type="password" class="form-control" placeholder=" " name="password" id="password1"
+                               required="">
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Confirm Password</label>
-                        <input type="password" class="form-control" placeholder=" " name="Confirm Password" id="password2" required="">
+                        <input type="password" class="form-control" placeholder=" " name="Confirm Password"
+                               id="password2" required="">
                     </div>
                     <div class="right-w3l">
                         <input type="submit" class="form-control" value="Đăng ký">
@@ -167,7 +216,8 @@
                     <div class="sub-w3l">
                         <div class="custom-control custom-checkbox mr-sm-2">
                             <input type="checkbox" class="custom-control-input" id="customControlAutosizing2">
-                            <label class="custom-control-label" for="customControlAutosizing2">Tôi chấp nhận các điều khoản và điều kiện</label>
+                            <label class="custom-control-label" for="customControlAutosizing2">Tôi chấp nhận các điều
+                                khoản và điều kiện</label>
                         </div>
                     </div>
                 </form>
@@ -177,40 +227,40 @@
 </div>
 
 {{--naptien--}}
-@if(Auth::check())
-<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-center">Nạp tiền</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form method="POST" action="{{ route('home.update',Auth::user()->id) }}" >
-                    {{ csrf_field() }}
+{{--@if(Auth::check())--}}
+{{--    <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-hidden="true">--}}
+{{--        <div class="modal-dialog" role="document">--}}
+{{--            <div class="modal-content">--}}
+{{--                <div class="modal-header">--}}
+{{--                    <h5 class="modal-title text-center">Nạp tiền</h5>--}}
+{{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+{{--                        <span aria-hidden="true">&times;</span>--}}
+{{--                    </button>--}}
+{{--                </div>--}}
+{{--                <div class="modal-body">--}}
+{{--                    <form method="POST" action="{{ route('home.update',Auth::user()->id) }}">--}}
+{{--                        {{ csrf_field() }}--}}
 
-                    <div class="form-group">
+{{--                        <div class="form-group">--}}
 
-                        <label class="col-form-label">Nhập số tiền</label>
-                        <input type="text" class="form-control" placeholder=" " name="money" required="">
-                    </div>
-                    <div class="form-group">
+{{--                            <label class="col-form-label">Nhập số tiền</label>--}}
+{{--                            <input type="text" class="form-control" placeholder=" " name="money" required="">--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group">--}}
 
-                        <label class="col-form-label">Password</label>
-                        <input type="password" class="form-control" placeholder=" " name="password" required="">
-                    </div>
-                    <div class="right-w3l">
-                        <input type="submit" class="form-control" value="Nạp">
-                    </div>
+{{--                            <label class="col-form-label">Password</label>--}}
+{{--                            <input type="password" class="form-control" placeholder=" " name="password" required="">--}}
+{{--                        </div>--}}
+{{--                        <div class="right-w3l">--}}
+{{--                            <input type="submit" class="form-control" value="Nạp">--}}
+{{--                        </div>--}}
 
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-@endif
+{{--                    </form>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--@endif--}}
 <!-- //modal -->
 <!-- //top-header -->
 
@@ -233,24 +283,35 @@
                     <!-- search -->
                     <div class="col-10 agileits_search">
                         <form class="form-inline" action="#" method="post">
-                            <input class="form-control mr-sm-2" type="search" placeholder=" Từ khóa" aria-label="Search" required>
+                            <input class="form-control mr-sm-2" type="search" placeholder=" Từ khóa" aria-label="Search"
+                                   required>
                             <button class="btn my-2 my-sm-0" type="submit">Tìm kiếm</button>
                         </form>
                     </div>
                     <!-- //search -->
                     <!-- cart details -->
                     <div class="col-2 top_nav_right text-center mt-sm-0 mt-2">
-                        <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                            <form action="#" method="post" class="last">
-                                <input type="hidden" name="cmd" value="_cart">
-                                <input type="hidden" name="display" value="1">
-                                <button class="btn w3view-cart" type="submit" name="submit" value="">
-                                    <i class="fas fa-cart-arrow-down"></i>
-                                </button>
-                            </form>
+                        {{--                        <div class="wthreecartaits wthreecartaits2 cart cart box_1">--}}
+                        {{--                            <form action="{{route('checkOut')}}" method="post" class="last">--}}
+                        {{--                                <input type="hidden" name="cmd" value="_cart">--}}
+                        {{--                                <input type="hidden" name="display" value="1">--}}
+                        {{--                                <button class="btn w3view-cart" type="submit" name="submit" value="">--}}
+                        {{--                                    <i class="fas fa-cart-arrow-down"></i>--}}
+                        {{--                                </button>--}}
+                        {{--                            </form>--}}
+                        {{--                        </div>--}}
+                        <div class="row">
+                            <div class="col-md-12">
+{{--                                @if(session::has('cart'))--}}
+                                <a href="{{route('home.showCart')}}" class="btn btn-primary"><i class="fas fa-cart-arrow-down"></i></a>
+{{--                                @else--}}
+{{--                                    <a class="btn btn-primary"><i class="fas fa-cart-arrow-down"></i></a>--}}
+{{--                                @endif--}}
+                            </div>
                         </div>
                     </div>
                     <!-- //cart details -->
+
                 </div>
             </div>
         </div>
@@ -262,20 +323,20 @@
 <div class="navbar-inner">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-{{--            <div class="agileits-navi_search">--}}
-{{--                <form action="#" method="post">--}}
-{{--                    <select id="agileinfo-nav_search" name="agileinfo_search" class="border" required="">--}}
-{{--                        <option value="">Danh mục sản phẩm</option>--}}
-{{--                        <option  value="laptop"><a href="{{route('home.typeProduct',1)}} ">Laptop</a></option>--}}
-{{--                        <option href="{{route('home.typeProduct',2)}} "value="smartphone">Điện thoại</option>--}}
-{{--                        <option href="{{route('home.typeProduct',3)}} "value="phukien">Phụ kiện khác</option>--}}
-{{--                    </select>--}}
-{{--                </form>--}}
-{{--            </div>--}}
-{{--            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"--}}
-{{--                    aria-expanded="false" aria-label="Toggle navigation">--}}
-{{--                <span class="navbar-toggler-icon"></span>--}}
-{{--            </button>--}}
+            {{--            <div class="agileits-navi_search">--}}
+            {{--                <form action="#" method="post">--}}
+            {{--                    <select id="agileinfo-nav_search" name="agileinfo_search" class="border" required="">--}}
+            {{--                        <option value="">Danh mục sản phẩm</option>--}}
+            {{--                        <option  value="laptop"><a href="{{route('home.typeProduct',1)}} ">Laptop</a></option>--}}
+            {{--                        <option href="{{route('home.typeProduct',2)}} "value="smartphone">Điện thoại</option>--}}
+            {{--                        <option href="{{route('home.typeProduct',3)}} "value="phukien">Phụ kiện khác</option>--}}
+            {{--                    </select>--}}
+            {{--                </form>--}}
+            {{--            </div>--}}
+            {{--            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"--}}
+            {{--                    aria-expanded="false" aria-label="Toggle navigation">--}}
+            {{--                <span class="navbar-toggler-icon"></span>--}}
+            {{--            </button>--}}
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto text-center mr-xl-5">
                     <li class="nav-item active mr-lg-2 mb-lg-0 mb-2">
@@ -306,6 +367,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('contactUs')}}">Liên hệ</a>
                     </li>
+                    @if(Auth::check())
+                        <li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                Tài khoản
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{route('home.history')}}">Lịch sử mua hàng</a>
+                                <a class="dropdown-item" href="{{route('home.changePass')}}">Đổi mật khẩu</a>
+                            </div>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </nav>
@@ -368,11 +441,14 @@
                     <h3 class="text-white font-weight-bold mb-3">Liên hệ</h3>
                     <ul>
                         <li class="mb-3">
-                            <i class="fas fa-map-marker"></i> Tân Triều, Thanh Trì.</li>
+                            <i class="fas fa-map-marker"></i> Tân Triều, Thanh Trì.
+                        </li>
                         <li class="mb-3">
-                            <i class="fas fa-mobile"></i> 333 222 3333 </li>
+                            <i class="fas fa-mobile"></i> 333 222 3333
+                        </li>
                         <li class="mb-3">
-                            <i class="fas fa-phone"></i> 222 11 4444 </li>
+                            <i class="fas fa-phone"></i> 222 11 4444
+                        </li>
                         <li class="mb-3">
                             <i class="fas fa-envelope-open"></i>
                             <a href="mailto:example@mail.com"> contact@gmail.com</a>
@@ -458,10 +534,10 @@
     <!-- //footer third section -->
 
 
-            <!-- //brands -->
-            <!-- payment -->
+    <!-- //brands -->
+    <!-- payment -->
 
-            <!-- //payment -->
+    <!-- //payment -->
 
     </div>
     <!-- //footer fourth section (text) -->
@@ -518,6 +594,7 @@
 
     });
 </script>
+
 <!-- //popup modal (for location)-->
 
 <!-- cart-js -->
@@ -606,7 +683,35 @@
         });
 
     });
+
 </script>
+<!--cart-->
+<script>
+    function addToCart(event) {
+        event.preventDefault();
+        let urlCart = $(this).data('url');
+        $.ajax({
+            type: "GET",
+            url: urlCart,
+            dataType: 'json',
+            success: function (data) {
+                if (data.code === 200) {
+                    alert('Thêm sản phẩm thành công');
+                }
+            },
+            error: function () {
+
+            }
+        });
+
+    }
+
+    $(function () {
+        $('.add-to-cart').on('click', addToCart);
+    });
+</script>
+
+
 <!-- //smooth-scrolling-of-move-up -->
 
 <!-- for bootstrap working -->
