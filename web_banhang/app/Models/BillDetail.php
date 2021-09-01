@@ -9,6 +9,7 @@ class BillDetail extends Model
 {
     use HasFactory;
     protected $table = 'bill_details';
+    protected $fillable = ['id','bill_id','product_id','quantity','unit_price'];
     public function product() {
         return $this->belongsTo('App\Models\Product', 'product_id', 'id');
     }

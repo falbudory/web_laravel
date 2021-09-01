@@ -15,7 +15,7 @@
                         <a href="index.html">Home</a>
                         <i>|</i>
                     </li>
-                    <li>About Us</li>
+                    <li>VỀ CHÚNG TÔI</li>
                 </ul>
             </div>
         </div>
@@ -27,12 +27,12 @@
         <div class="container py-xl-4 py-lg-2">
             <!-- tittle heading -->
             <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
-                <span>A</span>bout
-                <span>U</span>s</h3>
+                <span>C</span>húng
+                <span>T</span>ôi</h3>
             <!-- //tittle heading -->
             <div class="row">
                 <div class="col-lg-6 welcome-left">
-                    <h3>Welcome</h3>
+                    <h3>Xin chào</h3>
                     <h4 class="my-sm-3 my-2">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse porta erat sit amet eros sagittis, quis hendrerit
@@ -51,9 +51,10 @@
         <div class="container py-xl-4 py-lg-2">
             <!-- tittle heading -->
             <h3 class="tittle-w3l text-center text-white mb-lg-5 mb-sm-4 mb-3">
-                <span>O</span>ur
-                <span>C</span>ustomers
-                <span>S</span>ays</h3>
+                <span>K</span>hách
+                <span>H</span>àng
+                <span>C</span>hia
+                <span>S</span>ẻ</h3>
             <!-- tittle heading -->
             <div class="row gallery-index">
                 <div class="col-sm-6 med-testi-grid">
@@ -66,8 +67,8 @@
                             <img src="images/user.jpg" alt=" " class="img-fluid rounded-circle" />
                         </div>
                         <div class="col-lg-10 col-9 med-testi-txt">
-                            <h4 class="font-weight-bold mb-lg-1 mb-2">Tyson</h4>
-                            <p>fames ac turpis</p>
+                            <h4 class="font-weight-bold mb-lg-1 mb-2">Hồng Nhung</h4>
+                            <p>Khách hàng mới</p>
                         </div>
                     </div>
                 </div>
@@ -81,8 +82,8 @@
                             <img src="images/user.jpg" alt=" " class="img-fluid rounded-circle" />
                         </div>
                         <div class="col-lg-10 col-9 med-testi-txt">
-                            <h4 class="font-weight-bold mb-lg-1 mb-2">Alejandra</h4>
-                            <p>fames ac turpis</p>
+                            <h4 class="font-weight-bold mb-lg-1 mb-2">Bảo Ngọc</h4>
+                            <p>Khách hàng uy tín</p>
                         </div>
                     </div>
                 </div>
@@ -96,8 +97,8 @@
                             <img src="images/user.jpg" alt=" " class="img-fluid rounded-circle" />
                         </div>
                         <div class="col-lg-10 col-9 med-testi-txt">
-                            <h4 class="font-weight-bold mb-lg-1 mb-2">Charles</h4>
-                            <p>fames ac turpis</p>
+                            <h4 class="font-weight-bold mb-lg-1 mb-2">Quang Hưng</h4>
+                            <p>Khách hàng VIP</p>
                         </div>
                     </div>
                 </div>
@@ -111,8 +112,8 @@
                             <img src="images/user.jpg" alt=" " class="img-fluid rounded-circle" />
                         </div>
                         <div class="col-lg-10 col-9 med-testi-txt">
-                            <h4 class="font-weight-bold mb-lg-1 mb-2">Jessie</h4>
-                            <p>fames ac turpis</p>
+                            <h4 class="font-weight-bold mb-lg-1 mb-2">Thành Long</h4>
+                            <p>Khách hàng thân thiết</p>
                         </div>
                     </div>
                 </div>

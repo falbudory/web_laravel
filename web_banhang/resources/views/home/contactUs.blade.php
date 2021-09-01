@@ -12,10 +12,10 @@
             <div class="container">
                 <ul class="w3_short">
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="{{route('index')}}">Home</a>
                         <i>|</i>
                     </li>
-                    <li>Contact Us</li>
+                    <li>Liên hệ</li>
                 </ul>
             </div>
         </div>
@@ -27,8 +27,10 @@
         <div class="container py-xl-4 py-lg-2">
             <!-- tittle heading -->
             <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
-                <span>C</span>ontact
-                <span>U</span>s
+                <span>L</span>iên
+                <span>H</span>ệ
+                <span>C</span>húng
+                <span>T</span>ôi
             </h3>
             <!-- //tittle heading -->
             <div class="row contact-grids agile-1 mb-5">
@@ -37,10 +39,10 @@
                         <div class="con-ic">
                             <i class="fas fa-map-marker-alt rounded-circle"></i>
                         </div>
-                        <h4 class="font-weight-bold mt-sm-4 mt-3 mb-3">Address</h4>
-                        <p>1PO Box 8568954 Melbourne
-                            <label>Australia.</label>
-                        </p>
+                        <h4 class="font-weight-bold mt-sm-4 mt-3 mb-3">Địa chỉ</h4>
+<p>
+                            <label>Tân Triều, Thanh Trì</label>
+</p>
                     </div>
                 </div>
                 <div class="col-sm-4 contact-grid agileinfo-6 my-sm-0 my-4">
@@ -48,9 +50,9 @@
                         <div class="con-ic">
                             <i class="fas fa-phone rounded-circle"></i>
                         </div>
-                        <h4 class="font-weight-bold mt-sm-4 mt-3 mb-3">Call Us</h4>
-                        <p>+(0121) 121 121
-                            <label>+(0121) 121 122</label>
+                        <h4 class="font-weight-bold mt-sm-4 mt-3 mb-3">Điện thoại</h4>
+                        <p>+333 222 3333
+                            <label>+222 11 4444</label>
                         </p>
                     </div>
                 </div>
@@ -61,9 +63,9 @@
                         </div>
                         <h4 class="font-weight-bold mt-sm-4 mt-3 mb-3">Email</h4>
                         <p>
-                            <a href="mailto:info@example.com">info@example1.com</a>
+                            <a href="mailto:info@example.com">thakhacontact@gmail.com</a>
                             <label>
-                                <a href="mailto:info@example.com">info@example2.com</a>
+                                <a href="mailto:info@example.com">thakhahelpme@gmail.com</a>
                             </label>
                         </p>
                     </div>
@@ -74,7 +76,7 @@
                 <div class="contact-grids1 w3agile-6">
                     <div class="row">
                         <div class="col-md-6 col-sm-6 contact-form1 form-group">
-                            <label class="col-form-label">Name</label>
+                            <label class="col-form-label">Tên</label>
                             <input type="text" class="form-control" name="Name" placeholder="" required="">
                         </div>
                         <div class="col-md-6 col-sm-6 contact-form1 form-group">
@@ -83,11 +85,11 @@
                         </div>
                     </div>
                     <div class="contact-me animated wow slideInUp form-group">
-                        <label class="col-form-label">Message</label>
+                        <label class="col-form-label">Ý kiến quý khách</label>
                         <textarea name="Message" class="form-control" placeholder="" required=""> </textarea>
                     </div>
                     <div class="contact-form">
-                        <input type="submit" value="Submit">
+                        <input type="submit" value="Gửi">
                     </div>
                 </div>
             </form>
@@ -98,8 +100,9 @@
 
     <!-- map -->
     <div class="map mt-sm-0 mt-4">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d805196.5077734194!2d144.49270863101745!3d-37.97015423820711!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad646b5d2ba4df7%3A0x4045675218ccd90!2sMelbourne+VIC%2C+Australia!5e0!3m2!1sen!2sin!4v1474020956974"
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.2949344038475!2d105.79403981476239!3d20.98081138602441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135acc508f938fd%3A0x883e474806a2d1f2!2zSOG7jWMgVmnhu4duIEvhu7kgVGh14bqtdCBN4bqtdCBNw6M!5e0!3m2!1svi!2s!4v1630185908567!5m2!1svi!2s"
                 allowfullscreen></iframe>
+
     </div>
     <!-- //map -->
 

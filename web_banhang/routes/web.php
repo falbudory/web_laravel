@@ -15,16 +15,25 @@ use Illuminate\Support\Facades\Route;
 
 //home
 Route::get('/home', 'Home\HomeController@index')->name('index');
-
+Route::get('/home/search', 'Home\HomeController@search')->name('home.search');
+Route::get('/history', 'Home\HomeController@history')->name('home.history');
+Route::get('/history/{id}', 'Home\HomeController@historyDetail')->name('home.historyDetail');
 Route::get('/product/{pid}', 'Home\HomeController@detailProduct')->name('home.detailProduct');
+Route::get('/add-to-cart/{id}', 'Home\HomeController@addToCart')->name('home.addToCart');
 Route::get('/checkout', 'Home\HomeController@checkOut')->name('checkOut');
+Route::post('/createDB', 'Home\HomeController@createDB')->name('home.createDB');
+Route::get('/showCart', 'Home\HomeController@showCart')->name('home.showCart');
+Route::get('/updateCart', 'Home\HomeController@updateCart')->name('home.updateCart');
+Route::get('/deleteCart', 'Home\HomeController@deleteCart')->name('home.deleteCart');
 Route::get('/typeProduct/{id}', 'Home\HomeController@product')->name('home.typeProduct');
 Route::get('/contactUs', 'Home\HomeController@contactUs')->name('contactUs');
 Route::get('/aboutUs', 'Home\HomeController@aboutUs')->name('aboutUs');
 Route::post('/store', 'Home\UserController@store')->name('store');
 Route::post('/login', 'Home\UserController@login')->name('home.login');
-Route::post('/update/{uid}', 'Home\UserController@update')->name('home.update');
+Route::post('/update/{uid}', 'Home\UserController@updateMoney')->name('home.update');
 Route::get('/logout', 'Home\UserController@logout')->name('home.logout');
+Route::get('/changepass', 'Home\UserController@changePass')->name('home.changePass');
+Route::post('/postchangepass', 'Home\UserController@postChangePass')->name('home.postChangePass');
 //admin
 
 
