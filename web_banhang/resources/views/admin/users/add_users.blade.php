@@ -78,7 +78,13 @@
         </div>
     </div>
 
+    <script>
+        $(document).ready(function () {
+            $("#role").change(function () {
+                let role = this.value;
+
+            })
+        })
+    </script>
 
 @endsection
-
-{{--<script src="{{ asset('js\admin\Users\addUser.js') }}"></script>--}}

@@ -10,8 +10,8 @@
       </li>
     <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Thương hiệu</span> <span class="label label-important">2</span></a>
       <ul>
-        <li><a href="{{ url('/admin/Users/add') }}">Thêm thương hiệu</a></li>
-        <li><a href="{{ url('/admin/Users') }}">Tất cả thương hiệu</a></li>
+        <li><a href="{{ url('/admin/brands/add') }}">Thêm thương hiệu</a></li>
+        <li><a href="{{ url('/admin/brands') }}">Tất cả thương hiệu</a></li>
       </ul>
     </li>
       <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Loại sản phẩm</span> <span class="label label-important">2</span></a>

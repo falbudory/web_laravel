@@ -53,11 +53,11 @@ Route::post('admin/products/update/{id}', 'admin\AdminController@updateProducts'
 Route::get('admin/products/delete/{id}', 'admin\AdminController@deleteProducts')->name('view_products');; //xóa sản phẩm
 
 
-Route::get('admin/Users', 'admin\AdminController@viewBrands')->name('view_brands');
-Route::get('admin/Users/add', 'admin\AdminController@addBrands')->name('add_brands');
-Route::post('admin/products/insert-Users', 'admin\AdminController@insertBrands'); // thêm brand vào db
-Route::post('admin/Users/update/{id}', 'admin\AdminController@updateBrands'); // cập nhật chỉnh sửa
-Route::get('admin/Users/edit/{id}', 'admin\AdminController@editBrands')->name('edit_brands');
-Route::get('admin/Users/delete/{id}', 'admin\AdminController@deleteBrands')->name('view_brands');; //xóa Users
+Route::get('admin/brands', 'admin\AdminController@viewBrands')->name('view_brands');
+Route::get('admin/brands/add', 'admin\AdminController@addBrands')->name('add_brands');
+Route::post('admin/brands/insert', 'admin\AdminController@insertBrands'); // thêm brand vào db
+Route::post('admin/brands/update/{id}', 'admin\AdminController@updateBrands'); // cập nhật chỉnh sửa
+Route::get('admin/brands/edit/{id}', 'admin\AdminController@editBrands')->name('edit_brands');
+Route::get('admin/brands/delete/{id}', 'admin\AdminController@deleteBrands')->name('view_brands');; //xóa Users
 
 Route::get('admin/bills/', 'admin\AdminController@getBills')->name('view_bills');

@@ -191,11 +191,11 @@ class AdminController extends Controller
 
     public function viewBrands() {
         $brands = Brand::all();
-        return view("admin.Users.view_brands")->with(compact('brands'));
+        return view("admin.brands.view_brands")->with(compact('brands'));
     }
 
     public function addBrands() {
-        return view("admin.Users.add_brands");
+        return view("admin.brands.add_brands");
     }
 
     public function insertBrands(BrandRequest $request){
@@ -235,7 +235,7 @@ class AdminController extends Controller
         if (!$brandDetails){
             return back()->with('error', 'Cannot find the specific brand');
         }
-        return view('admin.Users.edit_brands')->with(compact('brandDetails'));
+        return view('admin.brands.edit_brands')->with(compact('brandDetails'));
     }
     public function updateBrands(BrandRequest $request, $id){
 //        dd($request);
@@ -246,7 +246,7 @@ class AdminController extends Controller
                 $extension = $image_tmp->getClientOriginalExtension();
                 $filename = time() . rand(10, 99) . '.' . $extension;
                 $data['image_logo'] = $filename;
-                $image_path = 'images/Users-logo/' . $filename;
+                $image_path = 'images/brands-logo/' . $filename;
                 if (!Image::make($image_tmp)->save($image_path)) {
                     return back()->with('error', 'Something was wrong with image');
                 }
