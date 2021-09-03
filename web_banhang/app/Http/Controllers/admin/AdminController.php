@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Brand;
 use App\Models\Role;
 use App\Models\RolePermission;
+use App\Models\Permission;
 use App\Models\TypeProduct;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
@@ -32,7 +33,8 @@ class AdminController extends Controller
     public function addUsers() {
         $roles = Role::all();
         $rolePermissions  = RolePermission::all();
-        return view("admin.users.add_users")->with(compact("roles", "rolePermissions"));
+        $permissions = Permission::all();
+        return view("admin.users.add_users")->with(compact("roles", "rolePermissions", "permissions"));
     }
     public function getPermissionByRole($id) {
         $data = Input::get('role');

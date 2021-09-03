@@ -37,5 +37,22 @@
 <script src="{{ asset('js/admin/matrix.form_validation.js') }}"></script>
 <script src="{{ asset('js/admin/matrix.tables.js') }}"></script>
 <script src="{{ asset('js/admin/matrix.popover.js') }}"></script>
+<script>
+    let role = "";
+    let id_permission = "";
+    $(document).ready(function () {
+        $("#role").change(function () {
+            let allPermission = $('input[name="permission"]');
+            allPermission.prop( "checked", false);
+            let divElm = $("#permission .controls");
+            for (let i=0; i<divElm.length; i++) {
+                divElm[i].style.display = "none";
+            }
+            let role = this.value;
+            id_permission = role + "_role";
+            $("#" + id_permission).css("display", "block");
+        });
+    });
+</script>
 </body>
 </html>
