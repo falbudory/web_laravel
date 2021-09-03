@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "959ee0fb05671c2003b80bbaaad27e93",
+    "content-hash": "6cadd819a6415b190ae2704ced6e6c8b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2787,16 +2787,16 @@
         },
         {
             "name": "spatie/laravel-permission",
-            "version": "4.4.1",
+            "version": "4.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-permission.git",
-                "reference": "3c9d7ae7683081ee90a4e2297f4e58aff3492a1e"
+                "reference": "7257756725c8e28706db1dc444e88558cc39d377"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/3c9d7ae7683081ee90a4e2297f4e58aff3492a1e",
-                "reference": "3c9d7ae7683081ee90a4e2297f4e58aff3492a1e",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/7257756725c8e28706db1dc444e88558cc39d377",
+                "reference": "7257756725c8e28706db1dc444e88558cc39d377",
                 "shasum": ""
             },
             "require": {
@@ -2853,7 +2853,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-permission/issues",
-                "source": "https://github.com/spatie/laravel-permission/tree/4.4.1"
+                "source": "https://github.com/spatie/laravel-permission/tree/4.4.0"
             },
             "funding": [
                 {
@@ -2861,7 +2861,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-09-01T17:40:58+00:00"
+            "time": "2021-08-28T23:24:45+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
