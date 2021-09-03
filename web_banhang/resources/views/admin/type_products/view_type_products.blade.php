@@ -3,16 +3,18 @@
 
     <div id="content">
         <div id="content-header">
-            <div id="breadcrumb"> <a href="{{--{{ url('/admin') }}--}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Loại sản phẩm</a> <a href="#" class="current">Tất cả loại sản phẩm</a> </div>
-            <h1>Brands</h1>
+            <div id="breadcrumb"><a href="{{--{{ url('/admin') }}--}}" title="Go to Home" class="tip-bottom"><i
+                        class="icon-home"></i> Home</a> <a href="#">Loại sản phẩm</a> <a href="#" class="current">Tất cả
+                    loại sản phẩm</a></div>
+            <h1>AddUser</h1>
         </div>
         <div class="container-fluid">
             <hr>
             <div class="row-fluid">
                 <div class="span12">
                     <div class="widget-box">
-                        <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-                            <h5>View Brands</h5>
+                        <div class="widget-title"><span class="icon"><i class="icon-th"></i></span>
+                            <h5>Loại sản phẩm</h5>
                         </div>
                         <div class="widget-content nopadding">
                             <table class="table table-bordered data-table">
@@ -27,20 +29,22 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {{--              	@foreach($brands as $brand)--}}
-                                <tr class="gradeX">
-                                    <td>{{--{{ $brand->id }}--}}</td>
-                                    <td>{{--{{ $brand->name }}--}}</td>
-                                    <td>{{--{{ $brand->url }}--}}</td>
-                                    <td>{{--{{ $brand->url }}--}}</td>
-                                    <td>{{--{{ $brand->url }}--}}</td>
-                                    <td class="center">
-                                        <a href="{{ url('/admin/type-products/edit'/*.$brand->id*/) }}" class="btn btn-primary btn-mini">Edit</a>
-                                        <a id="delCat" href="{{--{{ url('/admin/delete-brands/'.$brand->id) }}--}}" class="btn btn-danger btn-mini">Delete</a>
-                                    </td>
-                                </tr>
-                                {{--                @endforeach--}}
-
+                                @foreach($type_products as $type_product)
+                                    <tr class="gradeX">
+                                        <td>{{ $type_product->id }}</td>
+                                        <td>{{ $type_product->name }}</td>
+                                        <td>{{ $type_product->description }}</td>
+                                        <td>{{ $type_product->created_at }}</td>
+                                        <td>{{ $type_product->updated_at }}</td>
+                                        <td class="center">
+                                            <a href="{{ url('admin/type-products/edit/'.$type_product->id) }}"
+                                               class="btn btn-primary btn-mini">Edit</a>
+                                            <a id="delType"
+                                               href="{{ url('admin/type-products/delete/'.$type_product->id) }}"
+                                               class="btn btn-danger btn-mini">Delete</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

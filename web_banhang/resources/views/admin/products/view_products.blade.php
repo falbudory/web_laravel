@@ -37,7 +37,12 @@
                   <td>{{ $product->id }}</td>
                   @foreach($brands as $brand)
                         @if($product->brand_id == $brand->id)
-                            <td>{{$brand->name}}</td>
+                            <td style="width: 250px">
+                                <div style="display: flex">
+                                    <img src="{{ asset('/images/Users-logo/'.$brand->image_logo) }}" width="80" id="logo_brand{{$product->id}}">
+                                    <h4>{{$brand->name}}</h4>
+                                </div>
+                            </td>
                         @endif
                   @endforeach
                   <td>{{ $product->name }}</td>
@@ -56,12 +61,12 @@
                     @endforeach
                   <td>{{ $product->created_at }}</td>
                   <td>{{ $product->updated_at }}</td>
-                  <td class="center"><a href="#myModal{{ $product->id }}" data-toggle="modal" class="btn btn-success btn-mini">View</a> <a href="{{ url('/admin/products/edit/'.$product->id) }}" class="btn btn-primary btn-mini">Edit</a> <a id="delCat" href="{{--{{ url('/admin/delete-product/'.$product->id) }}--}}" class="btn btn-danger btn-mini">Delete</a> </td>
+                  <td class="center"><a href="#myModal{{ $product->id }}" data-toggle="modal" class="btn btn-success btn-mini">View</a> <a href="{{ url('/admin/products/edit/'.$product->id) }}" class="btn btn-primary btn-mini">Edit</a> <a id="delCat" href="{{ url('admin/products/delete/'.$product->id) }}" class="btn btn-danger btn-mini">Delete</a> </td>
                 </tr>
-                    <div id="myModal{{--{{ $product->id }}--}}" class="modal hide">
+                    <div id="myModal{{ $product->id }}" class="modal hide">
                       <div class="modal-header">
                         <button data-dismiss="modal" class="close" type="button">×</button>
-                        <h3>{{--{{ $product->product_name }}--}} Full Details</h3>
+                        <h3>{{ $product->product_name }} Full Details</h3>
                       </div>
                       <div class="modal-body">
                         <p>Product ID: {{ $product->id }}</p>
