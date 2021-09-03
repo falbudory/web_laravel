@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th8 22, 2021 lúc 12:29 AM
+-- Thời gian đã tạo: Th9 03, 2021 lúc 07:47 PM
 -- Phiên bản máy phục vụ: 10.4.20-MariaDB
 -- Phiên bản PHP: 8.0.8
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 -- Cơ sở dữ liệu: `banhang`
 --
 
-create database banhang;
-use banhang;
 -- --------------------------------------------------------
 
 --
@@ -32,14 +30,23 @@ use banhang;
 CREATE TABLE `bills` (
   `id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
-  `date_order` date NOT NULL,
+  `date_order` timestamp NULL DEFAULT current_timestamp(),
+  `status` varchar(200) NOT NULL,
+  `quantity` int(20) NOT NULL,
   `total` float NOT NULL,
-  `payment` varchar(200) NOT NULL,
-  `note` varchar(200) NOT NULL,
-  `status` bit NOT NULL,
+  `payment` varchar(200) DEFAULT NULL,
+  `note` varchar(200) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `bills`
+--
+
+INSERT INTO `bills` (`id`, `customer_id`, `date_order`, `status`, `quantity`, `total`, `payment`, `note`, `created_at`, `updated_at`) VALUES
+(9, 18, '2021-09-01 22:08:20', '0', 2, 24090000, 'tienMat', 'det', '2021-09-02 05:08:20', '2021-09-02 05:08:20'),
+(11, 20, '2021-09-01 22:45:21', '1', 2, 24800000, 'tienMat', 'vbhjnk', '2021-09-02 05:45:21', '2021-09-02 05:45:21');
 
 -- --------------------------------------------------------
 
@@ -52,10 +59,22 @@ CREATE TABLE `bill_details` (
   `bill_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `unit_price` double NOT NULL,
+  `price` double NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `bill_details`
+--
+
+INSERT INTO `bill_details` (`id`, `bill_id`, `product_id`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
+(18, 9, 4, 1, 6500000, '2021-09-02 05:08:20', '2021-09-02 05:08:20'),
+(19, 9, 1, 1, 17590000, '2021-09-02 05:08:20', '2021-09-02 05:08:20'),
+(20, 10, 1, 1, 17590000, '2021-09-02 05:19:48', '2021-09-02 05:19:48'),
+(21, 10, 2, 1, 33190000, '2021-09-02 05:19:48', '2021-09-02 05:19:48'),
+(22, 11, 3, 2, 5900000, '2021-09-02 05:45:21', '2021-09-02 05:45:21'),
+(23, 11, 4, 2, 6500000, '2021-09-02 05:45:21', '2021-09-02 05:45:21');
 
 -- --------------------------------------------------------
 
@@ -66,8 +85,8 @@ CREATE TABLE `bill_details` (
 CREATE TABLE `brands` (
   `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
+  `logo` varchar(200) DEFAULT NULL,
   `description` varchar(50) NOT NULL,
-  `image_logo` varchar(200) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -76,13 +95,13 @@ CREATE TABLE `brands` (
 -- Đang đổ dữ liệu cho bảng `brands`
 --
 
-INSERT INTO `brands` (`id`, `name`, `description`, `image_logo`, `created_at`, `updated_at`) VALUES
-(1, 'lenovo', 'LENOVO', 'lenovo-logo.png', '2021-08-21 21:37:02', '2021-08-21 21:37:02'),
-(2, 'samsung', 'SAM SUNG', 'samsung-logo.png',  '2021-08-21 21:37:02', '2021-08-21 21:37:02'),
-(3, 'xiaomi', 'XIAOMI', 'xiaomi-logo.png','2021-08-21 21:37:02', '2021-08-21 21:37:02'),
-(4, 'hp', 'HP', 'hp-logo.png','2021-08-21 21:37:02', '2021-08-21 21:37:02'),
-(5, 'oppo', 'OPPO', 'oppo-logo.png','2021-08-21 21:37:02', '2021-08-21 21:37:02'),
-(6, 'asus', 'ASUS', 'asus-logo.png','2021-08-21 21:37:02', '2021-08-21 21:37:02');
+INSERT INTO `brands` (`id`, `name`, `logo`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'lenovo', NULL, 'LENOVO', '2021-08-21 21:37:02', '2021-08-21 21:37:02'),
+(2, 'samsung', NULL, 'SAM SUNG', '2021-08-21 21:37:02', '2021-08-21 21:37:02'),
+(3, 'xiaomi', NULL, 'XIAOMI', '2021-08-21 21:37:02', '2021-08-21 21:37:02'),
+(4, 'hp', NULL, 'HP', '2021-08-21 21:37:02', '2021-08-21 21:37:02'),
+(5, 'oppo', NULL, 'OPPO', '2021-08-21 21:37:02', '2021-08-21 21:37:02'),
+(6, 'asus', NULL, 'ASUS', '2021-08-21 21:37:02', '2021-08-21 21:37:02');
 
 -- --------------------------------------------------------
 
@@ -94,12 +113,21 @@ CREATE TABLE `customers` (
   `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `address` varchar(100) NOT NULL,
-  `phone` varchar(30) NOT NULL,
-  `note` varchar(200) NOT NULL,
+  `address` varchar(100) DEFAULT NULL,
+  `phone` varchar(30) DEFAULT NULL,
+  `note` varchar(200) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `customers`
+--
+
+INSERT INTO `customers` (`id`, `name`, `email`, `address`, `phone`, `note`, `created_at`, `updated_at`) VALUES
+(18, 'sdfe', 'thanh@gmail.com', 'fverf', 'wfe', 'det', '2021-09-02 05:08:20', '2021-09-02 05:08:20'),
+(19, 'sdfvef', 'thanh@gmail.com', 'sdfvsd', 'dvvvv', 'dvdv', '2021-09-02 05:19:48', '2021-09-02 05:19:48'),
+(20, 'cgvhbjnk', 'thanh@gmail.com', 'rtybjn', 'vbhjnkm', 'vbhjnk', '2021-09-02 05:45:21', '2021-09-02 05:45:21');
 
 -- --------------------------------------------------------
 
@@ -150,8 +178,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `unit_price`, `promotion_price`, `description`, `cpu`, `ram`, `oCung`, `win`, `manHinh`, `brand_id`, `type_id`, `image`, `created_at`, `updated_at`) VALUES
-(1, 'Lenovo IdeaPad 3', 17590000, 17590000, '', '', '', '', '', '', 1, 1, '', '2021-08-21 21:45:49', '2021-08-21 21:45:49'),
-(2, 'Asus VivoBook A515EA', 34990000, 33190000, '', '', '', '', '', '', 6, 1, '', '2021-08-21 21:45:49', '2021-08-21 21:45:49'),
+(1, 'Lenovo IdeaPad 3', 17590000, 0, '', 'AMD Ryzen 3-3250U', '4GB', '256GB SSD', 'Window 10 Home', '21 inch', 1, 1, 'lap1.png', '2021-08-21 21:45:49', '2021-08-21 21:45:49'),
+(2, 'Asus VivoBook A515EA', 34990000, 33190000, '', 'Intel Pentium', '8 GB', '256GB SSD', 'Window 10 Home', '21 inch', 6, 1, 'lap2.jpg', '2021-08-21 21:45:49', '2021-08-21 21:45:49'),
 (3, 'oppo f5', 6500000, 5900000, '', '', '', '', '', '', 5, 2, '', '2021-08-21 21:48:34', '2021-08-21 21:48:34'),
 (4, 'samsung A350', 7990000, 6500000, '', '', '', '', '', '', 2, 2, '', '2021-08-21 21:48:34', '2021-08-21 21:48:34'),
 (5, 'tai nghe samsung', 250000, 200000, '', '', '', '', '', '', 2, 3, '', '2021-08-21 21:48:34', '2021-08-21 21:48:34');
@@ -216,9 +244,9 @@ CREATE TABLE `type_products` (
 --
 
 INSERT INTO `type_products` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'laptop', 'may tinh cac loai', '2021-08-21 21:34:41', '2021-08-21 21:34:41'),
-(2, 'smartphone', 'dien thoai cac loai', '2021-08-21 21:34:41', '2021-08-21 21:34:41'),
-(3, 'phukien', 'phu kien di kem', '2021-08-21 21:34:41', '2021-08-21 21:34:41');
+(1, 'laptop', 'MÁY TÍNH', '2021-08-21 21:34:41', '2021-08-21 21:34:41'),
+(2, 'smartphone', 'ĐIỆN THOẠI', '2021-08-21 21:34:41', '2021-08-21 21:34:41'),
+(3, 'phukien', 'PHỤ KIỆN', '2021-08-21 21:34:41', '2021-08-21 21:34:41');
 
 -- --------------------------------------------------------
 
@@ -231,9 +259,9 @@ CREATE TABLE `users` (
   `name` varchar(30) NOT NULL,
   `email` varchar(30) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role_id` int(11) NOT NULL,
-  `money` int(11) NOT NULL,
-  `remember_token` varchar(255) NOT NULL,
+  `role_id` int(11) DEFAULT NULL,
+  `money` int(11) DEFAULT NULL,
+  `remember_token` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -243,8 +271,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role_id`, `money`, `remember_token`, `created_at`, `updated_at`) VALUES
-(3, 'admin', 'admin@gmail.com', '123', 1, 1000000000, '', '2021-08-21 05:26:13', '2021-08-21 05:26:13'),
-(4, 'hoang anh', 'anh@gmail.com', '123', 2, 1000000, '', '2021-08-21 05:27:25', '2021-08-21 05:27:25');
+(5, 'long', 'long@gmail.com', '$2y$10$UrsKiqtna6B5nSR44ICHNOUKeVzZbtJXneHIOXDSHlM6wCr25rmV.', NULL, 1785080001, 'yTrEyrm9ufQClzO6P5ynH39VFgXS8IlgIe1JSDq8iab5oqvoPhQHserKBtut', '2021-08-27 00:21:17', '2021-09-01 08:42:32'),
+(18, 'thanh', 'thanh@gmail.com', '$2y$10$rCLvHcc03lhBBVY4dxm9GeyG0OrObxbonl9LcQXodGm/mJpdE4D1m', NULL, NULL, NULL, '2021-08-29 05:12:36', '2021-08-29 05:12:36');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -316,7 +344,7 @@ ALTER TABLE `type_products`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `role_id` (`role_id`);
+  ADD KEY `users_ibfk_1` (`role_id`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -326,13 +354,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `bill_details`
 --
 ALTER TABLE `bill_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT cho bảng `brands`
@@ -344,7 +372,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT cho bảng `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT cho bảng `permissions`
@@ -380,7 +408,7 @@ ALTER TABLE `type_products`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
