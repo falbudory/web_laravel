@@ -243,9 +243,4 @@ class HomeController extends Controller
 
         return view('home.historyDetail', compact('data'));
     }
-    public function search(Request $request){
-        $search = $request->input('searchP');
-        $data = Product::where('name', "LIKE", "%" . $search . "%")->get();
-        return view('home.search',compact('data'));
-    }
 }
