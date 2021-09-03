@@ -74,6 +74,16 @@
                                     </div>
                                 </div>
                                 <div class="control-group">
+                                    <label class="control-label"></label>
+                                    <div class="controls">
+                                        <div style="display: flex">
+                                            <input type="checkbox" name="show-pass"
+                                                   id="show-pass" value=""/>
+                                            <label for="show-pass">Hiện mật khẩu</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="control-group">
                                     <label class="control-label">Email</label>
                                     <div class="controls">
                                         <input type="text" name="email" id="email" required />

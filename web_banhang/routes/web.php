@@ -42,7 +42,8 @@ Route::get('admin/login', 'admin\AdminController@login')->name('login');
 
 Route::get('admin/users', 'admin\AdminController@getUsers')->name('view_users');
 Route::get('admin/users/add', 'admin\AdminController@addUsers')->name('add_users');
-Route::get('admin/users/edit', 'admin\AdminController@editUsers')->name('edit_users');
+Route::get('admin/users/edit/{id}', 'admin\AdminController@editUsers')->name('edit_users');
+//Route::post("admin/users/update/{id}", )
 Route::post("admin/users/role-permission/{id}", 'admin\AdminController@getPermissionByRole');
 
 Route::get('admin/type-products', 'admin\AdminController@viewTypeProducts')->name('view_type_products');

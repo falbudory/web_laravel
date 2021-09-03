@@ -52,6 +52,15 @@
             id_permission = role + "_role";
             $("#" + id_permission).css("display", "block");
         });
+        $("#show-pass").change(function () {
+            if($(this).prop("checked") == true){
+                $('input[name="password"]')[0].type = "text";
+                $('input[name="repeat_pass"]')[0].type = "text";
+            }else {
+                $('input[name="password"]')[0].type = "password";
+                $('input[name="repeat_pass"]')[0].type = "password";
+            }
+        })
     });
 </script>
 </body>

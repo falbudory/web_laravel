@@ -9,6 +9,7 @@ use App\Models\Role;
 use App\Models\RolePermission;
 use App\Models\Permission;
 use App\Models\TypeProduct;
+use App\Models\User;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
@@ -23,11 +24,17 @@ class AdminController extends Controller
     }
 
     public function getUsers() {
-        return view("admin.users.view_users");
+        $users = User::all();
+        $roles = Role::all();
+        return view("admin.users.view_users")->with(compact("users", "roles"));
     }
 
-    public function editUsers() {
-        return view("admin.users.edit_users");
+    public function editUsers($id) {
+        $userDetails = User::where(['id'=>$id])->first();
+        $roles = Role::all();
+        $rolePermissions  = RolePermission::all();
+        $permissions = Permission::all();
+        return view("admin.users.edit_users")->with(compact("userDetails", "roles", "rolePermissions", "permissions"));;
     }
 
     public function addUsers() {
