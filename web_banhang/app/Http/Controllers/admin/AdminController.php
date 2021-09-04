@@ -10,6 +10,9 @@ use App\Models\RolePermission;
 use App\Models\Permission;
 use App\Models\TypeProduct;
 use App\Models\User;
+use App\Models\Customer;
+use App\Models\Bill;
+use App\Models\BillDetail;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
@@ -272,6 +275,10 @@ class AdminController extends Controller
     }
 
     public function getBills() {
-        return view("admin.bills.view_bills");
+        $bills = Bill::all();
+        $bill_details  = BillDetail::all();
+        $customers = Customer::all();
+        $products = Product::all();
+        return view("admin.bills.view_bills")->with(compact('bills', 'bill_details', 'customers', 'products'));
     }
 }

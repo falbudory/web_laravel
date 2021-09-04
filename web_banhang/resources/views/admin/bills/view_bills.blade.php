@@ -21,51 +21,76 @@
                                 <tr>
                                     <th>Bill ID</th>
                                     <th>Mã Khách hàng</th>
+                                    <th>Họ tên</th>
                                     <th>Ngày đặt hàng</th>
+                                    <th>Số lượng</th>
                                     <th>Tổng tiền</th>
                                     <th>Hình thức thanh toán</th>
                                     <th>Địa chỉ gửi hàng</th>
-                                    <th>Created at</th>
-                                    <th>Edited at</th>
                                     <th>Lưu ý</th>
+                                    <th>Trạng thái</th>
+                                    <th>Lựa chọn</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {{--              	@foreach($products as $product)--}}
+                                @foreach($bills as $bill)
                                 <tr class="gradeX">
-                                    <td>{{--{{ $product->id }}--}}</td>
-                                    <td>{{--{{ $product->brand }}--}}</td>
-                                    <td>{{--{{ $product->name }}--}}</td>
-                                    <td>{{--{{ $product->code }}--}}</td>
-                                    <td>{{--{{ $product->color }}--}}</td>
-                                    <td>{{--{{ $product->price }}--}}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        {{--@if(!empty($product->image))--}}
-                                        <img src="{{--{{ asset('/img/products/'.$product->image) }}--}}" style="width:60px;">
-                                        {{--@endif--}}
-                                    </td>
-                                    <td class="center"><a href="#myModal{{--{{ $product->id }}--}}" data-toggle="modal" class="btn btn-success btn-mini">View</a> <a href="{{--{{ url('/admin/edit-products/'.$product->id) }}--}}" class="btn btn-primary btn-mini">Edit</a> <a id="delCat" href="{{--{{ url('/admin/delete-product/'.$product->id) }}--}}" class="btn btn-danger btn-mini">Delete</a> </td>
+                                    <td>{{ $bill->id }}</td>
+                                    <td>{{ $bill->customer_id }}</td>
+                                    @foreach($customers as $customer)
+                                        @if($customer->id == $bill->customer_id)
+                                        <td>{{ $customer->name }}</td>
+                                        @endif
+                                    @endforeach
+                                    <td>{{ $bill->date_order }}</td>
+                                    <td>{{ $bill->quantity }}</td>
+                                    <td>{{ $bill->total }}</td>
+                                    <td>{{ $bill->payment }}</td>
+                                    @foreach($customers as $customer)
+                                        @if($customer->id == $bill->customer_id)
+                                            <td>{{ $customer->address}}</td>
+                                        @endif
+                                    @endforeach
+                                    <td>{{ $bill->note }}</td>
+                                    <td>{{ $bill->status }}</td>
+                                    <td class="center"><a href="#myModal{{ $bill->id }}" data-toggle="modal" class="btn btn-success btn-mini">View</a> <a href="{{--{{ url('/admin/edit-products/'.$product->id) }}--}}" class="btn btn-primary btn-mini">Edit</a> <a id="delCat" href="{{--{{ url('/admin/delete-product/'.$product->id) }}--}}" class="btn btn-danger btn-mini">Delete</a> </td>
                                 </tr>
-                                <div id="myModal{{--{{ $product->id }}--}}" class="modal hide">
+                                <div id="myModal{{ $bill->id }}" class="modal hide">
                                     <div class="modal-header">
                                         <button data-dismiss="modal" class="close" type="button">×</button>
-                                        <h3>{{--{{ $product->product_name }}--}} Full Details</h3>
+                                        <h3>Chi tiết đơn hàng</h3>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Product ID: {{--{{ $product->id }}--}}</p>
-                                        <p>Category ID:{{-- {{ $product->category_id }}--}}</p>
-                                        <p>Product Code: {{--{{ $product->product_code }}--}}</p>
-                                        <p>Product Color: {{--{{ $product->product_color }}--}}</p>
-                                        <p>Price:{{-- {{ $product->price }}--}}</p>
-                                        <p>Fabric: </p>
-                                        <p>Material: </p>
-                                        <p>Description: {{--{{ $product->description }}--}}</p>
+                                        <p>ID đơn hàng: {{ $bill->id }}</p>
+                                        <p>Ngày đặt hàng:{{ $bill->date_order }}</p>
+                                        @foreach($customers as $customer)
+                                            @if($customer->id == $bill->customer_id)
+                                                <p>Tên khách hàng: {{$customer->name }}</p>
+                                                <p>Email: {{$customer->email }}</p>
+                                                <p>SDT: {{$customer->phone }}</p>
+                                            @endif
+                                        @endforeach
+                                        <hr>
+                                        @foreach($bill_details as $bill_detail)
+                                            @if($bill->id == $bill_detail->bill_id)
+                                                @foreach($products as $product)
+                                                    @if($product->id == $bill_detail->product_id)
+                                                    <p>San pham: {{$product->name}}</p>
+                                                    @endif
+                                                @endforeach
+                                                <p>Giá: {{ $bill_detail->price }}</p>
+                                                <p>Số lượng: {{ $bill_detail->quantity }}</p><hr>
+                                            @endif
+                                        @endforeach
+                                        @foreach($customers as $customer)
+                                            @if($customer->id == $bill->customer_id)
+                                                <p>Địa chỉ nhận hàng: {{ $customer->address}}</p>
+                                            @endif
+                                        @endforeach
+                                        <p>Tổng Tiền: {{$bill->total}}</p>
                                     </div>
                                 </div>
-                                {{--                @endforeach--}}
-
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
