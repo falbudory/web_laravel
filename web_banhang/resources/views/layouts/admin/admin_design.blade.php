@@ -3,6 +3,7 @@
 <head>
 <title>Trang quản trị</title>
 <meta charset="UTF-8" />
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="{{ asset('css/admin/bootstrap.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('css/admin/bootstrap-responsive.min.css') }}" />
@@ -65,12 +66,17 @@
         $(".status-bill").change(function () {
             let name = this.name;
             let id = name.split("_")[1];
+            let _token   = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                type:'get',
-                url:'',
-                data:{"_token": $('#token').val()},
+                type:'POST',
+                url:'bills/update/' + id,
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data:{
+                    "status" : this.value.toString(),
+                    "_token" : _token,
+                },
                 success:function(data) {
-                    $("#msg").html(data.msg);
+                    console.log(data);
                 }
             });
 

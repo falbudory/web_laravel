@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
 use App\Http\Requests\BrandRequest;
 use App\Http\Requests\TypeProductRequest;
+use App\Http\Requests\BillRequest;
 use Image;
 
 class AdminController extends Controller
@@ -215,12 +216,12 @@ class AdminController extends Controller
         $brand = new Brand;
         $brand->name = $data['name'];
         $brand->description = $data['description'];
-        if($request->hasFile('image_logo')){
-            $image_tmp = $request->file('image_logo');
+        if($request->hasFile('logo')){
+            $image_tmp = $request->file('logo');
             if($image_tmp->isValid()){
                 $extension = $image_tmp->getClientOriginalExtension();
                 $filename = time().rand(10,99).'.'.$extension;
-                $image_path = 'images/Users-logo/'.$filename;
+                $image_path = 'images/brands-logo/'.$filename;
                 if(!Image::make($image_tmp)->save($image_path)){
                     return back()->with('error', 'Something was wrong with image');
                 }
@@ -252,12 +253,12 @@ class AdminController extends Controller
     public function updateBrands(BrandRequest $request, $id){
 //        dd($request);
         $data = array_filter($request->only('name', 'description'));
-        if($request->hasFile('image_logo')) {
-            $image_tmp = $request->file('image_logo');
+        if($request->hasFile('logo')) {
+            $image_tmp = $request->file('logo');
             if ($image_tmp->isValid()) {
                 $extension = $image_tmp->getClientOriginalExtension();
                 $filename = time() . rand(10, 99) . '.' . $extension;
-                $data['image_logo'] = $filename;
+                $data['logo'] = $filename;
                 $image_path = 'images/brands-logo/' . $filename;
                 if (!Image::make($image_tmp)->save($image_path)) {
                     return back()->with('error', 'Something was wrong with image');
@@ -281,4 +282,18 @@ class AdminController extends Controller
         $products = Product::all();
         return view("admin.bills.view_bills")->with(compact('bills', 'bill_details', 'customers', 'products'));
     }
+    public function getBillsByStatus ($status) {
+//        dd($status);
+        $bills = Bill::where(['status'=>$status])->get();
+//        dd($bills);
+        $bill_details  = BillDetail::all();
+        $customers = Customer::all();
+        $products = Product::all();
+        return view("admin.bills.view_bills")->with(compact('bills', 'bill_details', 'customers', 'products'));
+    }
+    public function updateStatusBill(Request $request, $id) {
+        $data = $request->all();
+        Bill::where('id',$id)->update(['status'=>$data['status']]);
+    }
+
 }

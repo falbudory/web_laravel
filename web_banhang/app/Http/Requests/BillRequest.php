@@ -1,10 +1,11 @@
 <?php
 
+
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BrandRequest extends FormRequest
+class BillRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +26,7 @@ class BrandRequest extends FormRequest
     {
         return [
             //
-            'name'          => 'required',
-            'description'   => 'required',
-            'logo'    => 'required'
+            'status' => 'required'
         ];
     }
 }

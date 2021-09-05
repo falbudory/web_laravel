@@ -20,20 +20,20 @@
                             @include('flash_message')
 
                             <form class="form-horizontal" method="post" enctype="multipart/form-data"
-                                  action="{{ url('admin/Users/update/'.$brandDetails->id) }}" name="edit_Brand"
+                                  action="{{ url('admin/brands/update/'.$brandDetails->id) }}" name="edit_Brand"
                                   id="edit_Brand" novalidate="novalidate"> {{ csrf_field() }}
                                 <div class="control-group">
-                                    <label class="control-label">Brand Name</label>
+                                    <label class="control-label">Tên thương hiệu</label>
                                     <div class="controls">
                                         <input type="text" name="name" id="Brand_name"
                                                value="{{ $brandDetails->name }}">
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">Brand Name</label>
+                                    <label class="control-label">Logo thương hiệu</label>
                                     <div class="controls">
-                                        <img src="{{ asset('/images/Users-logo/'.$brandDetails->image_logo) }}" width="40px">
-                                        <input type="file" name="image_logo" id="image_logo">
+                                        <img src="{{ asset('/images/brands-logo/'.$brandDetails->logo) }}" width="40px">
+                                        <input type="file" name="logo" id="logo">
                                     </div>
                                 </div>
 
