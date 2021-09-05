@@ -29,7 +29,6 @@ div.button span {
 }
 
 .selector,
-.radio,
 .checker,
 .uploader,
 .button,
@@ -402,7 +401,7 @@ div.checker {
 
 /* Radio */
 div.radio {
-  margin-right: 3px;
+  margin-right: 1px;
 }
 
 /* Uploader */
@@ -539,13 +538,14 @@ div.radio span {
 }
 
 div.radio input {
-  opacity: 0;
   filter: alpha(opacity:0);
   text-align: center;
   display: inline-block;
   background: none;
 }
-
+input[type="radio"] {
+    opacity: 1 !important;
+}
 /* Uploader */
 
 div.uploader {

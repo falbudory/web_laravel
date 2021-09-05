@@ -60,7 +60,21 @@
                 $('input[name="password"]')[0].type = "password";
                 $('input[name="repeat_pass"]')[0].type = "password";
             }
-        })
+        });
+
+        $(".status-bill").change(function () {
+            let name = this.name;
+            let id = name.split("_")[1];
+            $.ajax({
+                type:'get',
+                url:'',
+                data:{"_token": $('#token').val()},
+                success:function(data) {
+                    $("#msg").html(data.msg);
+                }
+            });
+
+        });
     });
 </script>
 </body>

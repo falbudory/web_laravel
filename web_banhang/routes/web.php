@@ -74,3 +74,4 @@ Route::get('admin/brands/edit/{id}', 'admin\AdminController@editBrands')->name('
 Route::get('admin/brands/delete/{id}', 'admin\AdminController@deleteBrands')->name('view_brands');; //xóa Users
 
 Route::get('admin/bills/', 'admin\AdminController@getBills')->name('view_bills');
+Route::post('admin/bills/update-status', 'admin\AdminController@updateStatus');
