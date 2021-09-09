@@ -117,7 +117,7 @@
                                 <div class="control-group">
                                     <label class="control-label">Ảnh</label>
                                     <div class="controls">
-                                        <img src="{{ asset('/images/products/'.$product->image) }}">
+                                        <img src="{{ asset('/images/'.$product->image) }}">
                                         <input type="file" name="image" id="image" />
                                     </div>
                                 </div>

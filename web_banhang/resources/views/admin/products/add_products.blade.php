@@ -25,7 +25,7 @@
                                 <div class="control-group">
                                     <label class="control-label">Thương hiệu</label>
                                     <div class="controls">
-                                        <select name="brand" id="brand" style="width: 220px;">
+                                        <select name="brand_id" id="brand" style="width: 220px;">
                                             <option value='' selected disabled style="display: none"></option>
                                             @foreach($brands as $brand)
                                                 <option value="{{$brand->id}}">
@@ -43,7 +43,7 @@
                                 <div class="control-group">
                                     <label class="control-label">Loại sản phẩm</label>
                                     <div class="controls">
-                                        <select name="type_product" id="type_product" style="width: 220px;">
+                                        <select name="type_id" id="type_id" style="width: 220px;">
                                             <option value='' selected disabled style="display: none"></option>
                                             @foreach($type_products as $type_product)
                                                 <option value="{{$type_product->id}}">{{$type_product->name}}</option>
@@ -55,13 +55,13 @@
                                 <div class="control-group">
                                     <label class="control-label">Tên sản phẩm</label>
                                     <div class="controls">
-                                        <input type="text" name="product_name" id="product_name" required/>
+                                        <input type="text" name="name" id="name" required/>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Hệ điều hành</label>
                                     <div class="controls">
-                                        <input type="text" name="system" id="system" required/>
+                                        <input type="text" name="win" id="system" required/>
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -73,7 +73,7 @@
                                 <div class="control-group">
                                     <label class="control-label">Màn hình</label>
                                     <div class="controls">
-                                        <input type="text" name="screen" id="screen" required/>
+                                        <input type="text" name="manHinh" id="manHinh" required/>
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -86,7 +86,7 @@
                                 <div class="control-group">
                                     <label class="control-label">Ổ cứng</label>
                                     <div class="controls">
-                                        <input type="text" name="hard_drive" id="hard_drive" required/>
+                                        <input type="text" name="oCung" id="hard_drive" required/>
                                     </div>
                                 </div>
 
@@ -121,7 +121,7 @@
                                     </div>
                                 </div>
                                 <div class="form-actions">
-                                    <button type="submit" value="Add Product" class="btn btn-success">Thêm sản phẩm
+                                    <button type="submit" value="Thêm sản phẩm" class="btn btn-success">Thêm sản phẩm
                                     </button>
                                 </div>
                             </form>

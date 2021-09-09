@@ -48,7 +48,7 @@
                   <td>{{ $product->name }}</td>
                   <td>
                       @if(!empty($product->image))
-                      <img src="{{ asset('/images/products/'.$product->image) }}" style="width:60px;">
+                      <img src="{{ asset('/images/'.$product->image) }}" style="width:60px;">
                       @endif
                   </td>
                   <td>{{ $product->description }}</td>

@@ -117,9 +117,6 @@ class AdminController extends Controller
 
     public function editProducts($id) {
         $product = Product::where('id', $id)->first();
-        $file_img_name = $product->image;
-//        $image_path = 'images/products/'.$file_img_name;
-//        dd($file_img_name);
         $brands = Brand::all();
         $type_products = TypeProduct::all();
         return view("admin.products.edit_products")->with(compact('product', 'brands', 'type_products'));
@@ -134,23 +131,23 @@ class AdminController extends Controller
     public function insertProducts(ProductRequest $request){
         $data = $request->all();
         $product = new Product;
-        $product->name = $data['product_name'];
+        $product->name = $data['name'];
         $product->unit_price = $data['unit_price'];
         $product->promotion_price = $data['promotion_price'];
         $product->description = $data['description'];
         $product->cpu = $data['cpu'];
         $product->ram = $data['ram'];
-        $product->oCung = $data['hard_drive'];
-        $product->win = $data['system'];
-        $product->manHinh = $data['screen'];
-        $product->brand_id = $data['brand'];
-        $product->type_id = $data['type_product'];
+        $product->oCung = $data['oCung'];
+        $product->win = $data['win'];
+        $product->manHinh = $data['manHinh'];
+        $product->brand_id = $data['brand_id'];
+        $product->type_id = $data['type_id'];
         if($request->hasFile('image')){
             $image_tmp = $request->file('image');
             if($image_tmp->isValid()){
                 $extension = $image_tmp->getClientOriginalExtension();
                 $filename = time().rand(10,99).'.'.$extension;
-                $image_path = 'images/products/'.$filename;
+                $image_path = 'images/'.$filename;
                 if(!Image::make($image_tmp)->save($image_path)){
                     return back()->with('error', 'Something was wrong with image');
                 }
@@ -174,7 +171,7 @@ class AdminController extends Controller
                 $extension = $image_tmp->getClientOriginalExtension();
                 $filename = time().rand(10,99).'.'.$extension;
                 $data['image']  =$filename;
-                $image_path = 'images/products/'.$filename;
+                $image_path = 'images/'.$filename;
                 if(!Image::make($image_tmp)->save($image_path)){
                     return back()->with('error', 'Something was wrong with image');
                 }
