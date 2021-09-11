@@ -60,9 +60,6 @@
                                                 <input type="radio" class="status-bill" name="status-bill_{{$bill->id}}" @if($bill->status==="2") checked @endif id="bill-success" value="2"> <label style="margin-left: 28px; margin-top: -17px;" for="bill-success">Thành công</label>
                                                 <input type="radio" class="status-bill" name="status-bill_{{$bill->id}}" @if($bill->status==="3") checked @endif id="bill-failure" value="3"> <label style="margin-left: 28px; margin-top: -17px;" for="bill-failure">Hủy đơn</label>
                                             </div>
-                                            <div style="line-height: 100px">
-                                                <a href="" style="margin-left:10px; height: 20px;" class="btn btn-primary btn-mini">Update</a>
-                                            </div>
                                         </div>
                                     </td>
                                     <td style="line-height: 100px" class="center"><a href="#myModal{{ $bill->id }}" data-toggle="modal" class="btn btn-success btn-mini">View</a> <a href="{{--{{ url('/admin/edit-products/'.$product->id) }}--}}" class="btn btn-primary btn-mini">Edit</a> <a id="delCat" href="{{--{{ url('/admin/delete-product/'.$product->id) }}--}}" class="btn btn-danger btn-mini">Delete</a> </td>

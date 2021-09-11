@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EditUserRequest;
+use App\Http\Requests\UserRequest;
 use App\Models\Product;
 use App\Models\Brand;
 use App\Models\Role;
@@ -13,6 +15,8 @@ use App\Models\User;
 use App\Models\Customer;
 use App\Models\Bill;
 use App\Models\BillDetail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
@@ -23,7 +27,31 @@ use Image;
 
 class AdminController extends Controller
 {
-    public function login() {
+    public function homeAdmin() {
+        return view("admin.home");
+    }
+
+    public function login(Request $request)
+    {
+        $user_data = array(
+            'email' => $request->email,
+            'password' => $request->password
+        );
+        $remember = $request->remember;
+        if (Auth::attempt($user_data, $remember)) {
+            return redirect('admin/');
+        } else {
+            return back()->with('error', 'Tài khoản hoặc mật khẩu chưa chính xác');
+        }
+//        return back();
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('admin/login');
+    }
+    public function loginView() {
         return view("admin.login.login");
     }
 
@@ -47,6 +75,50 @@ class AdminController extends Controller
         $permissions = Permission::all();
         return view("admin.users.add_users")->with(compact("roles", "rolePermissions", "permissions"));
     }
+
+    public function insertUser(UserRequest $request){
+        $data = $request->all();
+        $user = new User;
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->role_id = $data['role_id'];
+        $user->password = hash::make($data['password']);
+        if( $user->save()){
+            return back()->with('success', 'Brand has been added successfully');
+        }
+        else{
+            return back()->with('error', 'Couldnt add a new brand');
+        }
+    }
+
+    public function updateUser(EditUserRequest $request, $id=null) {
+//        dd($request);
+        $data = $request->all();
+        $check = User::where('email', $data["email"])->first();
+        $user = User::find($id);
+        if($user->email != $data["email"] && $check != null) {
+            return back()->with('error', 'Email đã tồn tại, xin vui lòng thử lại');
+        } else {
+            if ($data['password'] == "" || $data['password'] == null) {
+                $user->name = $data["name"];
+                $user->email = $data["email"];
+                $user->role_id = $data["role_id"];
+                if ($user->save()) {
+                    return back()->with('success', 'Thông tin đã được lưu lại');
+                } else {
+                    return back()->with('error', 'Đã có lỗi xảy ra, xin vui lòng thử lại');
+                }
+            } else {
+                $data["password"] = hash::make($data["password"]);
+                if (User::where('id', $id)->update($data)) {
+                    return back()->with('success', 'Thông tin đã được lưu lại');
+                } else {
+                    return back()->with('error', 'Đã có lỗi xảy ra, xin vui lòng thử lại');
+                }
+            }
+        }
+    }
+
     public function getPermissionByRole($id) {
         $data = Input::get('role');
         $rolePermissions  = RolePermission::where('role_id', $id)->first();
@@ -260,7 +332,7 @@ class AdminController extends Controller
                 if (!Image::make($image_tmp)->save($image_path)) {
                     return back()->with('error', 'Something was wrong with image');
                 }
-                // Store image name in Users table
+                // Store image name in Brands table
             }
         }
         if(Brand::where('id',$id)->update($data)){

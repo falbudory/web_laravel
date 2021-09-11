@@ -13,7 +13,7 @@
     </head>
     <body>
         <div id="loginbox">
-            <form id="loginform" class="form-vertical" method="POST" action="{{--{{ route('admin') }}--}}">
+            <form id="loginform" class="form-vertical" method="post" action="{{ url('admin/login-form') }}">
                 @csrf
 				 <div class="control-group normal_text">
                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
@@ -22,6 +22,7 @@
                      </svg>
                      <h3>Login Master Admin</h3>
                  </div>
+                @include('flash_message')
                 <div class="control-group">
                     <div class="controls">
                         <div class="main_input_box">
@@ -31,11 +32,11 @@
                                 </svg>
                             </span>
                             <input type="text" name="email" placeholder="Email" />
-                            @if ($errors->has('email'))
+                                {{--@if ($errors->has('email'))
                                     <span class="help-block">
-                                        <strong>{{--{{ $errors->first('email') }}--}}</strong>
+                                        <strong>--}}{{--{{ $errors->first('email') }}--}}{{--</strong>
                                     </span>
-                                @endif
+                                @endif--}}
                         </div>
                     </div>
                 </div>

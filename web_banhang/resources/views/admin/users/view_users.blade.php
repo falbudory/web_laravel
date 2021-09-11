@@ -33,7 +33,7 @@
                                     <th>ID User</th>
                                     <th>Tên</th>
                                     <th>Email</th>
-                                    <th>Quyền</th>
+                                    <th>Vai trò</th>
                                     <th>Tiền</th>
                                     <th>created_at</th>
                                     <th>updated_at</th>
@@ -47,6 +47,13 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>
+                                            <div style="display: flex">
+                                                <div>
+                                                    <input type="radio" class="role_user" name="role_user_{{$user->id}}" @if($user->role_id==="0") checked @endif id="admin" value="0"> <label style="margin-left: 28px; margin-top: -17px;" for="admin">Admin</label>
+                                                    <input type="radio" class="role_user" name="role_user_{{$user->id}}" @if($user->role_id==="1") checked @endif id="employee" value="1"> <label style="margin-left: 28px; margin-top: -17px;" for="user">Employee</label>
+                                                    <input type="radio" class="role_user" name="role_user_{{$user->id}}" @if($user->role_id==="2") checked @endif id="user" value="2"> <label style="margin-left: 28px; margin-top: -17px;" for="employee">User</label>
+                                                </div>
+                                            </div>
                                             @foreach($roles as $role)
                                                 @if($role->id == $user->role_id)
                                                     {{ $role->name }}
