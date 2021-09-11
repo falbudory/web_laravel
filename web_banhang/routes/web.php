@@ -35,10 +35,13 @@ Route::get('/logout', 'Home\UserController@logout')->name('home.logout');
 Route::get('/changepass', 'Home\UserController@changePass')->name('home.changePass');
 Route::post('/postchangepass', 'Home\UserController@postChangePass')->name('home.postChangePass');
 //admin
+
+Route::match(['get'],'admin/login', 'admin\AdminController@loginView')->name('login');
+//Route::get('admin/logout', 'admin\AdminController@logout')
+Route::match(['post'],'admin/login-form', 'admin\AdminController@login');
+Route::match(['get','post'],'admin/logout','admin\AdminController@logout');
+Route::group(['middleware'=>'auth'], function() {
     Route::get('admin', 'admin\AdminController@homeAdmin')->name('home');
-    Route::post('admin/login-form', 'admin\AdminController@login');
-    Route::get('admin/login', 'admin\AdminController@loginView')->name('login');
-    Route::get('admin/logout', 'admin\AdminController@logout')->name('login');
 
     Route::get('admin/users', 'admin\AdminController@getUsers')->name('view_users');
     Route::get('admin/users/add', 'admin\AdminController@addUsers')->name('add_users');
@@ -78,3 +81,4 @@ Route::post('/postchangepass', 'Home\UserController@postChangePass')->name('home
     Route::get('admin/bills/{status}', 'admin\AdminController@getBillsByStatus')->name('view_bills');
     Route::post('admin/bills/update/{id}', 'admin\AdminController@updateStatusBill');
 
+});
