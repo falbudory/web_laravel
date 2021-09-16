@@ -41,44 +41,44 @@ Route::match(['get'],'admin/login', 'admin\AdminController@loginView')->name('lo
 Route::match(['post'],'admin/login-form', 'admin\AdminController@login');
 Route::match(['get','post'],'admin/logout','admin\AdminController@logout');
 Route::group(['middleware'=>'auth'], function() {
-    Route::get('admin', 'admin\AdminController@homeAdmin')->name('home');
+    Route::get('admin', 'admin\AdminController@homeAdmin')->name('home')->middleware('can:manager');
 
-    Route::get('admin/users', 'admin\AdminController@getUsers')->name('view_users');
-    Route::get('admin/users/add', 'admin\AdminController@addUsers')->name('add_users');
-    Route::post('admin/users/insert', 'admin\AdminController@insertUser');
-    Route::get('admin/users/edit/{id}', 'admin\AdminController@editUsers')->name('edit_users');
-    Route::post("admin/users/update/{id}", 'admin\AdminController@updateUser');
-    Route::post("admin/users/role-permission/{id}", 'admin\AdminController@getPermissionByRole');
+    Route::get('admin/users', 'admin\AdminController@getUsers')->name('view_users')->middleware('can:manager_user');
+    Route::get('admin/users/add', 'admin\AdminController@addUsers')->name('add_users')->middleware('can:manager_user');
+    Route::post('admin/users/insert', 'admin\AdminController@insertUser')->middleware('can:manager_user');
+    Route::get('admin/users/edit/{id}', 'admin\AdminController@editUsers')->name('edit_users')->middleware('can:manager_user');
+    Route::post("admin/users/update/{id}", 'admin\AdminController@updateUser')->middleware('can:manager_user');
+    Route::post("admin/users/role-permission/{id}", 'admin\AdminController@getPermissionByRole')->middleware('can:manager_user');
 
-    Route::get('admin/type-products', 'admin\AdminController@viewTypeProducts')->name('view_type_products');
-    Route::get('admin/type-products/add', 'admin\AdminController@addTypeProducts')->name('add_type_products');
-    Route::get('admin/type-products/edit', 'admin\AdminController@editTypeProducts')->name('edit_type_products');
-    Route::post('admin/products/insert', 'admin\AdminController@insertTypeProducts'); // thêm TypeProduct vào db
-    Route::post('admin/type-products/update/{id}', 'admin\AdminController@updateTypeProduct'); // cập nhật chỉnh sửa
-    Route::get('admin/type-products/edit/{id}', 'admin\AdminController@editTypeProduct')->name('edit_type_products');
-    Route::get('admin/type-products/delete/{id}', 'admin\AdminController@deleteTypeProduct')->name('view_type_products');; //xóa TypeProduct
+    Route::get('admin/type-products', 'admin\AdminController@viewTypeProducts')->name('view_type_products')->middleware('can:manager');
+    Route::get('admin/type-products/add', 'admin\AdminController@addTypeProducts')->name('add_type_products')->middleware('can:manager');
+    Route::get('admin/type-products/edit', 'admin\AdminController@editTypeProducts')->name('edit_type_products')->middleware('can:manager');
+    Route::post('admin/products/insert', 'admin\AdminController@insertTypeProducts')->middleware('can:manager'); // thêm TypeProduct vào db
+    Route::post('admin/type-products/update/{id}', 'admin\AdminController@updateTypeProduct')->middleware('can:manager'); // cập nhật chỉnh sửa
+    Route::get('admin/type-products/edit/{id}', 'admin\AdminController@editTypeProduct')->name('edit_type_products')->middleware('can:manager');
+    Route::get('admin/type-products/delete/{id}', 'admin\AdminController@deleteTypeProduct')->name('view_type_products')->middleware('can:manager'); //xóa TypeProduct
 
 
-    Route::get('admin/products', 'admin\AdminController@viewProducts')->name('view_products'); // view trang xem toàn bộ sản phẩm
-    Route::get('admin/products/add', 'admin\AdminController@addProducts')->name('add_products'); // view trang thêm sản phẩm
-    Route::post('admin/products/insert-products', 'admin\AdminController@insertProducts'); // thêm sản phẩm vào database
-    Route::get('admin/products/edit/{id}', 'admin\AdminController@editProducts')->name('edit_products'); //view trang edit
-    Route::post('admin/products/update/{id}', 'admin\AdminController@updateProducts'); // cập nhật chỉnh sửa
-    Route::get('admin/products/delete/{id}', 'admin\AdminController@deleteProducts')->name('view_products');; //xóa sản phẩm
+    Route::get('admin/products', 'admin\AdminController@viewProducts')->name('view_products')->middleware('can:manager'); // view trang xem toàn bộ sản phẩm
+    Route::get('admin/products/add', 'admin\AdminController@addProducts')->name('add_products')->middleware('can:manager'); // view trang thêm sản phẩm
+    Route::post('admin/products/insert-products', 'admin\AdminController@insertProducts')->middleware('can:manager'); // thêm sản phẩm vào database
+    Route::get('admin/products/edit/{id}', 'admin\AdminController@editProducts')->name('edit_products')->middleware('can:manager'); //view trang edit
+    Route::post('admin/products/update/{id}', 'admin\AdminController@updateProducts')->middleware('can:manager'); // cập nhật chỉnh sửa
+    Route::get('admin/products/delete/{id}', 'admin\AdminController@deleteProducts')->name('view_products')->middleware('can:manager');; //xóa sản phẩm
 
-    Route::get('admin/products', 'admin\AdminController@viewProducts')->name('view_products');
-    Route::get('admin/products/add', 'admin\AdminController@addProducts')->name('add_products');
-    Route::get('admin/products/edit', 'admin\AdminController@editProducts')->name('edit_products');
+    Route::get('admin/products', 'admin\AdminController@viewProducts')->name('view_products')->middleware('can:manager');
+    Route::get('admin/products/add', 'admin\AdminController@addProducts')->name('add_products')->middleware('can:manager');
+    Route::get('admin/products/edit', 'admin\AdminController@editProducts')->name('edit_products')->middleware('can:manager');
 
-    Route::get('admin/brands', 'admin\AdminController@viewBrands')->name('view_brands');
-    Route::get('admin/brands/add', 'admin\AdminController@addBrands')->name('add_brands');
-    Route::post('admin/brands/insert', 'admin\AdminController@insertBrands'); // thêm brand vào db
-    Route::post('admin/brands/update/{id}', 'admin\AdminController@updateBrands'); // cập nhật chỉnh sửa
-    Route::get('admin/brands/edit/{id}', 'admin\AdminController@editBrands')->name('edit_brands');
-    Route::get('admin/brands/delete/{id}', 'admin\AdminController@deleteBrands')->name('view_brands');; //xóa Users
+    Route::get('admin/brands', 'admin\AdminController@viewBrands')->name('view_brands')->middleware('can:manager');
+    Route::get('admin/brands/add', 'admin\AdminController@addBrands')->name('add_brands')->middleware('can:manager');
+    Route::post('admin/brands/insert', 'admin\AdminController@insertBrands')->middleware('can:manager'); // thêm brand vào db
+    Route::post('admin/brands/update/{id}', 'admin\AdminController@updateBrands')->middleware('can:manager'); // cập nhật chỉnh sửa
+    Route::get('admin/brands/edit/{id}', 'admin\AdminController@editBrands')->name('edit_brands')->middleware('can:manager');
+    Route::get('admin/brands/delete/{id}', 'admin\AdminController@deleteBrands')->name('view_brands')->middleware('can:manager'); //xóa Users
 
-    Route::get('admin/bills/', 'admin\AdminController@getBills')->name('view_bills');
-    Route::get('admin/bills/{status}', 'admin\AdminController@getBillsByStatus')->name('view_bills');
-    Route::post('admin/bills/update/{id}', 'admin\AdminController@updateStatusBill');
+    Route::get('admin/bills/', 'admin\AdminController@getBills')->name('view_bills')->middleware('can:manager');
+    Route::get('admin/bills/{status}', 'admin\AdminController@getBillsByStatus')->name('view_bills')->middleware('can:manager');
+    Route::post('admin/bills/update/{id}', 'admin\AdminController@updateStatusBill')->middleware('can:manager');
 
 });

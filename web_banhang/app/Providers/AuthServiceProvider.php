@@ -25,6 +25,16 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('view', function ($user) {
+            return $user->checkPermissionAccess(config('permissions.access.view'));
+        });
+        Gate::define('manager', function ($user) {
+            return $user->checkPermissionAccess(config('permissions.access.manager'));
+        });
+        Gate::define('manager_user', function ($user) {
+            return $user->checkPermissionAccess(config('permissions.access.manager_user'));
+        });
+
+
     }
 }

@@ -1,7 +1,9 @@
 <!--sidebar-menu-->
+
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i>Bảng điều khiển</a>
     <ul>
         <li class="active"><a href="index.html"><i class="icon icon-home"></i> <span>Dashboard</span></a></li>
+        @if(Auth::user()->hasAnyRole(['manager_user']))
         <li class="submenu"><a href="#"><i class="icon icon-th-list"></i> <span>Quản lý tài khoản</span> <span
                     class="label label-important">2</span></a>
             <ul>
@@ -9,6 +11,7 @@
                 <li><a href="{{ url('/admin/users') }}">Tất cả tài khoản</a></li>
             </ul>
         </li>
+        @endif
         <li class="submenu"><a href="#"><i class="icon icon-th-list"></i> <span>Thương hiệu</span> <span
                     class="label label-important">2</span></a>
             <ul>

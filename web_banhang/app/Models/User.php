@@ -58,7 +58,7 @@ class User extends Authenticatable
      */
     public function hasAnyRole($roles)
     {
-        return null !== $this->role->permission->whereIn('permission', $roles)->first();
+        return null !== $this->role->permission->whereIn('name', $roles)->first();
     }
     /**
      * Check one role
@@ -67,5 +67,17 @@ class User extends Authenticatable
     public function hasRole($role)
     {
         return null !== $this->role->permission->where('permission', $role)->first();
+    }
+    public function checkPermissionAccess($permissionCheck)
+    {
+        if (isset(auth()->user()->role)) {
+            $roles = auth()->user()->role;
+            $permission = $roles->permission;
+            if ($permission->contains('name', $permissionCheck)) {
+                return true;
+            }
+            return false;
+        }
+
     }
 }

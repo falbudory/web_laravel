@@ -1,3 +1,4 @@
+@if(Auth::user()->hasAnyRole(['manager']))
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,3 +86,4 @@
 </script>
 </body>
 </html>
+@endif
