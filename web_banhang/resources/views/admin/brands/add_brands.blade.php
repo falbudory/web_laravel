@@ -6,7 +6,7 @@
             <div id="breadcrumb"><a href="{{--{{ url('/admin') }}--}}" title="Go to Home" class="tip-bottom"><i
                         class="icon-home"></i> Home</a> <a href="#">AddUser</a> <a href="#" class="current">Add Brand</a>
             </div>
-            <h1>AddUser</h1>
+            <h1>AddBrands</h1>
         </div>
         <div class="container-fluid">
             <hr>
@@ -20,7 +20,7 @@
                             @include('flash_message')
 
                             <form class="form-horizontal" method="post"
-                                  action="{{ url('admin/products/insert-Users') }}" enctype="multipart/form-data" name="add_Brand" id="add_Brand"
+                                  action="{{ url('admin/brands/insertBrands') }}" enctype="multipart/form-data" name="add_Brand" id="add_Brand"
                                   novalidate="novalidate"> {{ csrf_field() }}
                                 <div class="control-group">
                                     <label class="control-label">Brand Name</label>
@@ -31,7 +31,7 @@
                                 <div class="control-group">
                                     <label class="control-label">Logo thương hiệu</label>
                                     <div class="controls">
-                                        <input type="file" name="image_logo" id="logo_brand">
+                                        <input type="file" name="image_logo" id="image_logo">
                                     </div>
                                 </div>
 
