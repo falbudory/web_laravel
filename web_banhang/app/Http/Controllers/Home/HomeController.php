@@ -233,7 +233,6 @@ class HomeController extends Controller
     public function history()
     {
         $data = Customer::where('email', Auth::user()->email)->join('bills', 'customers.id', '=', 'bills.customer_id')->get();
-
         return view('home.history', compact('data'));
     }
 

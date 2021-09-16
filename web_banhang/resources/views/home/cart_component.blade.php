@@ -1,6 +1,9 @@
 <div class="cart_wrapper">
+    <div style="height: 100px;width: 100%;"></div>
     <div class="cart delete_cart_url" data-url="{{route('home.deleteCart')}}">
         <div class="container">
+
+
             @if($cart != null)
                 <div class="row">
 
