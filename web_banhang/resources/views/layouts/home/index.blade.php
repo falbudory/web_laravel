@@ -53,6 +53,11 @@
         alert('Mật khẩu cũ không đúng !')
     </script>
 @endif
+@if(session()->has('emailFailed'))
+    <script>
+        alert('Email không tồn tại !')
+    </script>
+@endif
 @if(session()->has('trung'))
     <script>
         alert('Mật khẩu mới trung mật khẩu cũ !')
@@ -163,11 +168,12 @@
                         <input type="submit" class="form-control" value="Đăng nhập">
                     </div>
                     <div class="sub-w3l">
-                        <div class="custom-control custom-checkbox mr-sm-2">
-                            <input type="checkbox" class="custom-control-input" name="remember"
-                                   id="customControlAutosizing">
-                            <label class="custom-control-label" for="customControlAutosizing">Nhớ mật khẩu?</label>
-                        </div>
+{{--                        <div class="custom-control custom-checkbox mr-sm-2">--}}
+{{--                            <input type="checkbox" class="custom-control-input" name="remember"--}}
+{{--                                   id="customControlAutosizing">--}}
+{{--                            <label class="custom-control-label" for="customControlAutosizing">Nhớ mật khẩu?</label>--}}
+{{--                        </div>--}}
+                        <a href="{{route('home.returnPass')}}">Quên mật khẩu</a>
                     </div>
                     <p class="text-center dont-do mt-3">Bạn không có tài khoản?
                         <a href="#" data-toggle="modal" data-target="#exampleModal2">

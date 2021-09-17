@@ -18,6 +18,7 @@ Route::post('/login', 'Home\UserController@login')->name('home.login');
 Route::get('/home', 'Home\HomeController@index')->name('index');
 Route::get('/home/search', 'Home\HomeController@search')->name('home.search');
 Route::get('/history', 'Home\HomeController@history')->name('home.history')->middleware('can:view');
+Route::get('/deleteBill/{id}', 'Home\HomeController@deleteBill')->name('home.deleteBill')->middleware('can:view');
 Route::get('/history/{id}', 'Home\HomeController@historyDetail')->name('home.historyDetail')->middleware('can:view');
 Route::get('/product/{pid}', 'Home\HomeController@detailProduct')->name('home.detailProduct');
 Route::get('/add-to-cart/{id}', 'Home\HomeController@addToCart')->name('home.addToCart');
@@ -30,7 +31,8 @@ Route::get('/typeProduct/{id}', 'Home\HomeController@product')->name('home.typeP
 Route::get('/contactUs', 'Home\HomeController@contactUs')->name('contactUs');
 Route::get('/aboutUs', 'Home\HomeController@aboutUs')->name('aboutUs');
 Route::post('/store', 'Home\UserController@store')->name('store');
-
+Route::get('/returnPass', 'Home\UserController@returnPass')->name('home.returnPass');
+Route::post('/postreturnpass', 'Home\UserController@postReturnPass')->name('home.postReturnPass');
 Route::post('/update/{uid}', 'Home\UserController@updateMoney')->name('home.update')->middleware('can:view');
 Route::get('/logout', 'Home\UserController@logout')->name('home.logout');
 Route::get('/changepass', 'Home\UserController@changePass')->name('home.changePass')->middleware('can:view');

@@ -73,9 +73,12 @@
                                 @endforeach
 
                             </div>
-                        </div>
 
+
+                        </div>
+{{--                        <div>{{$data->links()}}</div>--}}
                     </div>
+
                 </div>
                 <!-- //product left -->
                 <!-- product right -->
@@ -98,6 +101,7 @@
                                         @endforeach
 
                                     </ul>
+
                                 </div>
 
 
