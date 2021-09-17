@@ -20,21 +20,11 @@
                         <div class="widget-content nopadding">
                             <table class="table table-bordered data-table">
                                 <thead>
-                                {{--`id` int(11) NOT NULL,
-                                        `name` varchar(30) NOT NULL,
-                                        `email` varchar(30) NOT NULL,
-                                        `password` varchar(255) NOT NULL,
-                                        `role_id` int(11) NOT NULL,
-                                        `money` int(11) NOT NULL,
-                                        `remember_token` varchar(255) NOT NULL,
-                                        `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-                                        `updated_at` timestamp NOT NULL DEFAULT current_timestamp()--}}
                                 <tr>
                                     <th>ID User</th>
                                     <th>Tên</th>
                                     <th>Email</th>
                                     <th>Vai trò</th>
-                                    <th>Tiền</th>
                                     <th>created_at</th>
                                     <th>updated_at</th>
                                     <th>Lựa chọn</th>
@@ -49,30 +39,39 @@
                                         <td>
                                             <div style="display: flex">
                                                 <div>
-                                                    <input type="radio" class="role_user" name="role_user_{{$user->id}}" @if($user->role_id==="0") checked @endif id="admin" value="0"> <label style="margin-left: 28px; margin-top: -17px;" for="admin">Admin</label>
-                                                    <input type="radio" class="role_user" name="role_user_{{$user->id}}" @if($user->role_id==="1") checked @endif id="employee" value="1"> <label style="margin-left: 28px; margin-top: -17px;" for="user">Employee</label>
-                                                    <input type="radio" class="role_user" name="role_user_{{$user->id}}" @if($user->role_id==="2") checked @endif id="user" value="2"> <label style="margin-left: 28px; margin-top: -17px;" for="employee">User</label>
+                                                    <input type="radio" @if($user->id == Auth::user()->id || $user->role_id===1) disabled="disabled" @endif class="role_user" name="role-user_{{$user->id}}" @if($user->role_id===1) checked @endif id="admin" value="1"> <label style="margin-left: 28px; margin-top: -17px;" for="admin_{{$user->id}}">Admin</label>
+                                                    <input type="radio" @if($user->id == Auth::user()->id || $user->role_id===1) disabled="disabled" @endif class="role_user" name="role-user_{{$user->id}}" @if($user->role_id===2) checked @endif id="user" value="2"> <label style="margin-left: 28px; margin-top: -17px;" for="user_{{$user->id}}">User</label>
+                                                    <input type="radio" @if($user->id == Auth::user()->id || $user->role_id===1) disabled="disabled" @endif class="role_user" name="role-user_{{$user->id}}" @if($user->role_id===3) checked @endif id="employee" value="3"> <label style="margin-left: 28px; margin-top: -17px;" for="employee_{{$user->id}}">Employee</label>
                                                 </div>
                                             </div>
-                                            @foreach($roles as $role)
-                                                @if($role->id == $user->role_id)
-                                                    {{ $role->name }}
-                                                @endif
-                                            @endforeach
-
                                         </td>
-                                        <td>{{ $user->money }}</td>
                                         <td>{{$user->created_at}}</td>
                                         <td>{{$user->updated_at}}</td>
-                                        <td class="center"><a href="#myModal{{--{{ $product->id }}--}}"
+                                        <td class="center"><a href="#myModal{{ $user->id }}"
                                                               data-toggle="modal"
                                                               class="btn btn-success btn-mini">View</a> <a
                                                 href="{{ url('admin/users/edit/'.$user->id) }}"
-                                                class="btn btn-primary btn-mini">Edit</a> <a id="delCat"
-                                                                                             href="{{--{{ url('/admin/delete-product/'.$product->id) }}--}}"
+                                                class="btn btn-primary btn-mini" @if($user->role_id===1) style="display: none" @endif>Edit</a> <a id="delCat" @if($user->id == Auth::user()->id || $user->role_id===1) style="display: none" @endif
+                                                                                             href="{{ url('/admin/users/delete/'.$user->id) }}"
                                                                                              class="btn btn-danger btn-mini">Delete</a>
                                         </td>
                                     </tr>
+                                    <div id="myModal{{ $user->id }}" class="modal hide">
+                                        <div class="modal-header">
+                                            <button data-dismiss="modal" class="close" type="button">×</button>
+                                            <h3>{{ $user->name }} Full Details</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Tên: {{ $user->name }}</p>
+                                            <p><span>email: {{$user->email}}</span></p>
+                                            <p><span>Mật khẩu: {{$user->password}}</span></p>
+                                            <p><span>Vai trò:  @foreach($roles as $role)
+                                                        @if($role->id == $user->role_id)
+                                                            {{ $role->name }}
+                                                        @endif
+                                                    @endforeach</span></p>
+                                        </div>
+                                    </div>
                                     @endforeach
                                 </tbody>
                             </table>

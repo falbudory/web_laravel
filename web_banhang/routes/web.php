@@ -52,6 +52,9 @@ Route::group(['middleware'=>'auth'], function() {
     Route::get('admin/users/edit/{id}', 'admin\AdminController@editUsers')->name('edit_users')->middleware('can:manager_user');
     Route::post("admin/users/update/{id}", 'admin\AdminController@updateUser')->middleware('can:manager_user');
     Route::post("admin/users/role-permission/{id}", 'admin\AdminController@getPermissionByRole')->middleware('can:manager_user');
+    Route::get("admin/users/delete/{id}", 'admin\AdminController@deleteUser')->middleware('can:manager_user');
+    Route::post("admin/users/update-role/{id}", 'admin\AdminController@updateRole')->middleware('can:manager_user');
+    Route::get("admin/users/role/{role_id}", 'admin\AdminController@getUserByRole')->name("view_users")->middleware('can:manager_user');
 
     Route::get('admin/type-products', 'admin\AdminController@viewTypeProducts')->name('view_type_products')->middleware('can:manager');
     Route::get('admin/type-products/add', 'admin\AdminController@addTypeProducts')->name('add_type_products')->middleware('can:manager');

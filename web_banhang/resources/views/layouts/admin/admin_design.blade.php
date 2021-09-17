@@ -80,7 +80,24 @@
                     console.log(data);
                 }
             });
+        });
 
+        $(".role_user").change(function () {
+            let name = this.name;
+            let id = name.split("_")[1];
+            let _token   = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                type:'POST',
+                url:'users/update-role/' + id,
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data:{
+                    "role_id" : this.value.toString(),
+                    "_token" : _token,
+                },
+                success:function(data) {
+                    console.log(data);
+                }
+            });
         });
     });
 </script>

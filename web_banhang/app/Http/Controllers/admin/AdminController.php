@@ -87,8 +87,32 @@ class AdminController extends Controller
             return back()->with('success', 'User has been added successfully');
         }
         else{
-            return back()->with('error', 'Couldnt add a new brand');
+            return back()->with('error', 'Couldnt add a new user');
         }
+    }
+
+    public function updateRole(Request $request, $id) {
+        if(Auth::user()->id == $id) {
+            return back()->with('err', 'Không thể thực hiện thao tác');
+        }
+        $data = $request->all();
+        User::where('id',$id)->update(['role_id'=>$data['role_id']]);
+    }
+
+    public function getUserByRole ($role_id) {
+        $users = User::where(['role_id'=>$role_id])->get();
+        $roles = Role::all();
+        return view("admin.users.view_users")->with(compact("users", "roles"));
+    }
+
+    public function deleteUser($id){
+        if(Auth::user()->id == $id) {
+            return back()->with('err', 'Không thể thực hiện thao tác');
+        }
+        if(User::where(['id'=>$id])->delete()){
+            return back()->with('info', 'Yêu cầu đã được thực hiện');
+        }
+        else return back()->with('error', 'Đã có lỗi xảy ra, vui lòng thực hiện lại');
     }
 
     public function updateUser(EditUserRequest $request, $id=null) {

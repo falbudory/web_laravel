@@ -9,6 +9,10 @@
             <ul>
                 <li><a href="{{ url('/admin/users/add') }}">Thêm tài khoản</a></li>
                 <li><a href="{{ url('/admin/users') }}">Tất cả tài khoản</a></li>
+                <li><a href="{{ url('/admin/users') }}">Tất cả tài khoản</a></li>
+                <li><a href="{{ url('/admin/users/role/1') }}">Supper Admin</a></li>
+                <li><a href="{{ url('/admin/users/role/3') }}">Nhân viên</a></li>
+                <li><a href="{{ url('/admin/users/role/2') }}">Người dùng thường</a></li>
             </ul>
         </li>
         @endif
