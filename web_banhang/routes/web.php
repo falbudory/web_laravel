@@ -81,5 +81,6 @@ Route::group(['middleware'=>'auth'], function() {
     Route::get('admin/bills/', 'admin\AdminController@getBills')->name('view_bills')->middleware('can:manager');
     Route::get('admin/bills/{status}', 'admin\AdminController@getBillsByStatus')->name('view_bills')->middleware('can:manager');
     Route::post('admin/bills/update/{id}', 'admin\AdminController@updateStatusBill')->middleware('can:manager');
+    Route::get('admin/bills/delete/{id}', 'admin\AdminController@deleteBill')->middleware('can:manager');
 
 });

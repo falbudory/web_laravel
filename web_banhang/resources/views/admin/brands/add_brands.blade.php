@@ -20,7 +20,7 @@
                             @include('flash_message')
 
                             <form class="form-horizontal" method="post"
-                                  action="{{ url('admin/products/insert-Users') }}" enctype="multipart/form-data" name="add_Brand" id="add_Brand"
+                                  action="{{ url('admin/brands/insert') }}" enctype="multipart/form-data" name="add_Brand" id="add_Brand"
                                   novalidate="novalidate"> {{ csrf_field() }}
                                 <div class="control-group">
                                     <label class="control-label">Brand Name</label>
@@ -31,7 +31,7 @@
                                 <div class="control-group">
                                     <label class="control-label">Logo thương hiệu</label>
                                     <div class="controls">
-                                        <input type="file" name="image_logo" id="logo_brand">
+                                        <input type="file" name="logo" id="logo_brand">
                                     </div>
                                 </div>
 

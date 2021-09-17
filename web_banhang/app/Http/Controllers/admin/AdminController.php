@@ -295,7 +295,7 @@ class AdminController extends Controller
                     return back()->with('error', 'Something was wrong with image');
                 }
                 // Store image name in products table
-                $brand->image_logo = $filename;
+                $brand->logo = $filename;
             }
         }
         if( $brand->save()){
@@ -360,6 +360,14 @@ class AdminController extends Controller
         $products = Product::all();
         return view("admin.bills.view_bills")->with(compact('bills', 'bill_details', 'customers', 'products'));
     }
+
+    public function deleteBill($id) {
+        if(Bill::where(['id'=>$id])->delete()){
+            return back()->with('info', 'Bill has been removed');
+        }
+        else return back()->with('error', 'Please try again');
+    }
+
     public function updateStatusBill(Request $request, $id) {
         $data = $request->all();
         Bill::where('id',$id)->update(['status'=>$data['status']]);
