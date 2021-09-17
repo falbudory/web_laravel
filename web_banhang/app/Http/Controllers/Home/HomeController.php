@@ -196,6 +196,12 @@ class HomeController extends Controller
             return response()->json(['showCart' => $showCart, 'code' => 200], 200);
         }
     }
+    public function deleteBill($id){
+        $bill = Bill::where('id',$id)->first();
+        $bill->status = 3;
+        $bill->save();
+        return redirect('history');
+    }
 
     public function addToCart($id)
     {

@@ -84,6 +84,11 @@ class UserController extends Controller
         return view('home.changePass');
     }
 
+    public function returnPass()
+    {
+        return view('home.returnPass');
+    }
+
     public function postChangePass(Request $request)
     {
         $user = User::find(Auth::user()->id);
@@ -105,5 +110,23 @@ class UserController extends Controller
                 return redirect()->back()->with('oldFailed', 'failed');
             }
         }
+    }
+
+    public function postReturnPass(Request $request)
+    {
+        $check = User::where('email', $request->email)->first();
+        if ($check != null) {
+            if ($request->passwordNew === $request->re_passwordNew) {
+                $check->password = Hash::make($request->passwordNew);
+                $check->save();
+                return redirect('home')->with('newSucc', 'ok');
+            } else {
+                return redirect()->back()->with('newFailed', 'failed');
+            }
+        } else {
+            return redirect()->back()->with('emailFailed', 'failed');
+        }
+
+
     }
 }

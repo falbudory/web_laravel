@@ -84,7 +84,7 @@ class AdminController extends Controller
         $user->role_id = $data['role_id'];
         $user->password = hash::make($data['password']);
         if( $user->save()){
-            return back()->with('success', 'Brand has been added successfully');
+            return back()->with('success', 'User has been added successfully');
         }
         else{
             return back()->with('error', 'Couldnt add a new brand');
@@ -161,7 +161,7 @@ class AdminController extends Controller
         $typeProduct->name = $data['name'];
         $typeProduct->description = $data['description'];
         if( $typeProduct->save()){
-            return back()->with('success', 'Brand has been added successfully');
+            return back()->with('success', 'Type product has been added successfully');
         }
         else{
             return back()->with('error', 'Couldnt add a new brand');
@@ -285,8 +285,8 @@ class AdminController extends Controller
         $brand = new Brand;
         $brand->name = $data['name'];
         $brand->description = $data['description'];
-        if($request->hasFile('logo')){
-            $image_tmp = $request->file('logo');
+        if($request->hasFile('image_logo')){
+            $image_tmp = $request->file('image_logo');
             if($image_tmp->isValid()){
                 $extension = $image_tmp->getClientOriginalExtension();
                 $filename = time().rand(10,99).'.'.$extension;
@@ -298,6 +298,7 @@ class AdminController extends Controller
                 $brand->logo = $filename;
             }
         }
+
         if( $brand->save()){
             return back()->with('success', 'Brand has been added successfully');
         }

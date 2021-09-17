@@ -18,6 +18,7 @@ Route::post('/login', 'Home\UserController@login')->name('home.login');
 Route::get('/home', 'Home\HomeController@index')->name('index');
 Route::get('/home/search', 'Home\HomeController@search')->name('home.search');
 Route::get('/history', 'Home\HomeController@history')->name('home.history')->middleware('can:view');
+Route::get('/deleteBill/{id}', 'Home\HomeController@deleteBill')->name('home.deleteBill')->middleware('can:view');
 Route::get('/history/{id}', 'Home\HomeController@historyDetail')->name('home.historyDetail')->middleware('can:view');
 Route::get('/product/{pid}', 'Home\HomeController@detailProduct')->name('home.detailProduct');
 Route::get('/add-to-cart/{id}', 'Home\HomeController@addToCart')->name('home.addToCart');
@@ -30,7 +31,8 @@ Route::get('/typeProduct/{id}', 'Home\HomeController@product')->name('home.typeP
 Route::get('/contactUs', 'Home\HomeController@contactUs')->name('contactUs');
 Route::get('/aboutUs', 'Home\HomeController@aboutUs')->name('aboutUs');
 Route::post('/store', 'Home\UserController@store')->name('store');
-
+Route::get('/returnPass', 'Home\UserController@returnPass')->name('home.returnPass');
+Route::post('/postreturnpass', 'Home\UserController@postReturnPass')->name('home.postReturnPass');
 Route::post('/update/{uid}', 'Home\UserController@updateMoney')->name('home.update')->middleware('can:view');
 Route::get('/logout', 'Home\UserController@logout')->name('home.logout');
 Route::get('/changepass', 'Home\UserController@changePass')->name('home.changePass')->middleware('can:view');
@@ -73,7 +75,7 @@ Route::group(['middleware'=>'auth'], function() {
 
     Route::get('admin/brands', 'admin\AdminController@viewBrands')->name('view_brands')->middleware('can:manager');
     Route::get('admin/brands/add', 'admin\AdminController@addBrands')->name('add_brands')->middleware('can:manager');
-    Route::post('admin/brands/insert', 'admin\AdminController@insertBrands')->middleware('can:manager'); // thêm brand vào db
+    Route::post('admin/brands/insertBrands', 'admin\AdminController@insertBrands')->middleware('can:manager'); // thêm brand vào db
     Route::post('admin/brands/update/{id}', 'admin\AdminController@updateBrands')->middleware('can:manager'); // cập nhật chỉnh sửa
     Route::get('admin/brands/edit/{id}', 'admin\AdminController@editBrands')->name('edit_brands')->middleware('can:manager');
     Route::get('admin/brands/delete/{id}', 'admin\AdminController@deleteBrands')->name('view_brands')->middleware('can:manager'); //xóa Users

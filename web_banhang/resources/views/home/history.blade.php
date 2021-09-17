@@ -29,11 +29,23 @@
                         <td>{{$item->quantity}}</td>
                         <td>{{number_format($item->total)}} VND</td>
                         @if($item->status === '1')
-                            <td>Đã thanh toán</td>
+                            <td>Đang vận chuyển</td>
                         @elseif($item->status === '0')
-                            <td>Đang giao hàng</td>
+                            <td>Chờ xác nhận</td>
+
+                        @elseif($item->status === '2')
+                            <td>Đã giao</td>
+                        @elseif($item->status === '3')
+                            <td>Hủy Đơn</td>
                         @endif
                         <td>{{$item->date_order}}</td>
+                        @if($item->status === '0')
+                            <td>
+                                <button class="btn btn-danger">
+                                    <a style="color:#FFFFFF;" href="{{route('home.deleteBill',$item->id)}}">Hủy đơn hàng</a>
+                                </button>
+                            </td>
+                        @endif
                         <td>
                             <button class="btn btn-primary">
                                 <a style="color:#FFFFFF;" href="{{route('home.historyDetail',$item->id)}}">Chi
