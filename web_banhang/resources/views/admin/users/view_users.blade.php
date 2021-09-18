@@ -51,7 +51,7 @@
                                                               data-toggle="modal"
                                                               class="btn btn-success btn-mini">View</a> <a
                                                 href="{{ url('admin/users/edit/'.$user->id) }}"
-                                                class="btn btn-primary btn-mini" @if($user->role_id===1) style="display: none" @endif>Edit</a> <a id="delCat" @if($user->id == Auth::user()->id || $user->role_id===1) style="display: none" @endif
+                                                class="btn btn-primary btn-mini" >Edit</a> <a id="delCat" @if($user->id == Auth::user()->id || $user->role_id===1) style="display: none" @endif
                                                                                              href="{{ url('/admin/users/delete/'.$user->id) }}"
                                                                                              class="btn btn-danger btn-mini">Delete</a>
                                         </td>

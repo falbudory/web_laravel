@@ -9,7 +9,7 @@
             <ul>
                 <li><a href="{{ url('/admin/users/add') }}">Thêm tài khoản</a></li>
                 <li><a href="{{ url('/admin/users') }}">Tất cả tài khoản</a></li>
-                <li><a href="{{ url('/admin/users') }}">Tất cả tài khoản</a></li>
+{{--                <li><a href="{{ url('/admin/users') }}">Tất cả tài khoản</a></li>--}}
                 <li><a href="{{ url('/admin/users/role/1') }}">Supper Admin</a></li>
                 <li><a href="{{ url('/admin/users/role/3') }}">Nhân viên</a></li>
                 <li><a href="{{ url('/admin/users/role/2') }}">Người dùng thường</a></li>
@@ -23,13 +23,13 @@
                 <li><a href="{{ url('/admin/brands') }}">Tất cả thương hiệu</a></li>
             </ul>
         </li>
-        <li class="submenu"><a href="#"><i class="icon icon-th-list"></i> <span>Loại sản phẩm</span> <span
-                    class="label label-important">2</span></a>
-            <ul>
-                <li><a href="{{ url('/admin/type-products/add') }}">Thêm loại sản phẩm</a></li>
-                <li><a href="{{ url('/admin/type-products') }}">Tất cả loại sản phẩm</a></li>
-            </ul>
-        </li>
+{{--        <li class="submenu"><a href="#"><i class="icon icon-th-list"></i> <span>Loại sản phẩm</span> <span--}}
+{{--                    class="label label-important">2</span></a>--}}
+{{--            <ul>--}}
+{{--                <li><a href="{{ url('/admin/type-products/add') }}">Thêm loại sản phẩm</a></li>--}}
+{{--                <li><a href="{{ url('/admin/type-products') }}">Tất cả loại sản phẩm</a></li>--}}
+{{--            </ul>--}}
+{{--        </li>--}}
         <li class="submenu"><a href="#"><i class="icon icon-th-list"></i> <span>Sản phẩm</span> <span
                     class="label label-important">2</span></a>
             <ul>

@@ -35,16 +35,13 @@
               	@foreach($products as $product)
                 <tr class="gradeX">
                   <td>{{ $product->id }}</td>
-                  @foreach($brands as $brand)
-                        @if($product->brand_id == $brand->id)
+
                             <td style="width: 250px">
                                 <div style="display: flex">
-                                    <img src="{{ asset('/images/Users-logo/'.$brand->image_logo) }}" width="80" id="logo_brand{{$product->id}}">
-                                    <h4>{{$brand->name}}</h4>
+                                    <img src="{{ asset('/images/brands-logo/'.$product->brandLogo()) }}" style="width: 30px;height: 30px;" id="logo_brand{{$product->id}}">
+                                    <h4>{{$product->brandName()}}</h4>
                                 </div>
                             </td>
-                        @endif
-                  @endforeach
                   <td>{{ $product->name }}</td>
                   <td>
                       @if(!empty($product->image))

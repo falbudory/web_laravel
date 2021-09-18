@@ -21,5 +21,14 @@ class Product extends Model
     public function bill_detail() {
         return $this->hasMany('App\Models\BillDetail', 'product_id', 'id');
     }
+    public function brandName(){
+        $name = Brand::where('id',$this->brand_id)->value('name');
+
+        return $name;
+    }
+    public function brandLogo(){
+        $logo = Brand::where('id',$this->brand_id)->value('logo');
+        return $logo;
+    }
 
 }

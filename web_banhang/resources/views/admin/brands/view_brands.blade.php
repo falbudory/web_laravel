@@ -28,7 +28,7 @@
                 <tr class="gradeX">
                   <td>{{ $brand->id }}</td>
                   <td>{{ $brand->name }}</td>
-                  <td><img src="{{ asset('/images/brands-logo/'.$brand->image_logo) }}" width="40px"></td>
+                  <td><img src="{{ asset('/images/brands-logo/'.$brand->logo) }}" style="height: 40px;width: 40px;"></td>
                   <td class="center">
                     <a href="{{ url('admin/brands/edit/'.$brand->id) }}" class="btn btn-primary btn-mini">Edit</a>
                     <a id="delCat" href="{{ url('admin/brands/delete/'.$brand->id) }}" class="btn btn-danger btn-mini">Delete</a>

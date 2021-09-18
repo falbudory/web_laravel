@@ -78,7 +78,7 @@ Route::group(['middleware'=>'auth'], function() {
 
     Route::get('admin/brands', 'admin\AdminController@viewBrands')->name('view_brands')->middleware('can:manager');
     Route::get('admin/brands/add', 'admin\AdminController@addBrands')->name('add_brands')->middleware('can:manager');
-    Route::post('admin/brands/insertBrands', 'admin\AdminController@insertBrands')->middleware('can:manager'); // thêm brand vào db
+    Route::post('admin/brands/insert', 'admin\AdminController@insertBrands')->middleware('can:manager'); // thêm brand vào db
     Route::post('admin/brands/update/{id}', 'admin\AdminController@updateBrands')->middleware('can:manager'); // cập nhật chỉnh sửa
     Route::get('admin/brands/edit/{id}', 'admin\AdminController@editBrands')->name('edit_brands')->middleware('can:manager');
     Route::get('admin/brands/delete/{id}', 'admin\AdminController@deleteBrands')->name('view_brands')->middleware('can:manager'); //xóa Users
@@ -86,6 +86,6 @@ Route::group(['middleware'=>'auth'], function() {
     Route::get('admin/bills/', 'admin\AdminController@getBills')->name('view_bills')->middleware('can:manager');
     Route::get('admin/bills/{status}', 'admin\AdminController@getBillsByStatus')->name('view_bills')->middleware('can:manager');
     Route::post('admin/bills/update/{id}', 'admin\AdminController@updateStatusBill')->middleware('can:manager');
-    Route::get('admin/bills/delete/{id}', 'admin\AdminController@deleteBill')->middleware('can:manager');
+    Route::get('admin/bills/delete/{id}', 'admin\AdminController@deleteBill')->name('view_bills')->middleware('can:manager');
 
 });

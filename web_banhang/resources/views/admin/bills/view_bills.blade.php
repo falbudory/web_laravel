@@ -62,7 +62,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td style="line-height: 100px" class="center"><a href="#myModal{{ $bill->id }}" data-toggle="modal" class="btn btn-success btn-mini">View</a> <a href="{{--{{ url('/admin/edit-products/'.$product->id) }}--}}" class="btn btn-primary btn-mini">Edit</a> <a id="delCat" href="{{--{{ url('/admin/delete-product/'.$product->id) }}--}}" class="btn btn-danger btn-mini">Delete</a> </td>
+                                    <td style="line-height: 100px" class="center"><a href="#myModal{{ $bill->id }}" data-toggle="modal" class="btn btn-success btn-mini">View</a> <a href="{{--{{ url('/admin/edit-products/'.$product->id) }}--}}" class="btn btn-primary btn-mini">Edit</a> <a id="delCat" href="{{ url('/admin/bills/delete/'.$bill->id) }}" class="btn btn-danger btn-mini">Delete</a> </td>
                                 </tr>
                                 <div id="myModal{{ $bill->id }}" class="modal hide">
                                     <div class="modal-header">

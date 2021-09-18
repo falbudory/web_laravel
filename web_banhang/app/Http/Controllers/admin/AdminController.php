@@ -390,6 +390,7 @@ class AdminController extends Controller
         if(Bill::where(['id'=>$id])->delete()){
             return back()->with('info', 'Bill has been removed');
         }
+
         else return back()->with('error', 'Please try again');
     }
 
