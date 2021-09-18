@@ -39,7 +39,14 @@ class AdminController extends Controller
         );
         $remember = $request->remember;
         if (Auth::attempt($user_data, $remember)) {
-            return redirect('admin/');
+            if(Auth::user()->role_id === 1){
+
+                return redirect('admin/');
+            }else{
+                return back()->with('error', 'Không thể truy cập trang này');
+            }
+
+
         } else {
             return back()->with('error', 'Tài khoản hoặc mật khẩu chưa chính xác');
         }
@@ -115,8 +122,9 @@ class AdminController extends Controller
         else return back()->with('error', 'Đã có lỗi xảy ra, vui lòng thực hiện lại');
     }
 
-    public function updateUser(EditUserRequest $request, $id=null) {
+    public function updateUser(EditUserRequest $request, $id) {
 //        dd($request);
+
         $data = $request->all();
         $check = User::where('email', $data["email"])->first();
         $user = User::find($id);
@@ -133,8 +141,10 @@ class AdminController extends Controller
                     return back()->with('error', 'Đã có lỗi xảy ra, xin vui lòng thử lại');
                 }
             } else {
+                $users = User::find($id);
                 $data["password"] = hash::make($data["password"]);
-                if (User::where('id', $id)->update($data)) {
+                $users->password = $data['password'];
+                if ($users->save()) {
                     return back()->with('success', 'Thông tin đã được lưu lại');
                 } else {
                     return back()->with('error', 'Đã có lỗi xảy ra, xin vui lòng thử lại');

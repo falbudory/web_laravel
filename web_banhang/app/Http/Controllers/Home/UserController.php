@@ -25,6 +25,7 @@ class UserController extends Controller
                     'name' => $request->name,
                     'email' => $request->email,
                     'password' => hash::make($request->password),
+                    'role_id'=>2
 
                 ]);
                 DB::commit();
