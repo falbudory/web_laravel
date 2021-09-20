@@ -28,6 +28,7 @@ Route::get('/add-to-cart/{id}', 'Home\HomeController@addToCart')->name('home.add
 Route::get('/checkout', 'Home\HomeController@checkOut')->name('checkOut')->middleware('can:view');
 Route::post('/createDB', 'Home\HomeController@createDB')->name('home.createDB')->middleware('can:view');
 Route::get('/showCart', 'Home\HomeController@showCart')->name('home.showCart');
+Route::get('/quantityCart', 'Home\HomeController@quantityCart')->name('home.quantityCart');
 Route::get('/updateCart', 'Home\HomeController@updateCart')->name('home.updateCart');
 Route::get('/deleteCart', 'Home\HomeController@deleteCart')->name('home.deleteCart');
 Route::get('/typeProduct/{id}', 'Home\HomeController@product')->name('home.typeProduct');
@@ -92,3 +93,7 @@ Route::group(['middleware'=>'auth'], function() {
     Route::get('admin/bills/delete/{id}', 'admin\AdminController@deleteBill')->name('view_bills')->middleware('can:manager');
 
 });
+
+
+
+

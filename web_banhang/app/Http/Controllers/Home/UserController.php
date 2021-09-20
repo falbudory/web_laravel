@@ -15,8 +15,23 @@ class UserController extends Controller
 {
     public function store(Request $request)
     {
+
+
         try {
             DB::beginTransaction();
+            $messages = [
+                'email.required' => 'Email bị trống',
+                'password.min' => 'Mật khẩu ít nhất 8 ký tự',
+                'password_re.min' => 'Mật khẩu nhập lại ít nhất 8 ký tự'
+            ];
+
+            $this->validate($request,[
+                'email'=>'required|min:10|max:30',
+                'password'=>'required|min:8|max:20',
+                'password_re'=>'required|min:8|max:20'
+
+            ], $messages);
+
             $check = User::where('email', $request->email)->first();
 
 
@@ -44,6 +59,16 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
+        $messages = [
+            'email.required' => 'Email bị trống',
+            'password.min' => 'Mật khẩu ít nhất 8 ký tự',
+        ];
+
+        $this->validate($request,[
+            'email'=>'required|min:10|max:30',
+            'password'=>'required|min:8|max:20',
+
+        ], $messages);
         $user_data = array(
             'email' => $request->email,
             'password' => $request->password

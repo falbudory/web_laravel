@@ -24,8 +24,8 @@
     <link href="{{ asset('/css/fontawesome-all.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/popuo-box.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/menu.css') }}" rel="stylesheet">
-
-    <!-- web fonts -->
+{{--    <link href="{{ asset('/css/checkOut.css') }}" rel="stylesheet">--}}
+<!-- web fonts -->
     <link
         href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext"
         rel="stylesheet">
@@ -33,7 +33,12 @@
         href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
         rel="stylesheet">
     <!-- //web fonts -->
-
+    <link
+        rel="stylesheet"
+        href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+        crossOrigin="anonymous"
+    />
 </head>
 
 <body>
@@ -86,11 +91,11 @@
                         <i class="fas fa-phone mr-2"></i> 0853914191
                     </li>
                     @if(\Illuminate\Support\Facades\Auth::check())
-{{--                        <li class="text-center border-right text-white" style="width: 30%;">--}}
-{{--                            <a href="#" data-toggle="modal" data-target="#exampleModal3" class="text-white">--}}
-{{--                                <i class="fa fa-credit-card" aria-hidden="true"></i> Số--}}
-{{--                                dư: {{number_format(Auth::user()->money)}} VND</a>--}}
-{{--                        </li>--}}
+                        {{--                        <li class="text-center border-right text-white" style="width: 30%;">--}}
+                        {{--                            <a href="#" data-toggle="modal" data-target="#exampleModal3" class="text-white">--}}
+                        {{--                                <i class="fa fa-credit-card" aria-hidden="true"></i> Số--}}
+                        {{--                                dư: {{number_format(Auth::user()->money)}} VND</a>--}}
+                        {{--                        </li>--}}
                         <li class="text-center border-right text-white">
                             <a href="{{route('home.logout')}}" class="text-white">
                                 <i class="fas fa-sign-out-alt mr-2"></i> Đăng xuất</a>
@@ -151,6 +156,17 @@
                 </button>
             </div>
             <div class="modal-body">
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="list-group">
+                            @foreach($errors->all() as $error)
+                                <li class="list-group-item">
+                                    {{ $error }}
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form method="POST" action="{{ route('home.login') }}">
                     {{ csrf_field() }}
 
@@ -168,11 +184,11 @@
                         <input type="submit" class="form-control" value="Đăng nhập">
                     </div>
                     <div class="sub-w3l">
-{{--                        <div class="custom-control custom-checkbox mr-sm-2">--}}
-{{--                            <input type="checkbox" class="custom-control-input" name="remember"--}}
-{{--                                   id="customControlAutosizing">--}}
-{{--                            <label class="custom-control-label" for="customControlAutosizing">Nhớ mật khẩu?</label>--}}
-{{--                        </div>--}}
+                        {{--                        <div class="custom-control custom-checkbox mr-sm-2">--}}
+                        {{--                            <input type="checkbox" class="custom-control-input" name="remember"--}}
+                        {{--                                   id="customControlAutosizing">--}}
+                        {{--                            <label class="custom-control-label" for="customControlAutosizing">Nhớ mật khẩu?</label>--}}
+                        {{--                        </div>--}}
                         <a href="{{route('home.returnPass')}}">Quên mật khẩu</a>
                     </div>
                     <p class="text-center dont-do mt-3">Bạn không có tài khoản?
@@ -195,6 +211,17 @@
                 </button>
             </div>
             <div class="modal-body">
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="list-group">
+                            @foreach($errors->all() as $error)
+                                <li class="list-group-item">
+                                    {{ $error }}
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form action="{{ route('store')}}" method="post">
                     {{ csrf_field() }}
 
@@ -213,19 +240,19 @@
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Confirm Password</label>
-                        <input type="password" class="form-control" placeholder=" " name="Confirm Password"
+                        <input type="password" class="form-control" placeholder=" " name="password_re"
                                id="password2" required="">
                     </div>
                     <div class="right-w3l">
                         <input type="submit" class="form-control" value="Đăng ký">
                     </div>
-                    <div class="sub-w3l">
-                        <div class="custom-control custom-checkbox mr-sm-2">
-                            <input type="checkbox" class="custom-control-input" id="customControlAutosizing2">
-                            <label class="custom-control-label" for="customControlAutosizing2">Tôi chấp nhận các điều
-                                khoản và điều kiện</label>
-                        </div>
-                    </div>
+                    {{--                    <div class="sub-w3l">--}}
+                    {{--                        <div class="custom-control custom-checkbox mr-sm-2">--}}
+                    {{--                            <input type="checkbox" class="custom-control-input" id="customControlAutosizing2">--}}
+                    {{--                            <label class="custom-control-label" for="customControlAutosizing2">Tôi chấp nhận các điều--}}
+                    {{--                                khoản và điều kiện</label>--}}
+                    {{--                        </div>--}}
+                    {{--                    </div>--}}
                 </form>
             </div>
         </div>
@@ -289,7 +316,8 @@
                     <!-- search -->
                     <div class="col-10 agileits_search">
                         <form class="form-inline" action="{{route('home.search')}}">
-                            <input class="form-control mr-sm-2" type="search" name="searchP" placeholder=" Từ khóa" aria-label="Search"
+                            <input class="form-control mr-sm-2" type="search" name="searchP" placeholder=" Từ khóa"
+                                   aria-label="Search"
                                    required>
                             <button class="btn my-2 my-sm-0" type="submit">Tìm kiếm</button>
                         </form>
@@ -307,13 +335,35 @@
                         {{--                            </form>--}}
                         {{--                        </div>--}}
                         <div class="row">
-                            <div class="col-md-12">
-{{--                                @if(session::has('cart'))--}}
-                                <a href="{{route('home.showCart')}}" class="btn btn-primary"><i class="fas fa-cart-arrow-down"></i></a>
-{{--                                @else--}}
-{{--                                    <a class="btn btn-primary"><i class="fas fa-cart-arrow-down"></i></a>--}}
-{{--                                @endif--}}
+                            @if(session()->has('cart'))
+                            <div class="col-md-12" id="quantityCart">
+                                {{--                                @if(session::has('cart'))--}}
+
+{{--                                <div id="quantityCart"></div>--}}
+                                {{--                                @else--}}
+                                {{--                                    <a class="btn btn-primary"><i class="fas fa-cart-arrow-down"></i></a>--}}
+                                {{--                                @endif--}}
+                                {{--                                    @php--}}
+                                {{--                                        $a = count(Session::get('cart'));--}}
+                                {{--                                    @endphp--}}
+                                {{--                                    @if(session()->has('cart'))--}}
+                                {{--                                    @endif--}}
                             </div>
+                            @else
+                                <div class="col-md-12" id="quantityCart">
+                                    {{--                                @if(session::has('cart'))--}}
+
+                                    {{--                                <div id="quantityCart"></div>--}}
+                                    {{--                                @else--}}
+                                                                        <a class="btn btn-primary"><i class="fas fa-cart-arrow-down"></i></a>
+                                    {{--                                @endif--}}
+                                    {{--                                    @php--}}
+                                    {{--                                        $a = count(Session::get('cart'));--}}
+                                    {{--                                    @endphp--}}
+                                    {{--                                    @if(session()->has('cart'))--}}
+                                    {{--                                    @endif--}}
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <!-- //cart details -->
@@ -422,9 +472,9 @@
                         <li class="mb-3">
                             <a href="#">Về chúng tôi</a>
                         </li>
-                       {{-- <li class="mb-3">
-                            <a href="#">Liên lạc</a>
-                        </li>--}}
+                        {{-- <li class="mb-3">
+                             <a href="#">Liên lạc</a>
+                         </li>--}}
                         {{--<li class="mb-3">
                             <a href="#">Help</a>
                         </li>
@@ -461,76 +511,76 @@
                         </li>
                     </ul>
                 </div>
-               {{-- <div class="col-md-3 col-sm-6 footer-grids w3l-agileits mt-md-0 mt-4">
-                    <!-- newsletter -->
-                    <h3 class="text-white font-weight-bold mb-3">Tin tức</h3>
-                    <p class="mb-3">Giao hàng miễn phí cho đơn hàng đầu tiên của bạn!</p>
-                    <form action="#" method="post">
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Email" name="email" required="">
-                            <input type="submit" value="Gửi">
-                        </div>
-                    </form>
-                    <!-- //newsletter -->
-                    <!-- social icons -->
-                    <div class="footer-grids  w3l-socialmk mt-3">
-                        <h3 class="text-white font-weight-bold mb-3">Theo dõi</h3>
-                        <div class="social">
-                            <ul>
-                                <li>
-                                    <a class="icon fb" href="#">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="icon tw" href="#">
-                                        <i class="fab fa-twitter"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="icon gp" href="#">
-                                        <i class="fab fa-google-plus-g"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- //social icons -->
-                </div>--}}
+                {{-- <div class="col-md-3 col-sm-6 footer-grids w3l-agileits mt-md-0 mt-4">
+                     <!-- newsletter -->
+                     <h3 class="text-white font-weight-bold mb-3">Tin tức</h3>
+                     <p class="mb-3">Giao hàng miễn phí cho đơn hàng đầu tiên của bạn!</p>
+                     <form action="#" method="post">
+                         <div class="form-group">
+                             <input type="email" class="form-control" placeholder="Email" name="email" required="">
+                             <input type="submit" value="Gửi">
+                         </div>
+                     </form>
+                     <!-- //newsletter -->
+                     <!-- social icons -->
+                     <div class="footer-grids  w3l-socialmk mt-3">
+                         <h3 class="text-white font-weight-bold mb-3">Theo dõi</h3>
+                         <div class="social">
+                             <ul>
+                                 <li>
+                                     <a class="icon fb" href="#">
+                                         <i class="fab fa-facebook-f"></i>
+                                     </a>
+                                 </li>
+                                 <li>
+                                     <a class="icon tw" href="#">
+                                         <i class="fab fa-twitter"></i>
+                                     </a>
+                                 </li>
+                                 <li>
+                                     <a class="icon gp" href="#">
+                                         <i class="fab fa-google-plus-g"></i>
+                                     </a>
+                                 </li>
+                             </ul>
+                         </div>
+                     </div>
+                     <!-- //social icons -->
+                 </div>--}}
             </div>
-{{--            <div class="sub-some child-momu mt-4">--}}
-{{--                <h5 class="font-weight-bold mb-3" style="color: #FFFFFF">Payment Method</h5>--}}
-{{--                <ul>--}}
-{{--                    <li>--}}
-{{--                        <img src="{{asset('images/pay2.png')}}" alt="">--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <img src="{{asset('images/pay5.png')}}" alt="">--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <img src="{{asset('images/pay1.png')}}" alt="">--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <img src="{{asset('images/pay4.png')}}" alt="">--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <img src="{{asset('images/pay6.png')}}" alt="">--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <img src="{{asset('images/pay3.png')}}" alt="">--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <img src="{{asset('images/pay7.png')}}" alt="">--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <img src="{{asset('images/pay8.png')}}" alt="">--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <img src="{{asset('images/pay9.png')}}" alt="">--}}
-{{--                    </li>--}}
-{{--                </ul>--}}
-{{--            </div>--}}
-            <!-- //quick links -->
+        {{--            <div class="sub-some child-momu mt-4">--}}
+        {{--                <h5 class="font-weight-bold mb-3" style="color: #FFFFFF">Payment Method</h5>--}}
+        {{--                <ul>--}}
+        {{--                    <li>--}}
+        {{--                        <img src="{{asset('images/pay2.png')}}" alt="">--}}
+        {{--                    </li>--}}
+        {{--                    <li>--}}
+        {{--                        <img src="{{asset('images/pay5.png')}}" alt="">--}}
+        {{--                    </li>--}}
+        {{--                    <li>--}}
+        {{--                        <img src="{{asset('images/pay1.png')}}" alt="">--}}
+        {{--                    </li>--}}
+        {{--                    <li>--}}
+        {{--                        <img src="{{asset('images/pay4.png')}}" alt="">--}}
+        {{--                    </li>--}}
+        {{--                    <li>--}}
+        {{--                        <img src="{{asset('images/pay6.png')}}" alt="">--}}
+        {{--                    </li>--}}
+        {{--                    <li>--}}
+        {{--                        <img src="{{asset('images/pay3.png')}}" alt="">--}}
+        {{--                    </li>--}}
+        {{--                    <li>--}}
+        {{--                        <img src="{{asset('images/pay7.png')}}" alt="">--}}
+        {{--                    </li>--}}
+        {{--                    <li>--}}
+        {{--                        <img src="{{asset('images/pay8.png')}}" alt="">--}}
+        {{--                    </li>--}}
+        {{--                    <li>--}}
+        {{--                        <img src="{{asset('images/pay9.png')}}" alt="">--}}
+        {{--                    </li>--}}
+        {{--                </ul>--}}
+        {{--            </div>--}}
+        <!-- //quick links -->
         </div>
     </div>
     <!-- //footer third section -->
@@ -689,6 +739,19 @@
 </script>
 <!--cart-->
 <script>
+    function quantity_cart(){
+
+        $.ajax({
+            method: "GET",
+            url:'{{url('/quantityCart')}}',
+            success: function (data) {
+                $('#quantityCart').html(data);
+            },
+            error: function () {
+
+            }
+        });
+    }
     function addToCart(event) {
         event.preventDefault();
         let urlCart = $(this).data('url');
@@ -699,7 +762,7 @@
             success: function (data) {
                 if (data.code === 200) {
                     alert('Thêm sản phẩm thành công');
-                }else if(data.code === 300) {
+                } else if (data.code === 300) {
                     alert('Xin lỗi quý khách\nSản phẩm trong kho đã hết hàng')
                 }
             },
@@ -707,14 +770,35 @@
 
             }
         });
+        quantity_cart();
 
     }
 
+
     $(function () {
         $('.add-to-cart').on('click', addToCart);
+        quantity_cart();
+
     });
 </script>
+{{--<script type="text/javascript">--}}
+{{--    $(document).ready(function (){--}}
+{{--        quantity_cart();--}}
+{{--        function quantity_cart(){--}}
 
+{{--            $.ajax({--}}
+{{--                method: "GET",--}}
+{{--                url:'{{url('/quantityCart')}}',--}}
+{{--                success: function (data) {--}}
+{{--                    $('#quantityCart').html(data);--}}
+{{--                },--}}
+{{--                error: function () {--}}
+
+{{--                }--}}
+{{--            });--}}
+{{--        }--}}
+{{--    });--}}
+{{--</script>--}}
 
 <!-- //smooth-scrolling-of-move-up -->
 

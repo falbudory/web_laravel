@@ -73,7 +73,7 @@
                                     <div class="col-md-4 product-men mt-5" @if($phone->discount<=0) disabled="disabled" style="opacity: 0.8; padding-bottom: 10px" @else style="padding-bottom: 10px" @endif>
                                         <div class="men-pro-item simpleCart_shelfItem">
                                             <div class="men-thumb-item text-center">
-                                                <img src="images/{{$phone->image}}" alt=""style="height: 300px;width: 250px">
+                                                <img src="images/{{$phone->image}}" alt=""style="height: 250px;width: 300px">
                                                 <div class="men-cart-pro">
                                                     <div class="inner-men-cart-pro">
                                                         <a href="{{route('home.detailProduct',$phone->id)}}" class="link-product-add-cart">Chi tiết</a>
@@ -118,7 +118,7 @@
                                     <div class="col-md-4 product-men mt-5" @if($laptop->discount<=0) disabled="disabled" style="opacity: 0.8; padding-bottom: 10px" @else style="padding-bottom: 10px" @endif>
                                         <div class="men-pro-item simpleCart_shelfItem">
                                             <div class="men-thumb-item text-center">
-                                                <img src="images/{{$laptop->image}}" style="height: 300px;width: 250px"
+                                                <img src="images/{{$laptop->image}}" style="height: 250px;width: 300px"
                                                      alt="">
                                                 <div class="men-cart-pro">
                                                     <div class="inner-men-cart-pro">
@@ -176,7 +176,7 @@
                                 <div class="col-md-4 product-men mt-5" @if($phuKien->discount<=0) disabled="disabled" style="opacity: 0.8; padding-bottom: 10px" @else style="padding-bottom: 10px" @endif>
                                     <div class="men-pro-item simpleCart_shelfItem">
                                         <div class="men-thumb-item text-center">
-                                            <img src="images/{{$pk->image}}" alt="" style="height: 300px;width: 250px">
+                                            <img src="images/{{$pk->image}}" alt="" style="height: 250px;width: 300px">
                                             <div class="men-cart-pro">
                                                 <div class="inner-men-cart-pro">
                                                     <a href="{{route('home.detailProduct',$pk->id)}}" class="link-product-add-cart">Chi tiết</a>

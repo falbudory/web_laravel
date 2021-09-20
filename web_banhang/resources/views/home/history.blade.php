@@ -4,7 +4,12 @@
     <br>
     <br>
 
+
     <div class="container">
+        <h3>
+            LỊCH SỬ MUA HÀNG
+        </h3>
+        <br><br>
 @if($data !='')
         <div class="row">
             <table class="table table-striped">
@@ -18,6 +23,7 @@
                     <th scope="col">Tổng tiền</th>
                     <th scope="col">Trạng thái</th>
                     <th scope="col">Ngày mua</th>
+
                 </tr>
                 </thead>
                 <tbody>

@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use MongoDB\Driver\Session;
 use PHPUnit\Framework\MockObject\Stub\Exception;
 
 //use Mail;
@@ -37,9 +38,9 @@ class HomeController extends Controller
 //    }
     public function index()
     {
-        $laptops = Product::where('type_id', 1)->get();
-        $phones = Product::where('type_id', 2)->get();
-        $phuKien = Product::where('type_id', 3)->get();
+        $laptops = Product::where('type_id', 1)->take(3)->get();
+        $phones = Product::where('type_id', 2)->take(3)->get();
+        $phuKien = Product::where('type_id', 3)->take(3)->get();
         $slides = Slide::where('status', 1)->skip(0)->take(4)->get();
 //        dd($slides[0]['images']);
         return view('home.index', compact('laptops', 'phones', 'phuKien', 'slides'));
@@ -125,6 +126,15 @@ class HomeController extends Controller
 
     public function createDB(Request $request)
     {
+        $messages = [
+            'phone.required' => 'Số điện thoại bị trống',
+            'phone.min' => 'Số điện thoại ít nhất 10 số',
+
+        ];
+
+        $this->validate($request,[
+            'phone'=>'required|min:10'
+        ], $messages);
 
         $cart = session()->get('cart');
         $money = 0;
@@ -331,5 +341,16 @@ class HomeController extends Controller
         $data = Product::where('name', "LIKE", "%" . $search . "%")->get();
 
         return view('home.search', compact('data'));
+    }
+    public function quantityCart(){
+        $quantity = 0;
+        $cart = session()->get('cart');
+        foreach ($cart as $key => $value) {
+            $quantity = $quantity + 1;
+        }
+        $output ='';
+        $output = $output. '<a href="'.url('/showCart').'" class="btn btn-primary"><i class="fas fa-cart-arrow-down"></i> <span> '.$quantity.'</span> </a>';
+        echo $output;
+
     }
 }

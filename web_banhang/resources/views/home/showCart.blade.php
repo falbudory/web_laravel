@@ -29,6 +29,7 @@
 
             }
         });
+        quantity_cart();
     }
     function cartDelete(event){
         event.preventDefault();
@@ -50,10 +51,12 @@
 
             }
         });
+        quantity_cart();
     }
     $(function () {
         $(document).on('click', '.cart-update',cartUpdate);
         $(document).on('click', '.cart-delete',cartDelete);
+        quantity_cart();
     });
 </script>
 @endsection
