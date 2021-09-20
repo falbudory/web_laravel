@@ -38,10 +38,10 @@
                         <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
                             <div class="row">
                                 @foreach($data as $item)
-                                <div class="col-md-4 product-men" @if($item->discount<=0) disabled="disabled" style="opacity: 0.8; padding-bottom: 10px" @else style="padding-bottom: 10px" @endif>
+                                <div class="col-md-4 product-men" @if($item->discount<=0) disabled="disabled" style="opacity: 0.8; padding-bottom: 10px" @else style="padding-bottom: 50px" @endif>
                                     <div class="men-pro-item simpleCart_shelfItem">
                                         <div class="men-thumb-item text-center">
-                                            <img src="http://localhost:8000/images/{{$item->image}}" alt="" style="height: 300px;width: 250px">
+                                            <img src="http://localhost:8000/images/{{$item->image}}" alt="" style="height: 175px;width: 200px;">
                                             <div class="men-cart-pro">
                                                 <div class="inner-men-cart-pro">
                                                     <a href="{{route('home.detailProduct',$item->id)}}" class="link-product-add-cart">Chi tiết</a>

@@ -104,7 +104,7 @@
                                     <div class="col-md-4 product-men mt-5">
                                         <div class="men-pro-item simpleCart_shelfItem">
                                             <div class="men-thumb-item text-center">
-                                                <img src="images/{{$item->image}}" alt=""style="height: 300px;width: 250px">
+                                                <img src="images/{{$item->image}}" alt=""style="height: 250px;width: 300px">
                                                 <div class="men-cart-pro">
                                                     <div class="inner-men-cart-pro">
                                                         <a href="{{route('home.detailProduct',$item->id)}}" class="link-product-add-cart">Quick
