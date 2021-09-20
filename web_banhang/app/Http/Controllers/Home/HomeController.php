@@ -204,7 +204,6 @@ class HomeController extends Controller
 
         if ($request->id) {
             $product = Product::where('id', $request->id)->first();
-            dd($product);
             $cart = session()->get('cart');
             unset($cart[$request->id]);
 //            $quantity = $cart[$request->id]['quantity'];
@@ -230,6 +229,12 @@ class HomeController extends Controller
             if (isset($cart[$id])) {
                 $cart[$id]['quantity'] = $cart[$id]['quantity'] + 1;
                 $product->discount = $product->discount - 1;
+                if($product->discount <= 0) {
+                    return response()->json([
+                        'code' => 300,
+                        'message' => 'success'
+                    ], 200);
+                }
             } else {
                 if ($product->promotion_price === 0) {
                     $cart[$id] = [
@@ -249,8 +254,13 @@ class HomeController extends Controller
                     ];
                 }
                 $product->discount = $product->discount - 1;
+                if($product->discount <= 0) {
+                    return response()->json([
+                        'code' => 300,
+                        'message' => 'success'
+                    ], 200);
+                }
             }
-            $product->save();
         } else {
             return response()->json([
                 'code' => 300,
