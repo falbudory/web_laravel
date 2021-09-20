@@ -83,7 +83,7 @@
                     {{--                            <i class="fas fa-truck mr-2"></i>Track Order</a>--}}
                     {{--                    </li>--}}
                     <li class="text-center border-right text-white">
-                        <i class="fas fa-phone mr-2"></i> 001 234 5678
+                        <i class="fas fa-phone mr-2"></i> 0853914191
                     </li>
                     @if(\Illuminate\Support\Facades\Auth::check())
 {{--                        <li class="text-center border-right text-white" style="width: 30%;">--}}
@@ -404,18 +404,14 @@
                     <h3 class="text-white font-weight-bold mb-3">Sản phẩm</h3>
                     <ul>
                         <li class="mb-3">
-                            <a href="#">Laptop</a>
+                            <a href="{{route('home.typeProduct','1')}}">Laptop</a>
                         </li>
                         <li class="mb-3">
-                            <a href="#">Điện thoại</a>
+                            <a href="{{route('home.typeProduct','2')}}">Điện thoại</a>
                         </li>
                         <li class="mb-3">
-                            <a href="#">Tai nghe</a>
+                            <a href="{{route('home.typeProduct','3')}}">Phụ kiện</a>
                         </li>
-                        <li class="mb-3">
-                            <a href="#">Loa</a>
-                        </li>
-
                     </ul>
                 </div>
                 <!-- //footer categories -->
@@ -426,10 +422,10 @@
                         <li class="mb-3">
                             <a href="#">Về chúng tôi</a>
                         </li>
-                        <li class="mb-3">
+                       {{-- <li class="mb-3">
                             <a href="#">Liên lạc</a>
-                        </li>
-                        <li class="mb-3">
+                        </li>--}}
+                        {{--<li class="mb-3">
                             <a href="#">Help</a>
                         </li>
                         <li class="mb-3">
@@ -440,7 +436,7 @@
                         </li>
                         <li>
                             <a href="privacy.html">Privacy Policy</a>
-                        </li>
+                        </li>--}}
                     </ul>
                 </div>
                 <div class="col-md-3 col-sm-6 footer-grids mt-md-0 mt-4">
@@ -450,22 +446,22 @@
                             <i class="fas fa-map-marker"></i> Tân Triều, Thanh Trì.
                         </li>
                         <li class="mb-3">
-                            <i class="fas fa-mobile"></i> 333 222 3333
+                            <i class="fas fa-mobile"></i> 0853914191
                         </li>
                         <li class="mb-3">
-                            <i class="fas fa-phone"></i> 222 11 4444
+                            <i class="fas fa-phone"></i> 0337349565
                         </li>
                         <li class="mb-3">
                             <i class="fas fa-envelope-open"></i>
-                            <a href="mailto:example@mail.com"> contact@gmail.com</a>
+                            <a href="mailto:trikhanhtk0038@gmail.com">trikhanhtk0038@gmail.com</a>
                         </li>
                         <li>
                             <i class="fas fa-envelope-open"></i>
-                            <a href="mailto:example@mail.com"> helpme@gmail.com</a>
+                            <a href="mailto:trikhanhm10@gmail.com">trikhanhm10@gmail.com</a>
                         </li>
                     </ul>
                 </div>
-                <div class="col-md-3 col-sm-6 footer-grids w3l-agileits mt-md-0 mt-4">
+               {{-- <div class="col-md-3 col-sm-6 footer-grids w3l-agileits mt-md-0 mt-4">
                     <!-- newsletter -->
                     <h3 class="text-white font-weight-bold mb-3">Tin tức</h3>
                     <p class="mb-3">Giao hàng miễn phí cho đơn hàng đầu tiên của bạn!</p>
@@ -500,40 +496,40 @@
                         </div>
                     </div>
                     <!-- //social icons -->
-                </div>
+                </div>--}}
             </div>
-            <div class="sub-some child-momu mt-4">
-                <h5 class="font-weight-bold mb-3" style="color: #FFFFFF">Payment Method</h5>
-                <ul>
-                    <li>
-                        <img src="{{asset('images/pay2.png')}}" alt="">
-                    </li>
-                    <li>
-                        <img src="{{asset('images/pay5.png')}}" alt="">
-                    </li>
-                    <li>
-                        <img src="{{asset('images/pay1.png')}}" alt="">
-                    </li>
-                    <li>
-                        <img src="{{asset('images/pay4.png')}}" alt="">
-                    </li>
-                    <li>
-                        <img src="{{asset('images/pay6.png')}}" alt="">
-                    </li>
-                    <li>
-                        <img src="{{asset('images/pay3.png')}}" alt="">
-                    </li>
-                    <li>
-                        <img src="{{asset('images/pay7.png')}}" alt="">
-                    </li>
-                    <li>
-                        <img src="{{asset('images/pay8.png')}}" alt="">
-                    </li>
-                    <li>
-                        <img src="{{asset('images/pay9.png')}}" alt="">
-                    </li>
-                </ul>
-            </div>
+{{--            <div class="sub-some child-momu mt-4">--}}
+{{--                <h5 class="font-weight-bold mb-3" style="color: #FFFFFF">Payment Method</h5>--}}
+{{--                <ul>--}}
+{{--                    <li>--}}
+{{--                        <img src="{{asset('images/pay2.png')}}" alt="">--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <img src="{{asset('images/pay5.png')}}" alt="">--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <img src="{{asset('images/pay1.png')}}" alt="">--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <img src="{{asset('images/pay4.png')}}" alt="">--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <img src="{{asset('images/pay6.png')}}" alt="">--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <img src="{{asset('images/pay3.png')}}" alt="">--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <img src="{{asset('images/pay7.png')}}" alt="">--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <img src="{{asset('images/pay8.png')}}" alt="">--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <img src="{{asset('images/pay9.png')}}" alt="">--}}
+{{--                    </li>--}}
+{{--                </ul>--}}
+{{--            </div>--}}
             <!-- //quick links -->
         </div>
     </div>
@@ -703,6 +699,8 @@
             success: function (data) {
                 if (data.code === 200) {
                     alert('Thêm sản phẩm thành công');
+                }else if(data.code === 300) {
+                    alert('Xin lỗi quý khách\n sản phẩm trong kho đã hế hàng')
                 }
             },
             error: function () {

@@ -102,12 +102,12 @@
                                         <input type="text" name="promotion_price" id="promotion_price" required/>
                                     </div>
                                 </div>
-{{--                                <div class="control-group">--}}
-{{--                                    <label class="control-label">Số lượng</label>--}}
-{{--                                    <div class="controls">--}}
-{{--                                        <input type="text" name="discount" id="discount" required/>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+                                <div class="control-group">
+                                    <label class="control-label">Số lượng</label>
+                                    <div class="controls">
+                                        <input type="text" name="discount" id="discount" required/>
+                                    </div>
+                                </div>
                                 <div class="control-group">
                                     <label class="control-label">Mô tả</label>
                                     <div class="controls">

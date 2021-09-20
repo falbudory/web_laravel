@@ -50,6 +50,7 @@
                                         <td class="center"><a href="#myModal{{ $user->id }}"
                                                               data-toggle="modal"
                                                               class="btn btn-success btn-mini">View</a> <a
+                                                @if($user->role_id===1 && $user->id != Auth::user()->id) style="display: none" @endif
                                                 href="{{ url('admin/users/edit/'.$user->id) }}"
                                                 class="btn btn-primary btn-mini" >Edit</a> <a id="delCat" @if($user->id == Auth::user()->id || $user->role_id===1) style="display: none" @endif
                                                                                              href="{{ url('/admin/users/delete/'.$user->id) }}"

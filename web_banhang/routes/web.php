@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //Auth::routes();
+//mail
+Route::get('/send-mail', 'Home\HomeController@sendMail');
+
 //home
 Route::post('/login', 'Home\UserController@login')->name('home.login');
 Route::get('/home', 'Home\HomeController@index')->name('index');

@@ -33,10 +33,8 @@
             <div class="row">
                 <div class="col-lg-6 welcome-left">
                     <h3>Xin chào</h3>
-                    <h4 class="my-sm-3 my-2">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse porta erat sit amet eros sagittis, quis hendrerit
-                        libero aliquam. Fusce semper augue ac dolor efficitur, a pretium metus pellentesque.</p>
+                    <h4 class="my-sm-3 my-2">Chúng tôi shop THAKHA Kính chào quý khách.</h4>
+                    <p>Thành lập vào năm 2019 chúng tôi đã được công nhận là đơn vị phân phối các sản phẩm chính hãng của nhiều nhãn hàng.</p>
                 </div>
                 <div class="col-lg-6 welcome-right-top mt-lg-0 mt-sm-5 mt-4">
                     <img src="images/ab.jpg" class="img-fluid" alt=" ">
@@ -59,8 +57,7 @@
             <div class="row gallery-index">
                 <div class="col-sm-6 med-testi-grid">
                     <div class="med-testi test-tooltip rounded p-4">
-                        <p>"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                            ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p>"Shop phục vụ nhiệt tình, chính sách bảo hành tốt.</p>
                     </div>
                     <div class="row med-testi-left my-5">
                         <div class="col-lg-2 col-3 w3ls-med-testi-img">
@@ -74,8 +71,7 @@
                 </div>
                 <div class="col-sm-6 med-testi-grid">
                     <div class="med-testi test-tooltip rounded p-4">
-                        <p>"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                            ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p>"Giá cả hợp lý, nhiều chính sách ưu đãi cho sinh viên.</p>
                     </div>
                     <div class="row med-testi-left my-5">
                         <div class="col-lg-2 col-3 w3ls-med-testi-img">
@@ -89,8 +85,7 @@
                 </div>
                 <div class="col-sm-6 med-testi-grid">
                     <div class="med-testi test-tooltip rounded p-4">
-                        <p>"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                            ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p>"Shop uy tín.</p>
                     </div>
                     <div class="row med-testi-left mt-sm-5 my-5">
                         <div class="col-lg-2 col-3 w3ls-med-testi-img">
@@ -104,8 +99,7 @@
                 </div>
                 <div class="col-sm-6 med-testi-grid">
                     <div class="med-testi test-tooltip rounded p-4">
-                        <p>"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                            ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p>"Rất hài lòng về thái độ phục vụ của shop, chất lượng sp  thì rất tố.</p>
                     </div>
                     <div class="row med-testi-left mt-5">
                         <div class="col-lg-2 col-3 w3ls-med-testi-img">

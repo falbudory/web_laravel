@@ -38,13 +38,13 @@
                         <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
                             <div class="row">
                                 @foreach($data as $item)
-                                <div class="col-md-4 product-men">
+                                <div class="col-md-4 product-men" @if($item->discount<=0) disabled="disabled" style="opacity: 0.8; padding-bottom: 10px" @else style="padding-bottom: 10px" @endif>
                                     <div class="men-pro-item simpleCart_shelfItem">
                                         <div class="men-thumb-item text-center">
                                             <img src="http://localhost:8000/images/{{$item->image}}" alt="" style="height: 300px;width: 250px">
                                             <div class="men-cart-pro">
                                                 <div class="inner-men-cart-pro">
-                                                    <a href="single.html" class="link-product-add-cart">Quick View</a>
+                                                    <a href="{{route('home.detailProduct',$item->id)}}" class="link-product-add-cart">Chi tiết</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -62,11 +62,15 @@
                                                 @endif
 
                                             </div>
-                                            <div
-                                                class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                                <a href="#" data-url="{{route('home.addToCart',['id'=>$item->id])}}" class="add-to-cart btn btn-primary">Thêm giỏ hàng</a>
+                                            @if($item->discount<=0)
+                                            <div class="single-item hvr-outline-out">
+                                                <p class="btn btn-primary" disabled="disabled" style="opacity: 0.6; background-color: grey">Hết hàng</p>
                                             </div>
-
+                                            @else
+                                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                                    <a href="#" data-url="{{route('home.addToCart',['id'=>$item->id])}}" class="add-to-cart btn btn-primary">Thêm giỏ hàng</a>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -85,11 +89,11 @@
                 <div class="col-lg-3 mt-lg-0 mt-4 p-lg-0">
                     <div class="side-bar p-sm-4 p-3">
                         <form action="{{route('home.typeProduct',$id)}}">
+                            <input type="submit" value="Tim kiem">
                         <div class="search-hotel border-bottom py-2">
                             <h3 class="agileits-sear-head mb-3">HÃNG</h3>
 
 {{--                                <input type="search" placeholder="Tên hãng..." name="searchBrand" required="">--}}
-                                <input type="submit" value="Tim kiem">
                                 <div class="left-side py-2">
                                     <ul>
                                         @foreach($brand as $item)
@@ -173,39 +177,39 @@
     <!-- //top products -->
 
     <!-- middle section -->
-    <div class="join-w3l1 py-sm-5 py-4">
-        <div class="container py-xl-4 py-lg-2">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="join-agile text-left p-4">
-                        <div class="row">
-                            <div class="col-sm-7 offer-name">
-                                <h6>Smooth, Rich & Loud Audio</h6>
-                                <h4 class="mt-2 mb-3">Branded Headphones</h4>
-                                <p>Sale up to 25% off all in store</p>
-                            </div>
-                            <div class="col-sm-5 offerimg-w3l">
-                                <img src="images/off1.png" alt="" class="img-fluid">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mt-lg-0 mt-5">
-                    <div class="join-agile text-left p-4">
-                        <div class="row ">
-                            <div class="col-sm-7 offer-name">
-                                <h6>A Bigger Phone</h6>
-                                <h4 class="mt-2 mb-3">Smart Phones 5</h4>
-                                <p>Free shipping order over $100</p>
-                            </div>
-                            <div class="col-sm-5 offerimg-w3l">
-                                <img src="images/off2.png" alt="" class="img-fluid">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+{{--    <div class="join-w3l1 py-sm-5 py-4">--}}
+{{--        <div class="container py-xl-4 py-lg-2">--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-lg-6">--}}
+{{--                    <div class="join-agile text-left p-4">--}}
+{{--                        <div class="row">--}}
+{{--                            <div class="col-sm-7 offer-name">--}}
+{{--                                <h6>Smooth, Rich & Loud Audio</h6>--}}
+{{--                                <h4 class="mt-2 mb-3">Branded Headphones</h4>--}}
+{{--                                <p>Sale up to 25% off all in store</p>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-sm-5 offerimg-w3l">--}}
+{{--                                <img src="images/off1.png" alt="" class="img-fluid">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-lg-6 mt-lg-0 mt-5">--}}
+{{--                    <div class="join-agile text-left p-4">--}}
+{{--                        <div class="row ">--}}
+{{--                            <div class="col-sm-7 offer-name">--}}
+{{--                                <h6>A Bigger Phone</h6>--}}
+{{--                                <h4 class="mt-2 mb-3">Smart Phones 5</h4>--}}
+{{--                                <p>Free shipping order over $100</p>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-sm-5 offerimg-w3l">--}}
+{{--                                <img src="images/off2.png" alt="" class="img-fluid">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
 @endsection

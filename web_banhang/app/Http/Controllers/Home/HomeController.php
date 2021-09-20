@@ -8,6 +8,7 @@ use App\Models\BillDetail;
 use App\Models\Brand;
 use App\Models\Customer;
 use App\Models\Product;
+use App\Models\Slide;
 use App\Models\TypeProduct;
 use App\Models\User;
 use Carbon\Carbon;
@@ -17,15 +18,30 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use PHPUnit\Framework\MockObject\Stub\Exception;
-
+//use Mail;
 class HomeController extends Controller
 {
+//    public function sendMail() {
+//        $to_name = "Khanh";
+//        $to_email = "trikhanhm10@gmail.com";//send to this email
+//        $len = 10;
+//        $code = substr(md5(rand()), 0, $len);
+//        $data = array("code"=>$code); //body of mail.blade.php
+//
+//                Mail::send('send_mail',$data,function($message) use ($to_name,$to_email){
+//                    $message->to($to_email)->subject('Lấy lại mật khẩu');//send this mail with subject
+//                    $message->from("trikhanhtk0038@gmail.com",$to_name);//send from this mail
+//                });
+//        return redirect("/");
+//    }
     public function index()
     {
         $laptops = Product::where('type_id', 1)->get();
         $phones = Product::where('type_id', 2)->get();
         $phuKien = Product::where('type_id', 3)->get();
-        return view('home.index', compact('laptops', 'phones', 'phuKien'));
+        $slides = Slide::where('status', 1)->skip(0)->take(4)->get();
+//        dd($slides[0]['images']);
+        return view('home.index', compact('laptops', 'phones', 'phuKien', 'slides'));
     }
 
     public function detailProduct(Request $request, $pid)
@@ -187,11 +203,14 @@ class HomeController extends Controller
     {
 
         if ($request->id) {
+            $product = Product::where('id', $request->id)->first();
+            dd($product);
             $cart = session()->get('cart');
             unset($cart[$request->id]);
+//            $quantity = $cart[$request->id]['quantity'];
+//            $product->discount = $product->discount + $quantity;
             session()->put('cart', $cart);
             $cart = session()->get('cart');
-
             $showCart = view('home.cart_component', compact('cart'))->render();
             return response()->json(['showCart' => $showCart, 'code' => 200], 200);
         }
@@ -205,29 +224,38 @@ class HomeController extends Controller
 
     public function addToCart($id)
     {
-
         $product = Product::where('id', $id)->first();
         $cart = session()->get('cart');
-        if (isset($cart[$id])) {
-            $cart[$id]['quantity'] = $cart[$id]['quantity'] + 1;
-        } else {
-            if ($product->promotion_price === 0) {
-                $cart[$id] = [
-                    'id' => $id,
-                    'name' => $product->name,
-                    'price' => $product->unit_price,
-                    'quantity' => 1,
-                    'image' => $product->image
-                ];
+        if($product->discount >0) {
+            if (isset($cart[$id])) {
+                $cart[$id]['quantity'] = $cart[$id]['quantity'] + 1;
+                $product->discount = $product->discount - 1;
             } else {
-                $cart[$id] = [
-                    'id' => $id,
-                    'name' => $product->name,
-                    'price' => $product->promotion_price,
-                    'quantity' => 1,
-                    'image' => $product->image
-                ];
+                if ($product->promotion_price === 0) {
+                    $cart[$id] = [
+                        'id' => $id,
+                        'name' => $product->name,
+                        'price' => $product->unit_price,
+                        'quantity' => 1,
+                        'image' => $product->image
+                    ];
+                } else {
+                    $cart[$id] = [
+                        'id' => $id,
+                        'name' => $product->name,
+                        'price' => $product->promotion_price,
+                        'quantity' => 1,
+                        'image' => $product->image
+                    ];
+                }
+                $product->discount = $product->discount - 1;
             }
+            $product->save();
+        } else {
+            return response()->json([
+                'code' => 300,
+                'message' => 'success'
+            ], 200);
         }
         session()->put('cart', $cart);
         return response()->json([

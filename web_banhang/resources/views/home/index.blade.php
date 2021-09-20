@@ -11,69 +11,36 @@
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <!-- Indicators-->
         <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            @if(count($slides)>=1)
+                <li data-target="#carouselExampleIndicators" data-slide-to="0"></li>
+            @endif
+            @if(count($slides)>=2)
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            @endif
+            @if(count($slides)>=3)
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            @endif
+            @if(count($slides)>=4)
             <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+            @endif
         </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item item1 active">
-                <div class="container">
-                    <div class="w3l-space-banner">
-                        <div class="carousel-caption p-lg-5 p-sm-4 p-3">
-                            <p>Get flat
-                                <span>10%</span> Cashback</p>
-                            <h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">The
-                                <span>Big</span>
-                                Sale
-                            </h3>
-                            {{--                            <a class="button2" href="#">Mua ngay </a>--}}
-                        </div>
-                    </div>
-                </div>
+        <div class="carousel-inner" style="background-color: #F2F8FE ">
+            @if(count($slides)>=1)
+            <div class="carousel-item item1 active" style="background: url('images/{{$slides[0]['image']}}') no-repeat center">
             </div>
-            <div class="carousel-item item2">
-                <div class="container">
-                    <div class="w3l-space-banner">
-                        <div class="carousel-caption p-lg-5 p-sm-4 p-3">
-                            <p>advanced
-                                <span>Wireless</span> earbuds</p>
-                            <h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">Best
-                                <span>Headphone</span>
-                            </h3>
-                            {{--                            <a class="button2" href="product.html">Shop Now </a>--}}
-                        </div>
-                    </div>
-                </div>
+            @endif
+            @if(count($slides)>=2)
+            <div class="carousel-item item2" style="background: url('images/{{$slides[1]['image']}}') no-repeat center">
             </div>
-            <div class="carousel-item item3">
-                <div class="container">
-                    <div class="w3l-space-banner">
-                        <div class="carousel-caption p-lg-5 p-sm-4 p-3">
-                            <p>Get flat
-                                <span>10%</span> Cashback</p>
-                            <h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">New
-                                <span>Standard</span>
-                            </h3>
-                            {{--                            <a class="button2" href="product.html">Shop Now </a>--}}
-                        </div>
-                    </div>
-                </div>
+            @endif
+            @if(count($slides)>=3)
+            <div class="carousel-item item3" style="background: url('images/{{$slides[2]['image']}}') no-repeat center">
             </div>
-            <div class="carousel-item item4">
-                <div class="container">
-                    <div class="w3l-space-banner">
-                        <div class="carousel-caption p-lg-5 p-sm-4 p-3">
-                            <p>Get Now
-                                <span>40%</span> Discount</p>
-                            <h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">Today
-                                <span>Discount</span>
-                            </h3>
-                            {{--                            <a class="button2" href="product.html">Shop Now </a>--}}
-                        </div>
-                    </div>
-                </div>
+            @endif
+            @if(count($slides)>=4)
+            <div class="carousel-item item4" style="background: url('images/{{$slides[3]['image']}}') no-repeat center">
             </div>
+            @endif
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -90,10 +57,9 @@
     <div class="ads-grid py-sm-5 py-4">
         <div class="container py-xl-4 py-lg-2">
             <!-- tittle heading -->
-            <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
-                <span>S</span>ản
-                <span>P</span>hẩm
-                <span>M</span>ới</h3>
+            <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3" style="color: #0e90d2">
+                Sản phẩm mới
+            </h3>
             <!-- //tittle heading -->
             <div class="row">
                 <!-- product left -->
@@ -101,17 +67,16 @@
                     <div class="wrapper">
                         <!-- first section -->
                         <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
-                            <h3 class="heading-tittle text-center font-italic">Điện thoại thương hiệu mới</h3>
+                            <h3 class="heading-tittle text-center font-italic">Điện thoại</h3>
                             <div class="row">
                                 @foreach($phones as $phone)
-                                    <div class="col-md-4 product-men mt-5">
+                                    <div class="col-md-4 product-men mt-5" @if($phone->discount<=0) disabled="disabled" style="opacity: 0.8; padding-bottom: 10px" @else style="padding-bottom: 10px" @endif>
                                         <div class="men-pro-item simpleCart_shelfItem">
                                             <div class="men-thumb-item text-center">
                                                 <img src="images/{{$phone->image}}" alt=""style="height: 300px;width: 250px">
                                                 <div class="men-cart-pro">
                                                     <div class="inner-men-cart-pro">
-                                                        <a href="{{route('home.detailProduct',$phone->id)}}" class="link-product-add-cart">Quick
-                                                            View</a>
+                                                        <a href="{{route('home.detailProduct',$phone->id)}}" class="link-product-add-cart">Chi tiết</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -128,10 +93,15 @@
                                                         <span class="item_price">{{number_format($phone->unit_price)}}</span>
                                                     @endif
                                                 </div>
-                                                <div
-                                                    class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                                    <a href="#" data-url="{{route('home.addToCart',['id'=>$phone->id])}}" class="add-to-cart btn btn-primary">Thêm giỏ hàng</a>
-                                                </div>
+                                                @if($phone->discount<=0)
+                                                    <div class="single-item hvr-outline-out">
+                                                        <p class="btn btn-primary" disabled="disabled" style="opacity: 0.6; background-color: grey">Hết hàng</p>
+                                                    </div>
+                                                @else
+                                                    <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                                        <a href="#" data-url="{{route('home.addToCart',['id'=>$phone->id])}}" class="add-to-cart btn btn-primary">Thêm giỏ hàng</a>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -145,15 +115,14 @@
                             <h3 class="heading-tittle text-center font-italic">Laptop</h3>
                             <div class="row">
                                 @foreach($laptops as $laptop)
-                                    <div class="col-md-4 product-men mt-5">
+                                    <div class="col-md-4 product-men mt-5" @if($laptop->discount<=0) disabled="disabled" style="opacity: 0.8; padding-bottom: 10px" @else style="padding-bottom: 10px" @endif>
                                         <div class="men-pro-item simpleCart_shelfItem">
                                             <div class="men-thumb-item text-center">
                                                 <img src="images/{{$laptop->image}}" style="height: 300px;width: 250px"
                                                      alt="">
                                                 <div class="men-cart-pro">
                                                     <div class="inner-men-cart-pro">
-                                                        <a href="{{route('home.detailProduct',$laptop->id)}}" class="link-product-add-cart">Quick
-                                                            View</a>
+                                                        <a href="{{route('home.detailProduct',$laptop->id)}}" class="link-product-add-cart">Chi tiết</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -170,10 +139,15 @@
                                                         <span class="item_price">{{number_format($laptop->unit_price)}}</span>
                                                     @endif
                                                 </div>
-                                                <div
-                                                    class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                                    <a href="#" data-url="{{route('home.addToCart',['id'=>$laptop->id])}}" class="add-to-cart btn btn-primary">Thêm giỏ hàng</a>
-                                                </div>
+                                                @if($laptop->discount<=0)
+                                                    <div class="single-item hvr-outline-out">
+                                                        <p class="btn btn-primary" disabled="disabled" style="opacity: 0.6; background-color: grey">Hết hàng</p>
+                                                    </div>
+                                                @else
+                                                    <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                                        <a href="#" data-url="{{route('home.addToCart',['id'=>$laptop->id])}}" class="add-to-cart btn btn-primary">Thêm giỏ hàng</a>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -183,12 +157,13 @@
                         </div>
                         <!-- //second section -->
                         <!-- third section -->
-                        <div class="product-sec1 product-sec2 px-sm-5 px-3">
+                        <div class=" px-sm-5 px-3">
                             <div class="row">
-                                <h3 class="col-md-4 effect-bg">Lễ hội mùa hè</h3>
-                                <p class="w3l-nut-middle">Giảm giá thêm 10%</p>
+    {{--                            <h3 class="col-md-4 effect-bg">Back to school</h3>
+                                <p class="w3l-nut-middle">Giảm giá thêm 10%</p>--}}
                                 <div class="col-md-8 bg-right-nut">
-                                    <img src="images/image1.png" alt="">
+                                    <img src="images/637660305811365864_F-C1_1200x300.jpg" alt=""
+                                         width="1020px">
                                 </div>
                             </div>
                         </div>
@@ -198,13 +173,13 @@
                             <h3 class="heading-tittle text-center font-italic">Phụ kiện khác</h3>
                             <div class="row">
                                 @foreach($phuKien as $pk)
-                                <div class="col-md-4 product-men mt-5">
+                                <div class="col-md-4 product-men mt-5" @if($phuKien->discount<=0) disabled="disabled" style="opacity: 0.8; padding-bottom: 10px" @else style="padding-bottom: 10px" @endif>
                                     <div class="men-pro-item simpleCart_shelfItem">
                                         <div class="men-thumb-item text-center">
                                             <img src="images/{{$pk->image}}" alt="" style="height: 300px;width: 250px">
                                             <div class="men-cart-pro">
                                                 <div class="inner-men-cart-pro">
-                                                    <a href="{{route('home.detailProduct',$pk->id)}}" class="link-product-add-cart">Quick View</a>
+                                                    <a href="{{route('home.detailProduct',$pk->id)}}" class="link-product-add-cart">Chi tiết</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -222,10 +197,15 @@
                                                     <span class="item_price">{{number_format($pk->unit_price)}}</span>
                                                 @endif
                                             </div>
-                                            <div
-                                                class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                                <a href="#" data-url="{{route('home.addToCart',['id'=>$pk->id])}}" class="add-to-cart btn btn-primary">Thêm giỏ hàng</a>
-                                            </div>
+                                            @if($phuKien->discount<=0)
+                                                <div class="single-item hvr-outline-out">
+                                                    <p class="btn btn-primary" disabled="disabled" style="opacity: 0.6; background-color: grey">Hết hàng</p>
+                                                </div>
+                                            @else
+                                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                                    <a href="#" data-url="{{route('home.addToCart',['id'=>$phuKien->id])}}" class="add-to-cart btn btn-primary">Thêm giỏ hàng</a>
+                                                </div>
+                                            @endif
 
                                         </div>
                                     </div>
@@ -347,7 +327,7 @@
     <!-- //top products -->
 
     <!-- middle section -->
-    <div class="join-w3l1 py-sm-5 py-4">
+{{--    <div class="join-w3l1 py-sm-5 py-4">
         <div class="container py-xl-4 py-lg-2">
             <div class="row">
                 <div class="col-lg-6">
@@ -380,7 +360,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--}}
     <!-- middle section -->
 
     <!-- footer -->

@@ -70,7 +70,7 @@
             let _token   = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
                 type:'POST',
-                url:'bills/update/' + id,
+                url:'/admin/bills/update/' + id,
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data:{
                     "status" : this.value.toString(),

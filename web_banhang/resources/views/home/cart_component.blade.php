@@ -58,7 +58,7 @@
                     </div>
                 @else
                     <div style="color: red;font-size: large;text-align: center;">
-                        Bạn cần đăng nhập để thanh toán giỏ hàng !
+                        Bạn cần <a href="#" data-toggle="modal" data-target="#exampleModal">Đăng nhập</a> để thanh toán giỏ hàng !
                     </div>
                 @endif
             @else

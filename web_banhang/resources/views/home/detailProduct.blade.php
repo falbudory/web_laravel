@@ -2,9 +2,9 @@
 
 @section("content")
 
-    <div class="page-head_agile_info_w3l">
+{{--    <div class="page-head_agile_info_w3l">
 
-    </div>
+    </div>--}}
     <!-- //banner-2 -->
     <!-- page -->
     <div class="services-breadcrumb">
@@ -80,13 +80,19 @@
                             </li>
                         </ul>
                         <p class="my-sm-4 my-3">
-                            <i class="fas fa-retweet mr-3"></i>Net banking & Credit/ Debit/ ATM card
+                            <i class="">Kho còn: </i> {{$data->discount}} <span>sản phẩm</span>
                         </p>
                     </div>
-                    <div
-                        class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                        <a href="#" data-url="{{route('home.addToCart',['id'=>$data->id])}}" class="add-to-cart btn btn-primary">Thêm giỏ hàng</a>
-                    </div>
+                    @if($data->discount <= 0)
+                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                            <p class="btn btn-primary" style="background-color: grey">Hết hàng</p>
+                            <p><i style="color: red">Xin lỗi quý khách, sản phẩm tạm thời hết hàng</i></p>
+                        </div>
+                    @else
+                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                            <a href="#" data-url="{{route('home.addToCart',['id'=>$data->id])}}" class="add-to-cart btn btn-primary">Thêm giỏ hàng</a>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -94,7 +100,7 @@
     <!-- //Single Page -->
 
     <!-- middle section -->
-    <div class="join-w3l1 py-sm-5 py-4">
+{{--    <div class="join-w3l1 py-sm-5 py-4">
         <div class="container py-xl-4 py-lg-2">
             <div class="row">
                 <div class="col-lg-6">
@@ -127,5 +133,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--}}
 @endsection

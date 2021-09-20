@@ -28,14 +28,14 @@
                         <td>{{$item->phone}}</td>
                         <td>{{$item->quantity}}</td>
                         <td>{{number_format($item->total)}} VND</td>
-                        @if($item->status === '1')
+                        @if($item->status == '1')
                             <td>Đang vận chuyển</td>
-                        @elseif($item->status === '0')
+                        @elseif($item->status == '0')
                             <td>Chờ xác nhận</td>
 
-                        @elseif($item->status === '2')
+                        @elseif($item->status == '2')
                             <td>Đã giao</td>
-                        @elseif($item->status === '3')
+                        @elseif($item->status == '3')
                             <td>Hủy Đơn</td>
                         @endif
                         <td>{{$item->date_order}}</td>

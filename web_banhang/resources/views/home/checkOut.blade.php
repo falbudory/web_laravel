@@ -40,9 +40,7 @@
                     <label class="col-form-label" style="color: red;">Hình thức thanh toán</label>
                 </div>
                 <div class="form-group">
-
-                    <input required="" name="thanhToan" type="radio" value="taiKhoan"/>Tài khoản
-                    <input required="" name="thanhToan" type="radio" value="tienMat"/>Tiền mặt
+                    <input required="" name="thanhToan" type="radio" id="tienmat" value="tienMat"/><label for="tienmat">Tiền mặt</label>
                 </div>
                 <div class="right-w3l">
                     <input type="submit" class="form-control" value="Thanh toán">
