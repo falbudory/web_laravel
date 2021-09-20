@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use PHPUnit\Framework\MockObject\Stub\Exception;
+
 //use Mail;
 class HomeController extends Controller
 {
@@ -55,7 +56,7 @@ class HomeController extends Controller
         $sBrand = $request->input('brand');
         $sRam = $request->input('ram');
         $sMoney = $request->input('tien');
-        $start =0;
+        $start = 0;
         $end = 1000000000;
         $query = Product::query()->where('type_id', $id);
         if ($sBrand > 0) {
@@ -64,40 +65,46 @@ class HomeController extends Controller
         if ($sRam > 0) {
             $query->where('ram', "LIKE", "%" . $sRam . "%");
         }
-        switch ($sMoney){
-            case "1ph":{
+        switch ($sMoney) {
+            case "1ph":
+            {
                 $start = 1000000;
                 $end = 5000000;
                 break;
             }
-            case "5":{
+            case "5":
+            {
                 $start = 5000000;
                 $end = 10000000;
                 break;
             }
-            case "10":{
+            case "10":
+            {
                 $start = 10000000;
                 $end = 15000000;
                 break;
             }
-            case "15":{
+            case "15":
+            {
                 $start = 15000000;
                 $end = 20000000;
                 break;
             }
-            case "20":{
+            case "20":
+            {
                 $start = 20000000;
                 $end = 25000000;
                 break;
             }
-            case "25":{
+            case "25":
+            {
                 $start = 25000000;
                 $end = 1000000000;
                 break;
             }
         }
-        if($sMoney !==''){
-            $query->where('unit_price','>=',$start)->where('unit_price','<',$end);
+        if ($sMoney !== '') {
+            $query->where('unit_price', '>=', $start)->where('unit_price', '<', $end);
         }
         $data = $query->get();
         $brand = Brand::all();
@@ -152,6 +159,9 @@ class HomeController extends Controller
             $bill_detail->quantity = $value['quantity'];
             $bill_detail->price = $value['price'];
             $bill_detail->save();
+            $product = Product::find((int)$value['id']);
+            $product->discount = $product->discount - (int)$value['quantity'];
+            $product->save();
 
         }
 
@@ -189,13 +199,27 @@ class HomeController extends Controller
     {
 
         if ($request->id && $request->quantity) {
-            $cart = session()->get('cart');
-            $cart[$request->id]['quantity'] = $request->quantity;
-            session()->put('cart', $cart);
-            $cart = session()->get('cart');
+            $product = Product::find((int)$request->id);
 
-            $showCart = view('home.cart_component', compact('cart'))->render();
-            return response()->json(['showCart' => $showCart, 'code' => 200], 200);
+
+            if ((int)$request->quantity <= $product->discount) {
+                $cart = session()->get('cart');
+                $cart[$request->id]['quantity'] = $request->quantity;
+                session()->put('cart', $cart);
+                $cart = session()->get('cart');
+                $showCart = view('home.cart_component', compact('cart'))->render();
+                return response()->json(['showCart' => $showCart, 'code' => 200], 200);
+            } else {
+                $cart = session()->get('cart');
+                $showCart = view('home.cart_component', compact('cart'))->render();
+                return response()->json(['showCart' => $showCart,
+                    'code' => 300,
+                    'message' => 'success'
+                ], 200);
+
+            }
+
+
         }
     }
 
@@ -212,12 +236,22 @@ class HomeController extends Controller
             $cart = session()->get('cart');
             $showCart = view('home.cart_component', compact('cart'))->render();
             return response()->json(['showCart' => $showCart, 'code' => 200], 200);
+
+
         }
     }
-    public function deleteBill($id){
-        $bill = Bill::where('id',$id)->first();
+
+    public function deleteBill($id)
+    {
+        $bill = Bill::where('id', $id)->first();
         $bill->status = 3;
         $bill->save();
+        $data = BillDetail::where('bill_id',$id)->get();
+        foreach ($data as $key => $value){
+            $product = Product::find($value['product_id']);
+            $product->discount = $product->discount + $value['quantity'];
+            $product->save();
+        }
         return redirect('history');
     }
 
@@ -225,11 +259,11 @@ class HomeController extends Controller
     {
         $product = Product::where('id', $id)->first();
         $cart = session()->get('cart');
-        if($product->discount >0) {
+        if ($product->discount > 0) {
             if (isset($cart[$id])) {
                 $cart[$id]['quantity'] = $cart[$id]['quantity'] + 1;
                 $product->discount = $product->discount - $cart[$id]['quantity'];
-                if($product->discount <= 0) {
+                if ($product->discount <= 0) {
                     return response()->json([
                         'code' => 300,
                         'message' => 'success'
@@ -254,7 +288,7 @@ class HomeController extends Controller
                     ];
                 }
                 $product->discount = $product->discount - 1;
-                if($product->discount <= 0) {
+                if ($product->discount <= 0) {
                     return response()->json([
                         'code' => 300,
                         'message' => 'success'
@@ -286,10 +320,12 @@ class HomeController extends Controller
 
         return view('home.historyDetail', compact('data'));
     }
-    public function search(Request $request){
+
+    public function search(Request $request)
+    {
         $search = $request->input('searchP');
         $data = Product::where('name', "LIKE", "%" . $search . "%")->get();
 
-        return view('home.search',compact('data'));
+        return view('home.search', compact('data'));
     }
 }

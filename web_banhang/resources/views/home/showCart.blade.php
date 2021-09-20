@@ -15,9 +15,15 @@
             data:{id:id,quantity:quantity},
             // dataType: 'json',
             success: function (data) {
-                if(data.code=200){
+                if(data.code===200){
+                    $('.cart_wrapper').html(data.showCart);
+
+                }
+               else if(data.code===300){
+                    alert('Kho không đủ hàng !');
                     $('.cart_wrapper').html(data.showCart);
                 }
+
             },
             error: function () {
 

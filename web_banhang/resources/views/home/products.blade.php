@@ -89,7 +89,7 @@
                 <div class="col-lg-3 mt-lg-0 mt-4 p-lg-0">
                     <div class="side-bar p-sm-4 p-3">
                         <form action="{{route('home.typeProduct',$id)}}">
-                            <input type="submit" value="Tim kiem">
+                            <input class="btn btn-primary" type="submit"  value="Tìm kiếm">
                         <div class="search-hotel border-bottom py-2">
                             <h3 class="agileits-sear-head mb-3">HÃNG</h3>
 
