@@ -228,7 +228,7 @@ class HomeController extends Controller
         if($product->discount >0) {
             if (isset($cart[$id])) {
                 $cart[$id]['quantity'] = $cart[$id]['quantity'] + 1;
-                $product->discount = $product->discount - 1;
+                $product->discount = $product->discount - $cart[$id]['quantity'];
                 if($product->discount <= 0) {
                     return response()->json([
                         'code' => 300,

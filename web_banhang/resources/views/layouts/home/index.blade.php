@@ -700,7 +700,7 @@
                 if (data.code === 200) {
                     alert('Thêm sản phẩm thành công');
                 }else if(data.code === 300) {
-                    alert('Xin lỗi quý khách\n sản phẩm trong kho đã hế hàng')
+                    alert('Xin lỗi quý khách\nSản phẩm trong kho đã hết hàng')
                 }
             },
             error: function () {
