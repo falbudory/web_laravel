@@ -513,12 +513,11 @@ class AdminController extends Controller
             if ($image_tmp->isValid()) {
                 $extension = $image_tmp->getClientOriginalExtension();
                 $filename = time() . rand(10, 99) . '.' . $extension;
-                $data['logo'] = $filename;
+                $data['image'] = $filename;
                 $image_path = 'images/' . $filename;
                 if (!Image::make($image_tmp)->save($image_path)) {
                     return back()->with('error', 'Đã có lỗi xảy ra');
                 }
-                // Store image name in Brands table
             }
         }
         if(Slide::where('id',$id)->update($data)){
