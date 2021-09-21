@@ -18,7 +18,7 @@
             <table class="table table-bordered data-table">
               <thead>
                 <tr>
-                  <th>Brand ID</th>
+                  <th>ID</th>
                   <th>Thương hiệu</th>
                   <th>Logo Thương hiệu</th>
                 </tr>

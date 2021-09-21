@@ -43,6 +43,12 @@
     let role = "";
     let id_permission = "";
     $(document).ready(function () {
+
+        let inputElm = document.getElementsByTagName("input");
+        for (let i=0; i<inputElm.length; i++) {
+            inputElm[i].setAttribute("autocomplete", "off");
+        }
+
         $("#role").change(function () {
             let allPermission = $('input[name="permission"]');
             allPermission.prop( "checked", false);

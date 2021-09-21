@@ -28,24 +28,6 @@
                                         </select>
                                     </div>
                                 </div>
-{{--                                <div class="control-group" id="permission">--}}
-{{--                                    <label class="control-label">Quyền người dùng</label>--}}
-{{--                                    @foreach($roles as $role)--}}
-{{--                                        <div class="controls" id="{{$role->id}}_role" style="display: none">--}}
-{{--                                            @foreach($rolePermissions as $rolePermission)--}}
-{{--                                                @if($role->id == $rolePermission->role_id)--}}
-{{--                                                    @foreach($permissions as $permission)--}}
-{{--                                                        @if($rolePermission->permission_id == $permission->id)--}}
-{{--                                                            <div style="display: flex">--}}
-{{--                                                                <input type="checkbox" name="permission" id="{{$role->id}}_{{$permission->id}}" value="{{$permission->id}}"/> <label for="{{$role->id}}_{{$permission->id}}">{{$permission->name}}</label>--}}
-{{--                                                            </div>--}}
-{{--                                                        @endif--}}
-{{--                                                    @endforeach--}}
-{{--                                                @endif--}}
-{{--                                            @endforeach--}}
-{{--                                        </div>--}}
-{{--                                    @endforeach--}}
-{{--                                </div>--}}
                                 <div class="control-group">
                                     <label class="control-label">Tên người dùng</label>
                                     <div class="controls">

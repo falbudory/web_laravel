@@ -4,7 +4,7 @@
 <div id="content">
   <div id="content-header">
     <div id="breadcrumb"> <a href="{{--{{ url('/admin') }}--}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Products</a> <a href="#" class="current">View Products</a> </div>
-    <h1>Products</h1>
+    <h1>Sản phẩm</h1>
 
   </div>
   <div class="container-fluid">
@@ -30,19 +30,23 @@
                   <th>Số lượng</th>
                   <th>Created at</th>
                   <th>Updated at</th>
+                    <th></th>
                 </tr>
               </thead>
               <tbody>
               	@foreach($products as $product)
                 <tr class="gradeX">
                   <td>{{ $product->id }}</td>
-
+                    @foreach($brands as $brand)
+                        @if($brand->id==$product->brand_id)
                             <td style="width: 250px">
                                 <div style="display: flex">
-                                    <img src="{{ asset('/images/brands-logo/'.$product->brandLogo()) }}" style="width: 30px;height: 30px;" id="logo_brand{{$product->id}}">
-                                    <h4>{{$product->brandName()}}</h4>
+                                    <img src="{{ asset('/images/brands-logo/'.$brand->logo) }}" style="width: 30px;height: 30px;" id="logo_brand{{$product->id}}">
+                                    <h4>{{$brand->name}}</h4>
                                 </div>
                             </td>
+                        @endif
+                    @endforeach
                   <td>{{ $product->name }}</td>
                   <td>
                       @if(!empty($product->image))
@@ -50,8 +54,8 @@
                       @endif
                   </td>
                   <td>{{ $product->description }}</td>
-                  <td>{{ $product->unit_price }}</td>
-                  <td>{{ $product->promotion_price }}</td>
+                  <td>{{number_format($product->unit_price)}}</td>
+                  <td>{{number_format($product->promotion_price)}}</td>
                     @foreach($type_products as $type_product)
                         @if($product->type_id == $type_product->id)
                             <td>{{$type_product->name}}</td>
@@ -90,7 +94,7 @@
                                 <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
                                 <path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z"/>
                             </svg>
-                            Price: {{ $product->unit_price }}
+                            Price: {{number_format($product->unit_price)}}
                         </p>
                       </div>
                     </div>

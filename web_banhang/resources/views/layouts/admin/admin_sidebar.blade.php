@@ -2,21 +2,20 @@
 
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i>Bảng điều khiển</a>
     <ul>
-        <li class="active"><a href="index.html"><i class="icon icon-home"></i> <span>Dashboard</span></a></li>
+        <li class="active"><a href="{{url('/admin')}}"><i class="icon icon-home"></i> <span>Dashboard</span></a></li>
         @if(Auth::user()->hasAnyRole(['manager_user']))
-        <li class="submenu"><a href="#"><i class="icon icon-th-list"></i> <span>Quản lý tài khoản</span> <span
-                    class="label label-important">2</span></a>
+        <li class="submenu"><a href="#"><i class="icon icon-th-list"></i> <span>Quản lý tài khoản</span></a>
             <ul>
                 <li><a href="{{ url('/admin/users/add') }}">Thêm tài khoản</a></li>
                 <li><a href="{{ url('/admin/users') }}">Tất cả tài khoản</a></li>
 {{--                <li><a href="{{ url('/admin/users') }}">Tất cả tài khoản</a></li>--}}
                 <li><a href="{{ url('/admin/users/role/1') }}">Supper Admin</a></li>
                 <li><a href="{{ url('/admin/users/role/3') }}">Nhân viên</a></li>
-                <li><a href="{{ url('/admin/users/role/2') }}">Người dùng thường</a></li>
+                <li><a href="{{ url('/admin/users/role/2') }}">Khách hàng</a></li>
             </ul>
         </li>
         @endif
-        <li class="submenu"><a href="#"><i class="icon icon-th-list"></i> <span>Thương hiệu</span>
+        <li class="submenu"><a href="#"><i class="icon icon-th-list"></i> <span>Thương hiệu</span></a>
             <ul>
                 <li><a href="{{ url('/admin/brands/add') }}">Thêm thương hiệu</a></li>
                 <li><a href="{{ url('/admin/brands') }}">Tất cả thương hiệu</a></li>
@@ -29,15 +28,13 @@
 {{--                <li><a href="{{ url('/admin/type-products') }}">Tất cả loại sản phẩm</a></li>--}}
 {{--            </ul>--}}
 {{--        </li>--}}
-        <li class="submenu"><a href="#"><i class="icon icon-th-list"></i> <span>Sản phẩm</span> <span
-                    class="label label-important">2</span></a>
+        <li class="submenu"><a href="#"><i class="icon icon-th-list"></i> <span>Sản phẩm</span></a>
             <ul>
                 <li><a href="{{ url('/admin/products/add') }}">Thêm sản phẩm</a></li>
                 <li><a href="{{ url('/admin/products') }}">Tất cả sản phẩm</a></li>
             </ul>
         </li>
-        <li class="submenu"><a href="#"><i class="icon icon-th-list"></i> <span>Đơn hàng</span> <span
-                    class="label label-important">2</span></a>
+        <li class="submenu"><a href="#"><i class="icon icon-th-list"></i> <span>Đơn hàng</span></a>
             <ul>
                 <li><a href="{{ url('/admin/bills') }}">Tất cả đơn hàng</a></li>
                 <li><a href="{{ url('/admin/bills/0') }}">Đơn hàng chưa xử lý</a></li>
@@ -47,7 +44,7 @@
             </ul>
         </li>
 
-        <li class="submenu"><a href="#"><i class="icon icon-th-list"></i> <span>Quản lý slide</span>
+        <li class="submenu"><a href="#"><i class="icon icon-th-list"></i> <span>Quản lý slide</span></a>
             <ul>
                 <li><a href="{{ url('/admin/slides') }}">Tất cả slide</a></li>
                 <li><a href="{{ url('/admin/slides/add') }}">Thêm slide</a></li>
