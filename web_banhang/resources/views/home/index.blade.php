@@ -70,10 +70,10 @@
                             <h3 class="heading-tittle text-center font-italic">Điện thoại</h3>
                             <div class="row">
                                 @foreach($phones as $phone)
-                                    <div class="col-md-4 product-men mt-5" @if($phone->discount<=0) disabled="disabled" style="opacity: 0.8; padding-bottom: 10px" @else style="padding-bottom: 10px" @endif>
+                                    <div class="col-md-3 product-men mt-5" @if($phone->discount<=0) disabled="disabled" style="opacity: 0.8; padding-bottom: 10px" @else style="padding-bottom: 10px" @endif>
                                         <div class="men-pro-item simpleCart_shelfItem">
                                             <div class="men-thumb-item text-center">
-                                                <img src="images/{{$phone->image}}" alt=""style="height: 250px;width: 300px">
+                                                <img src="images/{{$phone->image}}" alt=""style="height: 180px;width: 200px">
                                                 <div class="men-cart-pro">
                                                     <div class="inner-men-cart-pro">
                                                         <a href="{{route('home.detailProduct',$phone->id)}}" class="link-product-add-cart">Chi tiết</a>
@@ -115,10 +115,10 @@
                             <h3 class="heading-tittle text-center font-italic">Laptop</h3>
                             <div class="row">
                                 @foreach($laptops as $laptop)
-                                    <div class="col-md-4 product-men mt-5" @if($laptop->discount<=0) disabled="disabled" style="opacity: 0.8; padding-bottom: 10px" @else style="padding-bottom: 10px" @endif>
+                                    <div class="col-md-3 product-men mt-5" @if($laptop->discount<=0) disabled="disabled" style="opacity: 0.8; padding-bottom: 10px" @else style="padding-bottom: 10px" @endif>
                                         <div class="men-pro-item simpleCart_shelfItem">
                                             <div class="men-thumb-item text-center">
-                                                <img src="images/{{$laptop->image}}" style="height: 250px;width: 300px"
+                                                <img src="images/{{$laptop->image}}" style="height: 180px;width: 200px"
                                                      alt="">
                                                 <div class="men-cart-pro">
                                                     <div class="inner-men-cart-pro">
@@ -173,10 +173,10 @@
                             <h3 class="heading-tittle text-center font-italic">Phụ kiện khác</h3>
                             <div class="row">
                                 @foreach($phuKien as $pk)
-                                <div class="col-md-4 product-men mt-5" @if($pk->discount<=0) disabled="disabled" style="opacity: 0.8; padding-bottom: 10px" @else style="padding-bottom: 10px" @endif>
+                                <div class="col-md-3 product-men mt-5" @if($pk->discount<=0) disabled="disabled" style="opacity: 0.8; padding-bottom: 10px" @else style="padding-bottom: 10px" @endif>
                                     <div class="men-pro-item simpleCart_shelfItem">
                                         <div class="men-thumb-item text-center">
-                                            <img src="images/{{$pk->image}}" alt="" style="height: 250px;width: 300px">
+                                            <img src="images/{{$pk->image}}" alt="" style="height: 180px;width: 200px">
                                             <div class="men-cart-pro">
                                                 <div class="inner-men-cart-pro">
                                                     <a href="{{route('home.detailProduct',$pk->id)}}" class="link-product-add-cart">Chi tiết</a>
