@@ -101,7 +101,7 @@
                                 <i class="fas fa-sign-out-alt mr-2"></i> Đăng xuất</a>
                         </li>
                         <li class="text-center border-right text-white">
-                            <a href="{{route('home.logout')}}" class="text-white">
+                            <a href="{{route('home.history')}}" class="text-white">
                                 Chào {{Auth::user()->name}}</a>
                         </li>
                     @else
@@ -189,7 +189,7 @@
                         {{--                                   id="customControlAutosizing">--}}
                         {{--                            <label class="custom-control-label" for="customControlAutosizing">Nhớ mật khẩu?</label>--}}
                         {{--                        </div>--}}
-                        <a href="{{route('home.returnPass')}}">Quên mật khẩu</a>
+{{--                        <a href="{{route('home.returnPass')}}">Quên mật khẩu</a>--}}
                     </div>
                     <p class="text-center dont-do mt-3">Bạn không có tài khoản?
                         <a href="#" data-toggle="modal" data-target="#exampleModal2">

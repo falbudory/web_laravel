@@ -16,8 +16,7 @@
             </ul>
         </li>
         @endif
-        <li class="submenu"><a href="#"><i class="icon icon-th-list"></i> <span>Thương hiệu</span> <span
-                    class="label label-important">2</span></a>
+        <li class="submenu"><a href="#"><i class="icon icon-th-list"></i> <span>Thương hiệu</span>
             <ul>
                 <li><a href="{{ url('/admin/brands/add') }}">Thêm thương hiệu</a></li>
                 <li><a href="{{ url('/admin/brands') }}">Tất cả thương hiệu</a></li>
@@ -45,6 +44,13 @@
                 <li><a href="{{ url('/admin/bills/1') }}">Đang gửi hàng</a></li>
                 <li><a href="{{ url('/admin/bills/2') }}">Đơn hàng thành công</a></li>
                 <li><a href="{{ url('/admin/bills/3') }}">Đơn hủy</a></li>
+            </ul>
+        </li>
+
+        <li class="submenu"><a href="#"><i class="icon icon-th-list"></i> <span>Quản lý slide</span>
+            <ul>
+                <li><a href="{{ url('/admin/slides') }}">Tất cả slide</a></li>
+                <li><a href="{{ url('/admin/slides/add') }}">Thêm slide</a></li>
             </ul>
         </li>
 

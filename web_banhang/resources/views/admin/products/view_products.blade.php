@@ -27,6 +27,7 @@
                   <th>Giá</th>
                   <th>Giá khuyến mãi</th>
                   <th>Loại sản phẩm</th>
+                  <th>Số lượng</th>
                   <th>Created at</th>
                   <th>Updated at</th>
                 </tr>
@@ -56,6 +57,7 @@
                             <td>{{$type_product->name}}</td>
                         @endif
                     @endforeach
+                  <td>{{ $product->discount }}</td>
                   <td>{{ $product->created_at }}</td>
                   <td>{{ $product->updated_at }}</td>
                   <td class="center"><a href="#myModal{{ $product->id }}" data-toggle="modal" class="btn btn-success btn-mini">View</a> <a href="{{ url('/admin/products/edit/'.$product->id) }}" class="btn btn-primary btn-mini">Edit</a> <a id="delCat" href="{{ url('admin/products/delete/'.$product->id) }}" class="btn btn-danger btn-mini">Delete</a> </td>

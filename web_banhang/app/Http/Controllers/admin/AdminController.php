@@ -10,6 +10,7 @@ use App\Models\Brand;
 use App\Models\Role;
 use App\Models\RolePermission;
 use App\Models\Permission;
+use App\Models\Slide;
 use App\Models\TypeProduct;
 use App\Models\User;
 use App\Models\Customer;
@@ -247,7 +248,9 @@ class AdminController extends Controller
         $product->win = $data['win'];
         $product->manHinh = $data['manHinh'];
         $product->brand_id = $data['brand_id'];
+        $product->brand_id = $data['brand_id'];
         $product->type_id = $data['type_id'];
+        $product->discount = $data['discount'];
         if($request->hasFile('image')){
             $image_tmp = $request->file('image');
             if($image_tmp->isValid()){
@@ -267,10 +270,10 @@ class AdminController extends Controller
         else return redirect()->back()->with('failed', 'Coudnt add a new product, please try agian');
     }
 
-    public function updateProducts(ProductRequest $request, $id = null){
+    public function updateProducts(Request $request, $id = null){
 //        dd($request);
         $data = array_filter($request->only('brand_id', 'type_id', 'name', 'win', 'cpu', 'manHinh', 'ram',
-            'oCung', 'unit_price', 'promotion_price', 'description'));
+            'oCung', 'unit_price', 'promotion_price', 'description', 'discount'));
         if($request->hasFile('image')){
             $image_tmp = $request->file('image');
             if($image_tmp->isValid()){
@@ -284,13 +287,12 @@ class AdminController extends Controller
                 // Store image name in products table
             }
 //            dd($data);
-            if(Product::where('id', $id)->update($data)){
-                return redirect()->back()->with('success', 'Product info has been updated');
-            }
-            else{
-                return redirect()->back()->with('failed','Cannot update product info');
-            }
-
+        }
+        if(Product::where('id', $id)->update($data)){
+            return redirect()->back()->with('success', 'Sản phẩm đã được cập nhật');
+        }
+        else{
+            return redirect()->back()->with('failed','Đã xảy ra lỗi');
         }
     }
 
@@ -350,11 +352,11 @@ class AdminController extends Controller
     public function editBrands($id = null){
         $brandDetails = Brand::where('id', $id)->first();
         if (!$brandDetails){
-            return back()->with('error', 'Cannot find the specific brand');
+            return back()->with('error', 'Không tìm thấy nhãn hàng');
         }
         return view('admin.brands.edit_brands')->with(compact('brandDetails'));
     }
-    public function updateBrands(BrandRequest $request, $id){
+    public function updateBrands(Request $request, $id){
 //        dd($request);
         $data = array_filter($request->only('name', 'description'));
         if($request->hasFile('logo')) {
@@ -406,7 +408,101 @@ class AdminController extends Controller
 
     public function updateStatusBill(Request $request, $id) {
         $data = $request->all();
+        if($data['status']==3) {
+            $bill_details = BillDetail::where("bill_id", $id)->get();
+            foreach ($bill_details as $item) {
+                $id_product = $item['product_id'];
+                $quantity = $item['quantity'];
+                $product = Product::where("id", $id_product)->first();
+                $product->discount += $quantity;
+                $product->save();
+            }
+        }
         Bill::where('id',$id)->update(['status'=>$data['status']]);
     }
 
+    public function viewSlide() {
+        $slides = Slide::all();
+        return view("admin.slides.view_slides")->with(compact('slides'));
+    }
+
+    public function addSlides() {
+        $products = Product::all();
+        return view("admin.slides.add_slide")->with(compact('products'));
+    }
+
+    public function insertSlide(Request $request){
+        $data = $request->all();
+        $slide = new Slide;
+        $slide->name = $data['name'];
+        $slide->description = $data['description'];
+        $slide->status = $data['status'];
+        $slide->product_id = $data['product_id'];
+        if($request->hasFile('image')){
+            $image_tmp = $request->file('image');
+            if($image_tmp->isValid()){
+                $extension = $image_tmp->getClientOriginalExtension();
+                $filename = time().rand(10,99).'.'.$extension;
+                $image_path = 'images/'.$filename;
+                if(!Image::make($image_tmp)->save($image_path)){
+                    return back()->with('error', 'Something was wrong with image');
+                }
+                // Store image name in products table
+                $slide->image = $filename;
+            }
+        }
+
+        if( $slide->save()){
+            return back()->with('success', 'Thông tin đã được lưu lại');
+        }
+        else{
+            return back()->with('error', 'Đã có lỗi xảy ra');
+        }
+    }
+
+    public function editSlide($id = null){
+        $slideDetails = Slide::where('id', $id)->first();
+        $products = Product::all();
+        if (!$slideDetails){
+            return back()->with('error', 'Không tìm thấy slide');
+        }
+        return view('admin.slides.edit_slide')->with(compact('slideDetails', 'products'));
+    }
+    public function updateSlides(Request $request, $id){
+//        dd($request);
+        $data = array_filter($request->only('name', 'description', 'status', 'product_id'));
+        if($request->hasFile('image')) {
+            $image_tmp = $request->file('image');
+            if ($image_tmp->isValid()) {
+                $extension = $image_tmp->getClientOriginalExtension();
+                $filename = time() . rand(10, 99) . '.' . $extension;
+                $data['logo'] = $filename;
+                $image_path = 'images/' . $filename;
+                if (!Image::make($image_tmp)->save($image_path)) {
+                    return back()->with('error', 'Đã có lỗi xảy ra');
+                }
+                // Store image name in Brands table
+            }
+        }
+        if(Slide::where('id',$id)->update($data)){
+            return back()->with('success', 'Thông tin đã được sửa dổi');
+        }
+        else{
+            return back()->with('error', 'Đã có lỗi xảy ra xin vui lòng thử lại');
+        }
+
+    }
+
+    public function deleteSlide($id) {
+        if(Slide::where(['id'=>$id])->delete()){
+            return back()->with('info', 'Đã xóa');
+        }
+
+        else return back()->with('error', 'xin vui lòng thử lại');
+    }
+
+    public function updateStatusSlide(Request $request, $id) {
+        $data = $request->all();
+        Slide::where('id',$id)->update(['status'=>$data['status']]);
+    }
 }

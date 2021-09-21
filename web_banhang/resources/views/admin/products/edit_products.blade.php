@@ -102,12 +102,12 @@
                                         <input type="text" name="promotion_price" id="promotion_price" value="{{$product->promotion_price}}" />
                                     </div>
                                 </div>
-                    {{--            <div class="control-group">
+                                <div class="control-group">
                                     <label class="control-label">Số lượng</label>
                                     <div class="controls">
-                                        <input type="text" name="discount" id="discount" />
+                                        <input type="text" name="discount" value="{{$product->discount}}" id="discount" />
                                     </div>
-                                </div>--}}
+                                </div>
                                 <div class="control-group">
                                     <label class="control-label">Mô tả</label>
                                     <div class="controls">

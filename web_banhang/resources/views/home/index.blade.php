@@ -26,19 +26,19 @@
         </ol>
         <div class="carousel-inner" style="background-color: #F2F8FE ">
             @if(count($slides)>=1)
-            <div class="carousel-item item1 active" style="background: url('images/{{$slides[0]['image']}}') no-repeat center">
+            <div onclick="location.href = 'product/{{$slides[0]['product_id']}}'" class="carousel-item item1 active" style="background: url('images/{{$slides[0]['image']}}') no-repeat center">
             </div>
             @endif
             @if(count($slides)>=2)
-            <div class="carousel-item item2" style="background: url('images/{{$slides[1]['image']}}') no-repeat center">
+            <div onclick="location.href = 'product/{{$slides[1]['product_id']}}'" class="carousel-item item2" style="background: url('images/{{$slides[1]['image']}}') no-repeat center">
             </div>
             @endif
             @if(count($slides)>=3)
-            <div class="carousel-item item3" style="background: url('images/{{$slides[2]['image']}}') no-repeat center">
+            <div onclick="location.href = 'product/{{$slides[2]['product_id']}}'" class="carousel-item item3" style="background: url('images/{{$slides[2]['image']}}') no-repeat center">
             </div>
             @endif
             @if(count($slides)>=4)
-            <div class="carousel-item item4" style="background: url('images/{{$slides[3]['image']}}') no-repeat center">
+            <div onclick="location.href = 'product/{{$slides[3]['product_id']}}'" class="carousel-item item4" style="background: url('images/{{$slides[3]['image']}}') no-repeat center">
             </div>
             @endif
         </div>
