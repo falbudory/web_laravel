@@ -35,7 +35,7 @@
                             <ul class="slides">
                                 <li data-thumb="images/si1.jpg" style="display: block">
                                     <div class="thumb-image">
-                                        <img src="http://localhost:8000/images/{{$data->image}}" data-imagezoom="true" class="img-fluid" alt=""> </div>
+                                        <img src="{{ asset('/images/'.$data->image) }}" data-imagezoom="true" class="img-fluid" alt=""> </div>
                                 </li>
 
                             </ul>

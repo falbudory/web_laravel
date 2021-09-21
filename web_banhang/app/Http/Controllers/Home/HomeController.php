@@ -107,7 +107,7 @@ class HomeController extends Controller
         if ($sMoney !== '') {
             $query->where('unit_price', '>=', $start)->where('unit_price', '<', $end);
         }
-        $data = $query->get();
+        $data = $query->paginate(3);
         $brand = Brand::all();
         $caption = TypeProduct::where('id', $id)->value('description');
         return view('home.products', compact('data', 'brand', 'caption', 'id'));
