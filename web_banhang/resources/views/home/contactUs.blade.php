@@ -2,9 +2,9 @@
 
 @section("content")
 
-    <div class="page-head_agile_info_w3l">
+{{--    <div class="page-head_agile_info_w3l">--}}
 
-    </div>
+{{--    </div>--}}
     <!-- //banner-2 -->
     <!-- page -->
     <div class="services-breadcrumb">
@@ -27,10 +27,7 @@
         <div class="container py-xl-4 py-lg-2">
             <!-- tittle heading -->
             <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
-                <span>L</span>iên
-                <span>H</span>ệ
-                <span>C</span>húng
-                <span>T</span>ôi
+                <span>Liên hệ với chúng tôi</span>
             </h3>
             <!-- //tittle heading -->
             <div class="row contact-grids agile-1 mb-5">
@@ -40,9 +37,9 @@
                             <i class="fas fa-map-marker-alt rounded-circle"></i>
                         </div>
                         <h4 class="font-weight-bold mt-sm-4 mt-3 mb-3">Địa chỉ</h4>
-<p>
-                            <label>Tân Triều, Thanh Trì</label>
-</p>
+                        <p>
+                            <label>141 Chiến Thắng, Tân Triều, Thanh Trì</label>
+                        </p>
                     </div>
                 </div>
                 <div class="col-sm-4 contact-grid agileinfo-6 my-sm-0 my-4">
@@ -51,8 +48,8 @@
                             <i class="fas fa-phone rounded-circle"></i>
                         </div>
                         <h4 class="font-weight-bold mt-sm-4 mt-3 mb-3">Điện thoại</h4>
-                        <p>+333 222 3333
-                            <label>+222 11 4444</label>
+                        <p><a href="tel:0337349565"><i class="fas fa-phone"></i> 0853914191</a></p>
+                            <label> <a href="tel:0337349565"><i class="fas fa-phone"></i> 0337349565</a></label>
                         </p>
                     </div>
                 </div>
@@ -63,16 +60,16 @@
                         </div>
                         <h4 class="font-weight-bold mt-sm-4 mt-3 mb-3">Email</h4>
                         <p>
-                            <a href="mailto:info@example.com">thakhacontact@gmail.com</a>
+                            <a href="mailto:thakhacontact@gmail.com">thakhacontact@gmail.com</a>
                             <label>
-                                <a href="mailto:info@example.com">thakhahelpme@gmail.com</a>
+                                <a href="mailto:thakhacontact@gmail.com">thakhahelpme@gmail.com</a>
                             </label>
                         </p>
                     </div>
                 </div>
             </div>
             <!-- form -->
-            <form action="#" method="post">
+{{--            <form action="#" method="post">
                 <div class="contact-grids1 w3agile-6">
                     <div class="row">
                         <div class="col-md-6 col-sm-6 contact-form1 form-group">
@@ -92,7 +89,7 @@
                         <input type="submit" value="Gửi">
                     </div>
                 </div>
-            </form>
+            </form>--}}
             <!-- //form -->
         </div>
     </div>

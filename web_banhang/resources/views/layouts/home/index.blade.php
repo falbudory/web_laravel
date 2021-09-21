@@ -79,23 +79,10 @@
             <div class="col-lg-8 header-right">
                 <!-- header lists -->
                 <ul>
-                    {{--                    <li class="text-center border-right text-white">--}}
-                    {{--                        <a class="play-icon popup-with-zoom-anim text-white" href="#small-dialog1">--}}
-                    {{--                            <i class="fas fa-map-marker mr-2"></i>Select Location</a>--}}
-                    {{--                    </li>--}}
-                    {{--                    <li class="text-center border-right text-white">--}}
-                    {{--                        <a href="#" data-toggle="modal" data-target="#exampleModal" class="text-white">--}}
-                    {{--                            <i class="fas fa-truck mr-2"></i>Track Order</a>--}}
-                    {{--                    </li>--}}
                     <li class="text-center border-right text-white">
                         <i class="fas fa-phone mr-2"></i> 0853914191
                     </li>
                     @if(\Illuminate\Support\Facades\Auth::check())
-                        {{--                        <li class="text-center border-right text-white" style="width: 30%;">--}}
-                        {{--                            <a href="#" data-toggle="modal" data-target="#exampleModal3" class="text-white">--}}
-                        {{--                                <i class="fa fa-credit-card" aria-hidden="true"></i> Số--}}
-                        {{--                                dư: {{number_format(Auth::user()->money)}} VND</a>--}}
-                        {{--                        </li>--}}
                         <li class="text-center border-right text-white">
                             <a href="{{route('home.logout')}}" class="text-white">
                                 <i class="fas fa-sign-out-alt mr-2"></i> Đăng xuất</a>
@@ -234,12 +221,12 @@
                         <input type="email" class="form-control" placeholder=" " name="email" required="">
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">Password</label>
+                        <label class="col-form-label">Mật khẩu</label>
                         <input type="password" class="form-control" placeholder=" " name="password" id="password1"
                                required="">
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">Confirm Password</label>
+                        <label class="col-form-label">Xác nhận mật khẩu</label>
                         <input type="password" class="form-control" placeholder=" " name="password_re"
                                id="password2" required="">
                     </div>
@@ -304,7 +291,7 @@
             <!-- logo -->
             <div class="col-md-3 logo_agile">
                 <h1 class="text-center">
-                    <a href="index.html" class="font-weight-bold font-italic">
+                    <a href="{{route('index')}}" class="font-weight-bold font-italic">
                         <img src="{{asset('images/logo2.png')}}" alt=" " class="img-fluid">THAKHA SHOP
                     </a>
                 </h1>
@@ -317,7 +304,7 @@
                     <div class="col-10 agileits_search">
                         <form class="form-inline" action="{{route('home.search')}}">
                             <input class="form-control mr-sm-2" type="search" name="searchP" placeholder=" Từ khóa"
-                                   aria-label="Search"
+                                   aria-label="Search" autocomplete="off"
                                    required>
                             <button class="btn my-2 my-sm-0" type="submit">Tìm kiếm</button>
                         </form>
@@ -355,7 +342,7 @@
 
                                     {{--                                <div id="quantityCart"></div>--}}
                                     {{--                                @else--}}
-                                                                        <a class="btn btn-primary"><i class="fas fa-cart-arrow-down"></i></a>
+                                    <a class="btn btn-primary"><i class="fas fa-cart-arrow-down"></i></a>
                                     {{--                                @endif--}}
                                     {{--                                    @php--}}
                                     {{--                                        $a = count(Session::get('cart'));--}}
@@ -379,20 +366,6 @@
 <div class="navbar-inner">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            {{--            <div class="agileits-navi_search">--}}
-            {{--                <form action="#" method="post">--}}
-            {{--                    <select id="agileinfo-nav_search" name="agileinfo_search" class="border" required="">--}}
-            {{--                        <option value="">Danh mục sản phẩm</option>--}}
-            {{--                        <option  value="laptop"><a href="{{route('home.typeProduct',1)}} ">Laptop</a></option>--}}
-            {{--                        <option href="{{route('home.typeProduct',2)}} "value="smartphone">Điện thoại</option>--}}
-            {{--                        <option href="{{route('home.typeProduct',3)}} "value="phukien">Phụ kiện khác</option>--}}
-            {{--                    </select>--}}
-            {{--                </form>--}}
-            {{--            </div>--}}
-            {{--            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"--}}
-            {{--                    aria-expanded="false" aria-label="Toggle navigation">--}}
-            {{--                <span class="navbar-toggler-icon"></span>--}}
-            {{--            </button>--}}
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto text-center mr-xl-5">
                     <li class="nav-item active mr-lg-2 mb-lg-0 mb-2">
@@ -470,11 +443,11 @@
                     <h3 class="text-white font-weight-bold mb-3">Đường dẫn nhanh</h3>
                     <ul>
                         <li class="mb-3">
-                            <a href="#">Về chúng tôi</a>
+                            <a href="{{route('aboutUs')}}">Về chúng tôi</a>
                         </li>
-                        {{-- <li class="mb-3">
-                             <a href="#">Liên lạc</a>
-                         </li>--}}
+                         <li class="mb-3">
+                             <a href="{{route('contactUs')}}">Liên hệ</a>
+                         </li>
                         {{--<li class="mb-3">
                             <a href="#">Help</a>
                         </li>
@@ -493,21 +466,21 @@
                     <h3 class="text-white font-weight-bold mb-3">Liên hệ</h3>
                     <ul>
                         <li class="mb-3">
-                            <i class="fas fa-map-marker"></i> Tân Triều, Thanh Trì.
+                            <i class="fas fa-map-marker"></i>141, Tân Triều, Thanh Trì.
                         </li>
                         <li class="mb-3">
-                            <i class="fas fa-mobile"></i> 0853914191
+                            <a href="tel:0337349565"><i class="fas fa-phone"></i> 0853914191</a>
                         </li>
                         <li class="mb-3">
-                            <i class="fas fa-phone"></i> 0337349565
+                            <a href="tel:0337349565"><i class="fas fa-phone"></i> 0337349565</a>
                         </li>
                         <li class="mb-3">
                             <i class="fas fa-envelope-open"></i>
-                            <a href="mailto:trikhanhtk0038@gmail.com">trikhanhtk0038@gmail.com</a>
+                            <a href="mailto:thakhahelpme@gmail.com">thakhahelpme@gmail.com</a>
                         </li>
                         <li>
                             <i class="fas fa-envelope-open"></i>
-                            <a href="mailto:trikhanhm10@gmail.com">trikhanhm10@gmail.com</a>
+                            <a href="mailto:thakhahelpme@gmail.com">thakhahelpme@gmail.com</a>
                         </li>
                     </ul>
                 </div>
