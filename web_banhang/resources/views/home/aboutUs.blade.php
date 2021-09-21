@@ -27,8 +27,8 @@
         <div class="container py-xl-4 py-lg-2">
             <!-- tittle heading -->
             <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
-                <span>C</span>húng
-                <span>T</span>ôi</h3>
+                <span>Chúng tôi</span>
+            </h3>
             <!-- //tittle heading -->
             <div class="row">
                 <div class="col-lg-6 welcome-left">
@@ -48,11 +48,9 @@
     <div class="testimonials py-sm-5 py-4">
         <div class="container py-xl-4 py-lg-2">
             <!-- tittle heading -->
-            <h3 class="tittle-w3l text-center text-white mb-lg-5 mb-sm-4 mb-3">
-                <span>K</span>hách
-                <span>H</span>àng
-                <span>C</span>hia
-                <span>S</span>ẻ</h3>
+            <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+                <span style="color: #FFFFFF">Khách hàng chia sẻ</span>
+            </h3>
             <!-- tittle heading -->
             <div class="row gallery-index">
                 <div class="col-sm-6 med-testi-grid">
