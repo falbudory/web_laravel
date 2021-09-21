@@ -83,7 +83,7 @@
                         </div>
 {{--                        <div>{{$data->links()}}</div>--}}
                     </div>
-                    <div>{{$data->links()}}</div>
+
 
                 </div>
                 <!-- //product left -->
