@@ -38,9 +38,9 @@ class HomeController extends Controller
 //    }
     public function index()
     {
-        $laptops = Product::where('type_id', 1)->take(3)->get();
-        $phones = Product::where('type_id', 2)->take(3)->get();
-        $phuKien = Product::where('type_id', 3)->take(3)->get();
+        $laptops = Product::where('type_id', 1)->take(6)->get();
+        $phones = Product::where('type_id', 2)->take(6)->get();
+        $phuKien = Product::where('type_id', 3)->take(6)->get();
         $slides = Slide::where('status', 1)->skip(0)->take(4)->get();
 //        dd($slides[0]['images']);
         return view('home.index', compact('laptops', 'phones', 'phuKien', 'slides'));

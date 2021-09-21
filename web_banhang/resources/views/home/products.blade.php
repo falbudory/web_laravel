@@ -90,7 +90,7 @@
                     <div class="side-bar p-sm-4 p-3">
                         <form action="{{route('home.typeProduct',$id)}}">
                             <input class="btn btn-primary" type="submit"  value="Tìm kiếm">
-                        <div class="search-hotel border-bottom py-2">
+                        <div class="search-hotel border-bottom py-2" style="margin-top: 15px;">
                             <h3 class="agileits-sear-head mb-3">HÃNG</h3>
 
 {{--                                <input type="search" placeholder="Tên hãng..." name="searchBrand" required="">--}}
