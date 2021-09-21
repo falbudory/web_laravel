@@ -40,7 +40,7 @@
                                                     <tr>
                                                         <td><img src="images/{{$item['image']}}" alt=""
                                                                  style="height: 100px;width: 100px"></td>
-                                                        <td>{{$item['name']}}</td>
+                                                        <td><a href="{{ url('product/'.$id) }}">{{$item['name']}}</a></td>
                                                         <td>{{number_format($item['price'])}}</td>
                                                         <td><input type="number" style="width: 70px;"
                                                                    value="{{$item['quantity']}}" min="1"
@@ -53,8 +53,8 @@
                                                                class="btn btn-primary cart-update">Cập nhật</a>
                                                             <a href="#" data-id="{{$id}}"
                                                                class="btn btn-danger cart-delete">Xóa</a>
-                                                            <a href="{{ url('product/'.$id) }}"
-                                                               class="btn btn-primary">Chi tiết sản phẩm</a>
+{{--                                                            <a href="{{ url('product/'.$id) }}"--}}
+{{--                                                               class="btn btn-primary">Chi tiết sản phẩm</a>--}}
                                                         </td>
                                                     </tr>
                                                 @endforeach

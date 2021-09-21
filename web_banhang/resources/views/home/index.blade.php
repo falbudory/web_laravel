@@ -173,7 +173,7 @@
                             <h3 class="heading-tittle text-center font-italic">Phụ kiện khác</h3>
                             <div class="row">
                                 @foreach($phuKien as $pk)
-                                <div class="col-md-4 product-men mt-5" @if($phuKien->discount<=0) disabled="disabled" style="opacity: 0.8; padding-bottom: 10px" @else style="padding-bottom: 10px" @endif>
+                                <div class="col-md-4 product-men mt-5" @if($pk->discount<=0) disabled="disabled" style="opacity: 0.8; padding-bottom: 10px" @else style="padding-bottom: 10px" @endif>
                                     <div class="men-pro-item simpleCart_shelfItem">
                                         <div class="men-thumb-item text-center">
                                             <img src="images/{{$pk->image}}" alt="" style="height: 250px;width: 300px">
@@ -197,13 +197,13 @@
                                                     <span class="item_price">{{number_format($pk->unit_price)}}</span>
                                                 @endif
                                             </div>
-                                            @if($phuKien->discount<=0)
+                                            @if($pk->discount<=0)
                                                 <div class="single-item hvr-outline-out">
                                                     <p class="btn btn-primary" disabled="disabled" style="opacity: 0.6; background-color: grey">Hết hàng</p>
                                                 </div>
                                             @else
                                                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                                    <a href="#" data-url="{{route('home.addToCart',['id'=>$phuKien->id])}}" class="add-to-cart btn btn-primary">Thêm giỏ hàng</a>
+                                                    <a href="#" data-url="{{route('home.addToCart',['id'=>$pk->id])}}" class="add-to-cart btn btn-primary">Thêm giỏ hàng</a>
                                                 </div>
                                             @endif
 
