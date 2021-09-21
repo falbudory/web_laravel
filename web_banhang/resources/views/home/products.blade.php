@@ -76,15 +76,11 @@
                                     </div>
                                 </div>
                                 @endforeach
-
                             </div>
-
-
+                            <hr>
+                            <div class="row">{{$data->links()}}</div>
                         </div>
-{{--                        <div>{{$data->links()}}</div>--}}
                     </div>
-
-
                 </div>
                 <!-- //product left -->
                 <!-- product right -->
@@ -94,14 +90,10 @@
                             <input class="btn btn-primary" type="submit"  value="Tìm kiếm">
                         <div class="search-hotel border-bottom py-2" style="margin-top: 15px;">
                             <h3 class="agileits-sear-head mb-3">HÃNG</h3>
-
-{{--                                <input type="search" placeholder="Tên hãng..." name="searchBrand" required="">--}}
                                 <div class="left-side py-2">
                                     <ul>
                                         @foreach($brand as $item)
                                             <li>
-                                                {{--                                        <input type="checkbox" class="checked">--}}
-                                                {{--                                        <span class="span">{{$item->description}}</span>--}}
                                                 <input  name="brand" type="radio" value="{{$item->id}}"/>{{$item->description}}
                                             </li>
                                         @endforeach
