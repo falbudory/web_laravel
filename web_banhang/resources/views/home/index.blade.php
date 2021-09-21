@@ -26,19 +26,19 @@
         </ol>
         <div class="carousel-inner" style="background-color: #F2F8FE ">
             @if(count($slides)>=1)
-            <div class="carousel-item item1 active" style="background: url('images/{{$slides[0]['image']}}') no-repeat center">
+            <div onclick="location.href = 'product/{{$slides[0]['product_id']}}'" class="carousel-item item1 active" style="background: url('images/{{$slides[0]['image']}}') no-repeat center">
             </div>
             @endif
             @if(count($slides)>=2)
-            <div class="carousel-item item2" style="background: url('images/{{$slides[1]['image']}}') no-repeat center">
+            <div onclick="location.href = 'product/{{$slides[1]['product_id']}}'" class="carousel-item item2" style="background: url('images/{{$slides[1]['image']}}') no-repeat center">
             </div>
             @endif
             @if(count($slides)>=3)
-            <div class="carousel-item item3" style="background: url('images/{{$slides[2]['image']}}') no-repeat center">
+            <div onclick="location.href = 'product/{{$slides[2]['product_id']}}'" class="carousel-item item3" style="background: url('images/{{$slides[2]['image']}}') no-repeat center">
             </div>
             @endif
             @if(count($slides)>=4)
-            <div class="carousel-item item4" style="background: url('images/{{$slides[3]['image']}}') no-repeat center">
+            <div onclick="location.href = 'product/{{$slides[3]['product_id']}}'" class="carousel-item item4" style="background: url('images/{{$slides[3]['image']}}') no-repeat center">
             </div>
             @endif
         </div>
@@ -157,16 +157,16 @@
                         </div>
                         <!-- //second section -->
                         <!-- third section -->
-                        <div class=" px-sm-5 px-3">
-                            <div class="row">
-    {{--                            <h3 class="col-md-4 effect-bg">Back to school</h3>
-                                <p class="w3l-nut-middle">Giảm giá thêm 10%</p>--}}
-                                <div class="col-md-8 bg-right-nut">
-                                    <img src="images/637660305811365864_F-C1_1200x300.jpg" alt=""
-                                         width="1020px">
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class=" px-sm-5 px-3">--}}
+{{--                            <div class="row">--}}
+{{--    --}}{{--                            <h3 class="col-md-4 effect-bg">Back to school</h3>--}}
+{{--                                <p class="w3l-nut-middle">Giảm giá thêm 10%</p>--}}
+{{--                                <div class="col-md-8 bg-right-nut">--}}
+{{--                                    <img src="images/637660305811365864_F-C1_1200x300.jpg" alt=""--}}
+{{--                                         width="1020px">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <!-- //third section -->
                         <!-- fourth section -->
                         <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mt-4">

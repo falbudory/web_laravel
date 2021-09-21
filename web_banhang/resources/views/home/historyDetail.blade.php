@@ -29,7 +29,7 @@
                                         @foreach($data as $index => $item)
                                             <tr>
                                                 <th scope="row">{{$index+1}}</th>
-                                                <td><img src="http://localhost:8000/images/{{$item->image}}" alt="" style="height: 100px;width: 100px"></td>
+                                                <td><img src="{{ asset('/images/'.$item->image) }}" alt="" style="width: 150px"></td>
                                                 <td>{{$item->name}}</td>
                                                 <td>{{$item->quantity}}</td>
                                                 <td>{{number_format($item->price)}} VND</td>

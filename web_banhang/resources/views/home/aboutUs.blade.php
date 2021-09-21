@@ -2,9 +2,9 @@
 
 @section("content")
 
-    <div class="page-head_agile_info_w3l">
+{{--    <div class="page-head_agile_info_w3l">
 
-    </div>
+    </div>--}}
     <!-- //banner-2 -->
     <!-- page -->
     <div class="services-breadcrumb">

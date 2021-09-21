@@ -4,7 +4,11 @@
     <div id="content">
         <div id="content-header">
             <div id="breadcrumb"> <a href="{{ url('/admin') }}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Đơn hàng</a> <a href="#" class="current">Tất cả đơn hàng</a> </div>
-            <h1>Đơn hàng</h1>
+            @if(isset($name))
+            <h1>{{$name}}</h1>
+            @else
+                <h1>Tất cả đơn hàng</h1>
+            @endif
 
         </div>
         <div class="container-fluid">
@@ -44,7 +48,7 @@
                                     @endforeach
                                     <td>{{ $bill->date_order }}</td>
                                     <td>{{ $bill->quantity }}</td>
-                                    <td>{{ $bill->total }}</td>
+                                    <td>{{number_format($bill->total)}}</td>
                                     <td>{{ $bill->payment }}</td>
                                     @foreach($customers as $customer)
                                         @if($customer->id == $bill->customer_id)
@@ -87,7 +91,7 @@
                                                     <p>San pham: {{$product->name}}</p>
                                                     @endif
                                                 @endforeach
-                                                <p>Giá: {{ $bill_detail->price }}</p>
+                                                <p>Giá: {{ number_format($bill_detail->price) }}</p>
                                                 <p>Số lượng: {{ $bill_detail->quantity }}</p><hr>
                                             @endif
                                         @endforeach
@@ -96,7 +100,7 @@
                                                 <p>Địa chỉ nhận hàng: {{ $customer->address}}</p>
                                             @endif
                                         @endforeach
-                                        <p>Tổng Tiền: {{$bill->total}}</p>
+                                        <p>Tổng Tiền: {{ number_format($bill->total)}}</p>
                                     </div>
                                 </div>
                                 @endforeach

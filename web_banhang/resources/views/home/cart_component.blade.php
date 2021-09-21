@@ -9,7 +9,9 @@
                     <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mt-4">
 
                         <div class="cart_wrapper">
-                            <div style="height: 100px;width: 100%;"></div>
+                            <div style="height: 100px;width: 100%;">
+                                <h1>Giỏ hàng của bạn</h1>
+                            </div>
                             <div class="cart delete_cart_url" data-url="{{route('home.deleteCart')}}">
                                 <div class="container">
                                     @if($cart != null)
@@ -19,7 +21,6 @@
                                                    data-url="{{route('home.updateCart')}}">
                                                 <thead>
                                                 <tr>
-                                                    <th>ID</th>
                                                     <th scope="col">Ảnh</th>
                                                     <th scope="col">Tên sản phẩm</th>
                                                     <th scope="col">Đơn giá</th>
@@ -37,7 +38,6 @@
                                                         $total += $item['price']*$item['quantity'];
                                                     @endphp
                                                     <tr>
-                                                        <td scope="row">{{$id}}</td>
                                                         <td><img src="images/{{$item['image']}}" alt=""
                                                                  style="height: 100px;width: 100px"></td>
                                                         <td>{{$item['name']}}</td>
@@ -53,6 +53,8 @@
                                                                class="btn btn-primary cart-update">Cập nhật</a>
                                                             <a href="#" data-id="{{$id}}"
                                                                class="btn btn-danger cart-delete">Xóa</a>
+                                                            <a href="{{ url('product/'.$id) }}"
+                                                               class="btn btn-primary">Chi tiết sản phẩm</a>
                                                         </td>
                                                     </tr>
                                                 @endforeach

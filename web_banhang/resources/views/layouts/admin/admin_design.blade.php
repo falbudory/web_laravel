@@ -43,6 +43,12 @@
     let role = "";
     let id_permission = "";
     $(document).ready(function () {
+
+        let inputElm = document.getElementsByTagName("input");
+        for (let i=0; i<inputElm.length; i++) {
+            inputElm[i].setAttribute("autocomplete", "off");
+        }
+
         $("#role").change(function () {
             let allPermission = $('input[name="permission"]');
             allPermission.prop( "checked", false);
@@ -99,6 +105,57 @@
                 }
             });
         });
+
+
+        $("#password").on('input',function () {
+            checkpass();
+        });
+
+        $("#repeat_pass").on('input',function () {
+            checkpass();
+        });
+
+        $("#repeat_pass").on('focusout', function () {
+            checkpass1();
+        });
+
+        $("#password").on('focusout', function () {
+            checkpass2();
+        });
+
+        function checkpass() {
+            let pass = $("#password").val();
+            let repeat_pass = $("#repeat_pass").val();
+            if(pass.length >=8 && repeat_pass.length >=8 && pass==repeat_pass) {
+                $("#btn_add_user")[0].disabled = false;
+                $("#different").css("display", "none");
+            }else {
+                $("#btn_add_user")[0].disabled = false;
+            }
+        }
+
+        function checkpass1() {
+            let pass = $("#password").val();
+            let repeat_pass = $("#repeat_pass");
+            if(pass != repeat_pass) {
+                $("#regex_pass").css("display", "none");
+                $("#different").css("display", "block");
+            }else {
+                $("#different").css("display", "none");
+            }
+        }
+        function checkpass2() {
+            let pass = $("#password").val();
+            let repeat_pass = $("#repeat_pass");
+            if(pass.length <8) {
+                $("#regex_pass").css("display", "block");
+            }else {
+                $("#regex_pass").css("display", "none");
+            }
+            if(repeat_pass==pass) {
+                $("#different").css("display", "none");
+            }
+        }
     });
 </script>
 </body>

@@ -10,6 +10,7 @@ use App\Models\Brand;
 use App\Models\Role;
 use App\Models\RolePermission;
 use App\Models\Permission;
+use App\Models\Slide;
 use App\Models\TypeProduct;
 use App\Models\User;
 use App\Models\Customer;
@@ -24,11 +25,17 @@ use App\Http\Requests\BrandRequest;
 use App\Http\Requests\TypeProductRequest;
 use App\Http\Requests\BillRequest;
 use Image;
+use File;
 
 class AdminController extends Controller
 {
     public function homeAdmin() {
-        return view("admin.home");
+        $count_bill = count(Bill::all());
+        $bill_0 = count(Bill::where("status", 0)->get());
+        $bill_1 = count(Bill::where("status", 1)->get());
+        $bill_2 = count(Bill::where("status", 2)->get());
+        $bill_3 = count(Bill::where("status", 3)->get());
+        return view("admin.home")->with(compact("count_bill", "bill_0", "bill_1", "bill_2", "bill_3"));
     }
 
     public function login(Request $request)
@@ -109,7 +116,14 @@ class AdminController extends Controller
     public function getUserByRole ($role_id) {
         $users = User::where(['role_id'=>$role_id])->get();
         $roles = Role::all();
-        return view("admin.users.view_users")->with(compact("users", "roles"));
+        if($role_id==1) {
+            $name = "Tài khoản Supper admin";
+        }else if($role_id==3) {
+            $name = "Tài khoản nhân viên";
+        }else {
+            $name = "Tài khoản khách hàng";
+        }
+        return view("admin.users.view_users")->with(compact("users", "roles", "name"));
     }
 
     public function deleteUser($id){
@@ -247,7 +261,9 @@ class AdminController extends Controller
         $product->win = $data['win'];
         $product->manHinh = $data['manHinh'];
         $product->brand_id = $data['brand_id'];
+        $product->brand_id = $data['brand_id'];
         $product->type_id = $data['type_id'];
+        $product->discount = $data['discount'];
         if($request->hasFile('image')){
             $image_tmp = $request->file('image');
             if($image_tmp->isValid()){
@@ -267,12 +283,15 @@ class AdminController extends Controller
         else return redirect()->back()->with('failed', 'Coudnt add a new product, please try agian');
     }
 
-    public function updateProducts(ProductRequest $request, $id = null){
+    public function updateProducts(Request $request, $id = null){
 //        dd($request);
         $data = array_filter($request->only('brand_id', 'type_id', 'name', 'win', 'cpu', 'manHinh', 'ram',
-            'oCung', 'unit_price', 'promotion_price', 'description'));
+            'oCung', 'unit_price', 'promotion_price', 'description', 'discount'));
         if($request->hasFile('image')){
             $image_tmp = $request->file('image');
+            $image_product = Product::where('id',$id)->first()["image"];
+            $file_path = 'images/' . $image_product;
+            File::delete($file_path);
             if($image_tmp->isValid()){
                 $extension = $image_tmp->getClientOriginalExtension();
                 $filename = time().rand(10,99).'.'.$extension;
@@ -284,17 +303,19 @@ class AdminController extends Controller
                 // Store image name in products table
             }
 //            dd($data);
-            if(Product::where('id', $id)->update($data)){
-                return redirect()->back()->with('success', 'Product info has been updated');
-            }
-            else{
-                return redirect()->back()->with('failed','Cannot update product info');
-            }
-
+        }
+        if(Product::where('id', $id)->update($data)){
+            return redirect()->back()->with('success', 'Sản phẩm đã được cập nhật');
+        }
+        else{
+            return redirect()->back()->with('failed','Đã xảy ra lỗi');
         }
     }
 
     public function deleteProducts($id = null){
+        $image_product = Product::where('id',$id)->first()["image"];
+        $file_path = 'images/' . $image_product;
+        File::delete($file_path);
         if(Product::where(['id'=>$id])->delete()){
 
             return back()->with('info', 'Product has been deleted');
@@ -342,6 +363,9 @@ class AdminController extends Controller
     }
 
     public function deleteBrands($id){
+        $image_product = Brand::where('id',$id)->first()["logo"];
+        $file_path = 'images/brands-logo/' . $image_product;
+        File::delete($file_path);
         if(Brand::where(['id'=>$id])->delete()){
             return back()->with('info', 'Brand has been removed');
         }
@@ -350,14 +374,17 @@ class AdminController extends Controller
     public function editBrands($id = null){
         $brandDetails = Brand::where('id', $id)->first();
         if (!$brandDetails){
-            return back()->with('error', 'Cannot find the specific brand');
+            return back()->with('error', 'Không tìm thấy nhãn hàng');
         }
         return view('admin.brands.edit_brands')->with(compact('brandDetails'));
     }
-    public function updateBrands(BrandRequest $request, $id){
+    public function updateBrands(Request $request, $id){
 //        dd($request);
         $data = array_filter($request->only('name', 'description'));
         if($request->hasFile('logo')) {
+            $image_brand = Brand::where('id',$id)->first()["logo"];
+            $file_path = 'images/brands-logo/' . $image_brand;
+            File::delete($file_path);
             $image_tmp = $request->file('logo');
             if ($image_tmp->isValid()) {
                 $extension = $image_tmp->getClientOriginalExtension();
@@ -390,10 +417,19 @@ class AdminController extends Controller
 //        dd($status);
         $bills = Bill::where(['status'=>$status])->get();
 //        dd($bills);
+        if($status==0) {
+            $name = "Đơn hàng chưa xử lý";
+        }else if($status==1) {
+            $name = "Đơn hàng đang vận chuyển";
+        }else if($status==2) {
+            $name = "Giao hàng thành công";
+        }else {
+            $name = "Đơn hàng bị hủy";
+        }
         $bill_details  = BillDetail::all();
         $customers = Customer::all();
         $products = Product::all();
-        return view("admin.bills.view_bills")->with(compact('bills', 'bill_details', 'customers', 'products'));
+        return view("admin.bills.view_bills")->with(compact('bills', 'bill_details', 'customers', 'products', "name"));
     }
 
     public function deleteBill($id) {
@@ -406,7 +442,107 @@ class AdminController extends Controller
 
     public function updateStatusBill(Request $request, $id) {
         $data = $request->all();
+        if($data['status']==3) {
+            $bill_details = BillDetail::where("bill_id", $id)->get();
+            foreach ($bill_details as $item) {
+                $id_product = $item['product_id'];
+                $quantity = $item['quantity'];
+                $product = Product::where("id", $id_product)->first();
+                $product->discount += $quantity;
+                $product->save();
+            }
+        }
         Bill::where('id',$id)->update(['status'=>$data['status']]);
     }
 
+    public function viewSlide() {
+        $slides = Slide::all();
+        return view("admin.slides.view_slides")->with(compact('slides'));
+    }
+
+    public function addSlides() {
+        $products = Product::all();
+        return view("admin.slides.add_slide")->with(compact('products'));
+    }
+
+    public function insertSlide(Request $request){
+        $data = $request->all();
+        $slide = new Slide;
+        $slide->name = $data['name'];
+        $slide->description = $data['description'];
+        $slide->status = $data['status'];
+        $slide->product_id = $data['product_id'];
+        if($request->hasFile('image')){
+            $image_tmp = $request->file('image');
+            if($image_tmp->isValid()){
+                $extension = $image_tmp->getClientOriginalExtension();
+                $filename = time().rand(10,99).'.'.$extension;
+                $image_path = 'images/'.$filename;
+                if(!Image::make($image_tmp)->save($image_path)){
+                    return back()->with('error', 'Something was wrong with image');
+                }
+                // Store image name in products table
+                $slide->image = $filename;
+            }
+        }
+
+        if( $slide->save()){
+            return back()->with('success', 'Thông tin đã được lưu lại');
+        }
+        else{
+            return back()->with('error', 'Đã có lỗi xảy ra');
+        }
+    }
+
+    public function editSlide($id = null){
+        $slideDetails = Slide::where('id', $id)->first();
+        $products = Product::all();
+        if (!$slideDetails){
+            return back()->with('error', 'Không tìm thấy slide');
+        }
+        return view('admin.slides.edit_slide')->with(compact('slideDetails', 'products'));
+    }
+    public function updateSlides(Request $request, $id){
+//        dd($request);
+        $data = array_filter($request->only('name', 'description', 'status', 'product_id'));
+        if($request->hasFile('image')) {
+            $image_slide = Slide::where('id',$id)->first()["image"];
+            $file_path = 'images/' . $image_slide;
+            File::delete($file_path);
+            $image_tmp = $request->file('image');
+            if ($image_tmp->isValid()) {
+                $extension = $image_tmp->getClientOriginalExtension();
+                $filename = time() . rand(10, 99) . '.' . $extension;
+                $data['logo'] = $filename;
+                $image_path = 'images/' . $filename;
+                if (!Image::make($image_tmp)->save($image_path)) {
+                    return back()->with('error', 'Đã có lỗi xảy ra');
+                }
+                // Store image name in Brands table
+            }
+        }
+        if(Slide::where('id',$id)->update($data)){
+            return back()->with('success', 'Thông tin đã được sửa dổi');
+        }
+        else{
+            return back()->with('error', 'Đã có lỗi xảy ra xin vui lòng thử lại');
+        }
+
+    }
+
+    public function deleteSlide($id) {
+        $image_slide = Slide::where('id',$id)->first()["image"];
+        $file_path = 'images/' . $image_slide;
+        File::delete($file_path);
+        if(Slide::where(['id'=>$id])->delete()){
+            return back()->with('info', 'Đã xóa');
+        }
+
+        else return back()->with('error', 'xin vui lòng thử lại');
+    }
+
+    public function updateStatusSlide(Request $request, $id) {
+        $data = $request->all();
+        Slide::where('id',$id)->update(['status'=>$data['status']]);
+    }
 }

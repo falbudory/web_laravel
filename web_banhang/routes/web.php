@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/send-mail', 'Home\HomeController@sendMail');
 
 //home
+Route::get('/', 'Home\HomeController@index')->name('index');
 Route::post('/login', 'Home\UserController@login')->name('home.login');
 Route::get('/home', 'Home\HomeController@index')->name('index');
 Route::get('/home/search', 'Home\HomeController@search')->name('home.search');
@@ -91,6 +92,13 @@ Route::group(['middleware'=>'auth'], function() {
     Route::get('admin/bills/{status}', 'admin\AdminController@getBillsByStatus')->name('view_bills')->middleware('can:manager');
     Route::post('admin/bills/update/{id}', 'admin\AdminController@updateStatusBill')->middleware('can:manager');
     Route::get('admin/bills/delete/{id}', 'admin\AdminController@deleteBill')->name('view_bills')->middleware('can:manager');
+
+    Route::get('admin/slides', 'admin\AdminController@viewSlide')->name('view_slides')->middleware('can:manager');
+    Route::get('admin/slides/add', 'admin\AdminController@addSlides')->name('add_slide')->middleware('can:manager');
+    Route::post('admin/slides/insert', 'admin\AdminController@insertSlide')->middleware('can:manager'); // thêm slide vào db
+    Route::post('admin/slides/update/{id}', 'admin\AdminController@updateSlides')->middleware('can:manager'); // cập nhật chỉnh sửa
+    Route::get('admin/slides/edit/{id}', 'admin\AdminController@editSlide')->name('edit_slide')->middleware('can:manager');
+    Route::get('admin/slides/delete/{id}', 'admin\AdminController@deleteSlide')->name('view_slide')->middleware('can:manager'); //xóa slide
 
 });
 

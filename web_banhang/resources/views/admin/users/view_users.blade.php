@@ -4,9 +4,13 @@
     <div id="content">
         <div id="content-header">
             <div id="breadcrumb"><a href="{{--{{ url('/admin') }}--}}" title="Go to Home" class="tip-bottom"><i
-                        class="icon-home"></i> Home</a> <a href="#">User</a> <a href="#" class="current">Tất cả tài
+                        class="icon-home"></i> Home</a> <a href="#">Tài khoản người dùng</a> <a href="#" class="current">Tất cả tài
                     khoản</a></div>
-            <h1>Tài khoản</h1>
+            @if(isset($name))
+                <h1>{{$name}}</h1>
+            @else
+                <h1>Tài khoản</h1>
+            @endif
 
         </div>
         <div class="container-fluid">
@@ -15,7 +19,7 @@
                 <div class="span12">
                     <div class="widget-box">
                         <div class="widget-title"><span class="icon"><i class="icon-th"></i></span>
-                            <h5>Tất cả User</h5>
+                            <h5>Tất cả tài khoản</h5>
                         </div>
                         <div class="widget-content nopadding">
                             <table class="table table-bordered data-table">
