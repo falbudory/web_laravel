@@ -331,8 +331,8 @@ class HomeController extends Controller
     public function historyDetail($id)
     {
         $data = BillDetail::where('bill_id', $id)->join('products', 'products.id', '=', 'product_id')->get();
-
-        return view('home.historyDetail', compact('data'));
+        $customer = Customer::where('email', Auth::user()->email)->join('bills', 'customers.id', '=', 'bills.customer_id')->first();
+        return view('home.historyDetail', compact('data','customer'));
     }
 
     public function search(Request $request)

@@ -11,9 +11,31 @@
                     <div class="wrapper">
                         <!-- first section -->
                         <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mt-4">
-                            <br>
-                            <br>
+
+
                             <div class="container">
+                                <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+                                    <span style="font-size: inherit;">CHI TIẾT ĐƠN HÀNG</span>
+                                </h3>
+
+                                <div>
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" >Tên khách hàng: <span style="color: blue;">{{$customer->name}}</span></label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1" >Số điện thoại: <span style="color: blue;">{{$customer->phone}}</span></label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1" >Địa chỉ: <span style="color: blue;">{{$customer->address}}</span></label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1" >Đơn hàng: <span style="color: blue;">{{number_format($customer->total)}} VND <span></span></label>
+                                        </div>
+
+                                    </form>
+                                </div>
+                                <br>
                                 <div>
                                     <table class="table table-striped">
                                         <thead>
