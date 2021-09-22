@@ -2,6 +2,7 @@
     @extends("layouts.home.index")
 
 @section("content")
+    <title>Đổi mật khẩu</title>
     <div class="container">
         <br>
         <br>

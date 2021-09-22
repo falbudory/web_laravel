@@ -2,7 +2,7 @@
     @extends("layouts.home.index")
 
 @section("content")
-
+<title>Đổi mật khẩu</title>
     <div class="ads-grid py-sm-5 py-4">
         <div class="container py-xl-4 py-lg-2">
 
@@ -16,7 +16,7 @@
                                 <div class="container">
                                     <br>
                                     <br>
-                                    <div style="color: blue;font-size: x-large;font-weight: bold;padding-left: 100px;">
+                                    <div style="color: blue;font-size: x-large;font-weight: bold;padding-left: 15px;">
                                         Đổi mật khẩu
                                     </div>
                                     <div class="modal-body">

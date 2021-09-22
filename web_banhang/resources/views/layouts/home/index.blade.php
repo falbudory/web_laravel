@@ -2,13 +2,13 @@
 <html lang="zxx">
 
 <head>
-    <title>THAKHA SHOP</title>
     <!-- Meta tag Keywords -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8"/>
     <meta name="keywords"
           content="Electro Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"
     />
+    <link rel="icon" href="{{asset('images/logo2.png')}}">
     <script>
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
@@ -161,7 +161,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                @if($errors->any())
+                {{--@if($errors->any())
                     <div class="alert alert-danger">
                         <ul class="list-group">
                             @foreach($errors->all() as $error)
@@ -171,7 +171,7 @@
                             @endforeach
                         </ul>
                     </div>
-                @endif
+                @endif--}}
                 <form method="POST" action="{{ route('home.login') }}">
                     {{ csrf_field() }}
 
@@ -183,7 +183,7 @@
                     <div class="form-group">
 
                         <label class="col-form-label">Password</label>
-                        <input type="password" class="form-control" placeholder=" " name="password" required="">
+                        <input type="password" minlength="8" class="form-control" placeholder=" " id="pass_login" name="password" required="">
                     </div>
                     <div class="right-w3l">
                         <input type="submit" class="form-control" value="Đăng nhập">
@@ -216,7 +216,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                @if($errors->any())
+                {{--@if($errors->any())
                     <div class="alert alert-danger">
                         <ul class="list-group">
                             @foreach($errors->all() as $error)
@@ -226,7 +226,7 @@
                             @endforeach
                         </ul>
                     </div>
-                @endif
+                @endif--}}
                 <form action="{{ route('store')}}" method="post">
                     {{ csrf_field() }}
 
@@ -240,12 +240,12 @@
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Mật khẩu</label>
-                        <input type="password" class="form-control" placeholder=" " name="password" id="password1"
+                        <input type="password" minlength="8" class="form-control" placeholder=" " name="password" id="password1"
                                required="">
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Xác nhận mật khẩu</label>
-                        <input type="password" class="form-control" placeholder=" " name="password_re"
+                        <input type="password" minlength="8" class="form-control" placeholder=" " name="password_re"
                                id="password2" required="">
                     </div>
                     <div class="right-w3l">
@@ -308,9 +308,9 @@
         <div class="row header-bot_inner_wthreeinfo_header_mid">
             <!-- logo -->
             <div class="col-md-3 logo_agile">
-                <h1 class="text-center">
-                    <a href="{{route('index')}}" class="font-weight-bold font-italic">
-                        <img src="{{asset('images/logo2.png')}}" alt=" " class="img-fluid">THAKHA SHOP
+                <h1 class="text-center" style="font-size: 30px !important;">
+                    <a href="{{route('index')}}" class="font-weight-bold font-italic" style="font-size: 25px">
+                        <img style="width: 60px;" src="{{asset('images/logo2.png')}}" alt=" " class="{{--img-fluid--}}">THAKHA SHOP
                     </a>
                 </h1>
             </div>
@@ -635,6 +635,11 @@
             mainClass: 'my-mfp-zoom-in'
         });
 
+        let inputElm = document.getElementsByTagName("input");
+        for (let i=0; i<inputElm.length; i++) {
+            inputElm[i].setAttribute("autocomplete", "off");
+        }
+
     });
 </script>
 
@@ -670,16 +675,27 @@
     window.onload = function () {
         document.getElementById("password1").onchange = validatePassword;
         document.getElementById("password2").onchange = validatePassword;
+        document.getElementById("pass_login").onchange = validatePassword;
     }
 
     function validatePassword() {
         var pass2 = document.getElementById("password2").value;
         var pass1 = document.getElementById("password1").value;
-        if (pass1 != pass2)
-            document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+        var pass_login = document.getElementById("pass_login").value;
+        if(pass1.length<8)
+            $("#password1")[0].setCustomValidity("Mật khẩu phải có độ dài tối thiểu 8 ký tự và ít hơn 20 ký tự");
         else
-            document.getElementById("password2").setCustomValidity('');
+            $("#password1")[0].setCustomValidity("");
+        if (pass1 != pass2)
+           $("#password2")[0].setCustomValidity("Mật khẩu không giống nhau");
+        else
+            $("#password2")[0].setCustomValidity('');
         //empty string means no validation error
+        if(pass_login.length < 8) {
+            $("#pass_login")[0].setCustomValidity("Mật khẩu phải có độ dài tối thiểu 8 ký tự và ít hơn 20 ký tự");
+        }else {
+            $("#pass_login")[0].setCustomValidity("");
+        }
     }
 </script>
 <!-- //password-script -->

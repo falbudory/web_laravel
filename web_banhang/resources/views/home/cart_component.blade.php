@@ -1,3 +1,4 @@
+<title>Giỏ hàng của bạn</title>
 <div class="ads-grid py-sm-5 py-4">
     <div class="container py-xl-4 py-lg-2">
 

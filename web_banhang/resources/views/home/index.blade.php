@@ -8,6 +8,7 @@
         </script>
     @endif
     <!-- banner -->
+    <title>THAKHA SHOP</title>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <!-- Indicators-->
         <ol class="carousel-indicators">
@@ -73,7 +74,7 @@
                                     <div class="col-md-3 product-men mt-5" @if($phone->discount<=0) disabled="disabled" style="opacity: 0.8; padding-bottom: 10px" @else style="padding-bottom: 10px" @endif>
                                         <div class="men-pro-item simpleCart_shelfItem">
                                             <div class="men-thumb-item text-center">
-                                                <img src="images/{{$phone->image}}" alt=""style="height: 180px;width: 200px">
+                                                <img src="{{ asset('/images/'.$phone->image) }}" alt=""style="height: 180px;width: 200px">
                                                 <div class="men-cart-pro">
                                                     <div class="inner-men-cart-pro">
                                                         <a href="{{route('home.detailProduct',$phone->id)}}" class="link-product-add-cart">Chi tiết</a>
@@ -81,7 +82,7 @@
                                                 </div>
                                             </div>
                                             <div class="item-info-product text-center border-top mt-4">
-                                                <h4 class="pt-1">
+                                                <h4 class="pt-1" style="height: 32.8px; overflow-y: hidden; overflow-x: hidden">
                                                     <a href="{{route('home.detailProduct',$phone->id)}}">{{$phone->name}}</a>
                                                 </h4>
                                                 <div class="info-product-price my-2">
@@ -118,7 +119,7 @@
                                     <div class="col-md-3 product-men mt-5" @if($laptop->discount<=0) disabled="disabled" style="opacity: 0.8; padding-bottom: 10px" @else style="padding-bottom: 10px" @endif>
                                         <div class="men-pro-item simpleCart_shelfItem">
                                             <div class="men-thumb-item text-center">
-                                                <img src="images/{{$laptop->image}}" style="height: 180px;width: 200px"
+                                                <img src="{{ asset('/images/'.$laptop->image) }}" style="height: 180px;width: 200px"
                                                      alt="">
                                                 <div class="men-cart-pro">
                                                     <div class="inner-men-cart-pro">
@@ -127,7 +128,7 @@
                                                 </div>
                                             </div>
                                             <div class="item-info-product text-center border-top mt-4">
-                                                <h4 class="pt-1">
+                                                <h4 class="pt-1" style="height: 32.8px; overflow-y: hidden; overflow-x: hidden">
                                                     <a href="{{route('home.detailProduct',$laptop->id)}}">{{$laptop->name}}</a>
                                                 </h4>
                                                 <div class="info-product-price my-2">
@@ -176,7 +177,7 @@
                                 <div class="col-md-3 product-men mt-5" @if($pk->discount<=0) disabled="disabled" style="opacity: 0.8; padding-bottom: 10px" @else style="padding-bottom: 10px" @endif>
                                     <div class="men-pro-item simpleCart_shelfItem">
                                         <div class="men-thumb-item text-center">
-                                            <img src="images/{{$pk->image}}" alt="" style="height: 180px;width: 200px">
+                                            <img src="{{ asset('/images/'.$pk->image) }}" alt="" style="height: 180px;width: 200px">
                                             <div class="men-cart-pro">
                                                 <div class="inner-men-cart-pro">
                                                     <a href="{{route('home.detailProduct',$pk->id)}}" class="link-product-add-cart">Chi tiết</a>
@@ -185,7 +186,7 @@
                                         </div>
                                         <span class="product-new-top">New</span>
                                         <div class="item-info-product text-center border-top mt-4">
-                                            <h4 class="pt-1">
+                                            <h4 class="pt-1" style="height: 32.8px; overflow-y: hidden; overflow-x: hidden">
                                                 <a href="{{route('home.detailProduct',$pk->id)}}">{{$pk->name}}</a>
                                             </h4>
                                             <div class="info-product-price my-2">

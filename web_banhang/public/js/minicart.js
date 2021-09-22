@@ -2422,7 +2422,7 @@ module.exports = function currency(amount, config) {
         value = currencies[code],
         before = value.before || '',
         after = value.after || '',
-        length = value.length || ,
+        length = value.length || '',
         showCode = value.code && config && config.showCode,
         result = amount;
 

@@ -7,6 +7,7 @@
     </div>--}}
     <!-- //banner-2 -->
     <!-- page -->
+<title>{{$data->name}}</title>
     <div class="services-breadcrumb">
         <div class="agile_inner_breadcrumb">
             <div class="container">
@@ -35,7 +36,7 @@
                             <ul class="slides">
                                 <li data-thumb="images/si1.jpg" style="display: block">
                                     <div class="thumb-image">
-                                        <img src="http://localhost:8000/images/{{$data->image}}" data-imagezoom="true" class="img-fluid" alt=""> </div>
+                                        <img src="{{ asset('/images/'.$data->image) }}" data-imagezoom="true" class="img-fluid" alt=""> </div>
                                 </li>
 
                             </ul>
@@ -45,7 +46,7 @@
                 </div>
 
                 <div class="col-lg-7 single-right-left simpleCart_shelfItem">
-                    <h3 class="mb-3">{{$data->name}}</h3>
+                    <h1 class="mb-3">{{$data->name}}</h1>
                     <p class="mb-3">
                         @if($data-> promotion_price!= 0)
                             <span class="item_price">{{number_format($data->promotion_price)}} VND</span>

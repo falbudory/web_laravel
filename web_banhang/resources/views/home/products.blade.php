@@ -1,9 +1,16 @@
 @extends("layouts.home.index")
 
 @section("content")
-{{--    <div class="page-head_agile_info_w3l">
+    @if($data[0]['type_id'] == 1)
+        <title>Laptop</title>
+    @elseif($data[0]['type_id'] == 2)
+        <title>Điện thoại-máy tính bảng</title>
+    @else
+        <title>Phụ kiện</title>
+    @endif
+    {{--    <div class="page-head_agile_info_w3l">
 
-    </div>--}}
+        </div>--}}
     <!-- //banner-2 -->
     <!-- page -->
     <div class="services-breadcrumb">
@@ -50,7 +57,7 @@
                                             </div>
                                         </div>
                                         <div class="item-info-product text-center border-top mt-4">
-                                            <h4 class="pt-1">
+                                            <h4 class="pt-1" style="height: 32.8px; overflow-y: hidden; overflow-x: hidden">
                                                 <a href="{{route('home.detailProduct',$item->id)}}">{{$item->name}}</a>
                                             </h4>
                                             <div class="info-product-price my-2">

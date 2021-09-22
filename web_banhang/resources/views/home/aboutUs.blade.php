@@ -7,6 +7,7 @@
     </div>--}}
     <!-- //banner-2 -->
     <!-- page -->
+<title>Giới thiệu về THAKHA SHOP</title>
     <div class="services-breadcrumb">
         <div class="agile_inner_breadcrumb">
             <div class="container">
