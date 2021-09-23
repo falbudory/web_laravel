@@ -30,7 +30,7 @@
                                             <label for="exampleInputPassword1" >Địa chỉ: <span style="color: blue;">{{$customer->address}}</span></label>
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputPassword1" >Đơn hàng: <span style="color: blue;">{{number_format($customer->total)}} VND <span></span></label>
+                                            <label for="exampleInputPassword1" >Đơn hàng: <span style="color: blue;">{{number_format($bill->total)}} VND <span></span></label>
                                         </div>
 
                                     </form>
