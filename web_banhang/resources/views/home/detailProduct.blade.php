@@ -82,6 +82,7 @@
                         </ul>
                         <p class="my-sm-4 my-3">
                             <i class="">Kho còn: </i> {{$data->discount}} <span>sản phẩm</span>
+                            <p>{{$data->description}}</p>
                         </p>
                     </div>
                     @if($data->discount <= 0)

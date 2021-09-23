@@ -750,7 +750,7 @@
 
         $.ajax({
             method: "GET",
-            url:'{{url('/quantityCart')}}',
+            url:"{{url('quantityCart')}}",
             success: function (data) {
                 $('#quantityCart').html(data);
             },
@@ -768,6 +768,7 @@
             dataType: 'json',
             success: function (data) {
                 if (data.code === 200) {
+                    quantity_cart();
                     alert('Thêm sản phẩm thành công');
                 } else if (data.code === 300) {
                     alert('Xin lỗi quý khách\nSản phẩm trong kho đã hết hàng')
@@ -777,7 +778,6 @@
 
             }
         });
-        quantity_cart();
 
     }
 
@@ -785,7 +785,6 @@
     $(function () {
         $('.add-to-cart').on('click', addToCart);
         quantity_cart();
-
     });
 </script>
 {{--<script type="text/javascript">--}}
