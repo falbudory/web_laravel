@@ -40,6 +40,16 @@ class AdminController extends Controller
 
     public function login(Request $request)
     {
+        $messages = [
+            'email.required' => 'Email bị trống',
+            'password.min' => 'Mật khẩu ít nhất 8 ký tự',
+        ];
+
+        $this->validate($request,[
+            'email'=>'required|min:10|max:30',
+            'password'=>'required|min:8|max:20',
+
+        ], $messages);
         $user_data = array(
             'email' => $request->email,
             'password' => $request->password
